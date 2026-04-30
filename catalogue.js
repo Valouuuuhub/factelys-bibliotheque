@@ -6,8 +6,7 @@ window.FACTELYS_DOCUMENTS = [
     subtitle: "Document stratégique · données marché · concurrence · Porter · SWOT",
     category: "Stratégie",
     updated: "Avril 2026",
-    path: "analyse-marche.html",
-    source: "factelys-analyse-marche (1).html"
+    path: "analyse-marche.html"
   },
   {
     id: "charte-graphique",
@@ -16,8 +15,7 @@ window.FACTELYS_DOCUMENTS = [
     subtitle: "Couleurs · typographies · usages logo · composants visuels",
     category: "Branding",
     updated: "Version 2",
-    path: "charte-graphique.html",
-    source: "factelys-charte-graphique (2).html"
+    path: "charte-graphique.html"
   },
   {
     id: "etude-brevo",
@@ -26,8 +24,7 @@ window.FACTELYS_DOCUMENTS = [
     subtitle: "Plans · automatisations · cas d’usage · ROI marketing",
     category: "Marketing",
     updated: "2026",
-    path: "etude-brevo.html",
-    source: "factelys-etude-brevo.html"
+    path: "etude-brevo.html"
   },
   {
     id: "linkedin-kit",
@@ -36,8 +33,7 @@ window.FACTELYS_DOCUMENTS = [
     subtitle: "Planning éditorial · visuels carrés · textes prêts à publier",
     category: "Social",
     updated: "8 posts",
-    path: "linkedin-kit.html",
-    source: "factelys-linkedin-kit (2).html"
+    path: "linkedin-kit.html"
   },
   {
     id: "forms-templates",
@@ -46,8 +42,7 @@ window.FACTELYS_DOCUMENTS = [
     subtitle: "5 formulaires prêts à reproduire pour diagnostic et collecte",
     category: "Outils",
     updated: "5 templates",
-    path: "forms-templates.html",
-    source: "factelys-forms-templates.html"
+    path: "forms-templates.html"
   },
   {
     id: "offres-commerciales",
@@ -56,7 +51,6 @@ window.FACTELYS_DOCUMENTS = [
     subtitle: "Offres FE · argumentaire · pricing · structure commerciale",
     category: "Commercial",
     updated: "2026",
-    path: "offres-commerciales.html",
-    source: "factelys-offres-commerciales.html"
+    path: "offres-commerciales.html"
   }
 ];
