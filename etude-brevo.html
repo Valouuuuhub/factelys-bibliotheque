@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factelys — Étude Brevo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --m:#002B6E;--b:#0044B5;--bc:#D6E4FF;--bp:#EEF4FF;
+  --r:#C0392B;--rc:#FDECEA;
+  --cr:#F4F6FC;--ch:#111827;--g:#5C6880;--gc:#E2E6F0;--w:#fff;
+  --ok:#1E6B3C;--okb:#E6F4EA;
+  --br:#0F6CBD;--brb:#E6F3FB; /* Brevo brand blue */
+  --fd:'DM Serif Display',Georgia,serif;
+  --fs:'Sora',system-ui,sans-serif;
+  --fm:'JetBrains Mono',monospace;
+}
+html{font-family:var(--fs);background:var(--cr);color:var(--ch);font-size:15px;line-height:1.6}
+body{max-width:980px;margin:0 auto;padding:0 24px 80px}
+
+/* COVER */
+.cover{background:linear-gradient(135deg,#0F6CBD 0%,#0D47A1 60%,#002B6E 100%);margin:0 -24px;padding:48px 64px 44px;position:relative;overflow:hidden;margin-bottom:40px}
+.cover-dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:24px 24px}
+.cover-glow{position:absolute;right:-60px;top:-60px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.cover-bar{width:40px;height:4px;background:#fff;border-radius:2px;opacity:.5;margin-bottom:20px;position:relative;z-index:1}
+.cover-logo-row{display:flex;align-items:center;gap:16px;margin-bottom:16px;position:relative;z-index:1}
+.cl-factelys{display:flex;align-items:center;gap:6px}
+.cl-fdot{width:8px;height:8px;background:var(--r);border-radius:2px}
+.cl-fname{font-weight:600;font-size:13px;color:rgba(255,255,255,.7)}
+.cl-x{font-size:13px;color:rgba(255,255,255,.3)}
+.brevo-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-size:13px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.cover-title{font-family:var(--fd);font-size:46px;color:#fff;line-height:1.05;position:relative;z-index:1}
+.cover-title em{color:rgba(255,255,255,.55);font-style:italic}
+.cover-sub{font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-top:10px;position:relative;z-index:1}
+.cover-kpis{display:flex;gap:28px;margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:1;flex-wrap:wrap}
+.ck{display:flex;flex-direction:column;gap:2px}
+.ck-val{font-family:var(--fd);font-size:26px;color:#fff;font-style:italic;line-height:1}
+.ck-label{font-size:11px;color:rgba(255,255,255,.45)}
+
+/* SECTIONS */
+.sh{padding:36px 0 18px}
+.sh-tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--br);margin-bottom:7px}
+.sh-title{font-family:var(--fd);font-size:32px;color:var(--m);line-height:1.1;margin-bottom:6px}
+.sh-title em{color:var(--r);font-style:italic}
+.sh-desc{font-size:13px;color:var(--g);max-width:640px;line-height:1.7}
+.divider{height:1px;background:var(--gc);margin:28px 0}
+.card{background:var(--w);border:1px solid var(--gc);border-radius:14px;padding:22px 26px}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:12px;display:block}
+.chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600}
+.chip-b{background:var(--bc);color:var(--m)}
+.chip-r{background:var(--rc);color:var(--r)}
+.chip-g{background:var(--okb);color:var(--ok)}
+.chip-br{background:var(--brb);color:var(--br)}
+.chip-w{background:var(--gc);color:var(--g)}
+
+/* BREVO LOGO */
+.brevo-logo{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:linear-gradient(135deg,#0F6CBD,#0D47A1);border-radius:8px;color:#fff;font-weight:700;font-size:15px;letter-spacing:-.01em}
+
+/* PLANS GRID */
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.plan-card{border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.plan-card.featured{box-shadow:0 0 0 2px var(--br),0 8px 24px rgba(15,108,189,.12)}
+.plan-head{padding:18px 18px 14px}
+.plan-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;display:inline-block;padding:2px 8px;border-radius:99px}
+.plan-name{font-size:16px;font-weight:700;color:var(--ch);margin-bottom:4px}
+.plan-tagline{font-size:11px;color:var(--g);line-height:1.4}
+.plan-price-block{padding:14px 18px;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06)}
+.plan-price{font-family:var(--fd);font-size:32px;color:var(--ch);line-height:1;font-style:italic}
+.plan-price-unit{font-size:12px;color:var(--g);margin-top:2px}
+.plan-volume{font-family:var(--fm);font-size:11px;color:var(--br);margin-top:4px;font-weight:500}
+.plan-features{padding:14px 18px;flex:1;display:flex;flex-direction:column;gap:6px}
+.plan-feat{font-size:11.5px;color:var(--ch);display:flex;gap:7px;line-height:1.4}
+.plan-feat-ok::before{content:'✓';color:var(--ok);font-weight:700;flex-shrink:0}
+.plan-feat-no{color:rgba(92,104,128,.5)}
+.plan-feat-no::before{content:'–';color:var(--gc);flex-shrink:0}
+.plan-cta{padding:14px 18px}
+.plan-btn{display:block;width:100%;padding:10px;border-radius:7px;font-family:var(--fs);font-size:13px;font-weight:600;text-align:center;border:none;cursor:pointer}
+
+/* FEATURE TABLE */
+.feat-table{width:100%;border-collapse:collapse}
+.feat-table th{background:var(--cr);padding:10px 14px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);border-bottom:1px solid var(--gc);text-align:center}
+.feat-table th.th-left{text-align:left;width:28%}
+.feat-table td{padding:9px 14px;border-bottom:1px solid rgba(0,0,0,.04);font-size:12px;text-align:center;vertical-align:middle}
+.feat-table tr:last-child td{border-bottom:none}
+.feat-table tr:hover td{background:rgba(0,0,0,.012)}
+.td-left{text-align:left!important;color:var(--ch)}
+.f-yes{color:var(--ok);font-weight:700;font-size:14px}
+.f-no{color:rgba(200,200,200,.7);font-size:16px}
+.f-partial{color:var(--g);font-size:11px;font-weight:500}
+.feat-section td{background:var(--cr)!important;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);text-align:left;padding:8px 14px}
+.col-rec{background:rgba(15,108,189,.04)!important}
+.col-rec.th{background:var(--brb)!important;color:var(--br)!important}
+
+/* USE CASES */
+.usecase-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px}
+.uc-card{background:var(--w);border:1px solid var(--gc);border-radius:12px;padding:18px 20px;border-top:3px solid}
+.uc-icon{font-size:22px;margin-bottom:10px}
+.uc-title{font-size:13px;font-weight:600;color:var(--m);margin-bottom:6px;line-height:1.3}
+.uc-desc{font-size:12px;color:var(--g);line-height:1.6;margin-bottom:10px}
+.uc-config{background:var(--cr);border-radius:6px;padding:8px 10px;font-size:11px;color:var(--ch);line-height:1.6;font-family:var(--fm)}
+.uc-impact{margin-top:8px;font-size:11px;font-weight:600;color:var(--ok)}
+
+/* AUTOMATION DIAGRAM */
+.automation-flow{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding:20px 0;margin-bottom:28px}
+.flow-node{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:110px;position:relative}
+.flow-node:not(:last-child)::after{content:'→';position:absolute;right:-18px;top:18px;font-size:18px;color:var(--gc);font-weight:300}
+.fn-box{width:86px;height:56px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:1.5px solid}
+.fn-icon{font-size:18px}
+.fn-label{font-size:9px;font-weight:600;color:#fff;letter-spacing:.04em;text-align:center;line-height:1.2}
+.fn-sub{font-size:9px;color:var(--g);text-align:center;line-height:1.3;max-width:90px}
+.fn-time{font-family:var(--fm);font-size:8.5px;color:var(--br);margin-top:2px}
+
+/* ROI TABLE */
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.roi-card{background:var(--w);border:1px solid var(--gc);border-radius:12px;padding:18px 20px}
+.roi-title{font-size:13px;font-weight:600;color:var(--m);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.roi-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--cr);font-size:12px}
+.roi-row:last-child{border-bottom:none}
+.roi-label{color:var(--g)}
+.roi-val{font-family:var(--fm);font-weight:600}
+
+/* SETUP STEPS */
+.setup-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.setup-step{background:var(--w);border:1px solid var(--gc);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center}
+.ss-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0F6CBD,#0D47A1);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.ss-title{font-size:13px;font-weight:600;color:var(--m);margin-bottom:3px}
+.ss-desc{font-size:12px;color:var(--g);line-height:1.5}
+.ss-time{font-family:var(--fm);font-size:10px;color:var(--br);white-space:nowrap;text-align:right}
+
+/* INTEGRATION GRID */
+.integ-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:28px}
+.integ-item{background:var(--w);border:1px solid var(--gc);border-radius:10px;padding:12px 8px;text-align:center}
+.integ-icon{font-size:20px;margin-bottom:5px}
+.integ-name{font-size:10px;font-weight:600;color:var(--ch)}
+.integ-type{font-size:9px;color:var(--g);margin-top:2px}
+
+/* COMPARISON */
+.comp-table-wrap{background:var(--w);border:1px solid var(--gc);border-radius:14px;overflow:hidden;margin-bottom:28px}
+
+/* DECISION BOX */
+.decision{background:linear-gradient(135deg,#0F6CBD 0%,#002B6E 100%);border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-bottom:28px;position:relative;overflow:hidden}
+.decision-bg{position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.decision-title{font-family:var(--fd);font-size:26px;color:#fff;line-height:1.2;margin-bottom:6px}
+.decision-title em{color:rgba(255,255,255,.55);font-style:italic}
+.decision-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6}
+.decision-right{text-align:center;flex-shrink:0}
+.decision-plan{font-family:var(--fd);font-size:20px;color:#fff;font-style:italic;margin-bottom:4px}
+.decision-price{font-family:var(--fm);font-size:28px;color:#fff;font-weight:700;margin:4px 0}
+.decision-unit{font-size:11px;color:rgba(255,255,255,.45)}
+.decision-reason{font-size:11px;color:rgba(255,255,255,.55);margin-top:8px;line-height:1.5;max-width:200px}
+
+/* FOOTER */
+.doc-footer{background:var(--m);border-radius:12px;padding:20px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:32px}
+.df-logo{display:flex;align-items:center;gap:6px}
+.df-dot{width:7px;height:7px;background:var(--r);border-radius:2px}
+.df-name{font-weight:600;font-size:13px;color:#fff}
+.df-contact{font-size:10px;color:rgba(255,255,255,.3);font-family:var(--fm);text-align:right;line-height:1.7}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-dot-grid"></div>
+  <div class="cover-glow"></div>
+  <div class="cover-bar"></div>
+  <div class="cover-logo-row">
+    <div class="cl-factelys"><div class="cl-fdot"></div><span class="cl-fname">Factelys</span></div>
+    <span class="cl-x">×</span>
+    <div class="brevo-badge">Brevo</div>
+  </div>
+  <h1 class="cover-title">Étude Brevo<br><em>Prix, fonctionnalités<br>& plan de déploiement.</em></h1>
+  <p class="cover-sub">Document stratégique · Email marketing & CRM · Avril 2026</p>
+  <div class="cover-kpis">
+    <div class="ck"><div class="ck-val">Gratuit</div><div class="ck-label">Plan de démarrage</div></div>
+    <div class="ck"><div class="ck-val">7€/mois</div><div class="ck-label">Plan Starter (5 000 emails)</div></div>
+    <div class="ck"><div class="ck-val">15€/mois</div><div class="ck-label">Plan Standard (automation)</div></div>
+    <div class="ck"><div class="ck-val">600K</div><div class="ck-label">entreprises utilisatrices</div></div>
+    <div class="ck"><div class="ck-val">98%</div><div class="ck-label">taux de délivrabilité</div></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     01 — QU'EST-CE QUE BREVO ?
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">01 — Présentation</div>
+  <h2 class="sh-title">Brevo : la plateforme marketing <em>tout-en-un</em> de Factelys.</h2>
+  <p class="sh-desc">Brevo (ex-Sendinblue, fondé en France en 2012) est la solution email marketing, SMS, CRM et automation la plus abordable du marché. Utilisé par Nestlé, IKEA, eBay, Louis Vuitton — mais conçu pour les PME. C'est l'outil idéal pour gérer toute la communication de Factelys.</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px">
+  <div class="card">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--br);margin-bottom:10px">Ce que c'est</div>
+    <div style="font-size:13px;color:var(--ch);line-height:1.7">Plateforme <strong>email marketing + SMS + CRM + automation</strong> en un seul outil. Brevo facture sur le volume d'emails envoyés (pas sur le nombre de contacts) → contacts illimités sur tous les plans.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--br);margin-bottom:10px">Pourquoi c'est adapté à Factelys</div>
+    <div style="font-size:13px;color:var(--ch);line-height:1.7">Factelys a besoin d'envoyer des <strong>newsletters</strong>, des <strong>invitations webinar</strong>, des <strong>séquences de nurturing</strong> post-diagnostic et de gérer un <strong>CRM prospects/clients</strong>. Brevo couvre tout ça dès 15€/mois.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--br);margin-bottom:10px">Avantage clé vs. Mailchimp</div>
+    <div style="font-size:13px;color:var(--ch);line-height:1.7"><strong>4× moins cher</strong> que Mailchimp pour des fonctionnalités équivalentes. Conformité RGPD native (outil français). Support en français. Pas de limite sur le nombre de contacts. Délivrabilité 98%.</div>
+  </div>
+</div>
+
+<!-- Brevo modules -->
+<div class="card" style="margin-bottom:28px">
+  <span class="lbl">Les 7 modules Brevo — ce que Factelys peut utiliser</span>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:4px">
+    <div style="text-align:center;padding:12px 8px;background:var(--brb);border-radius:10px;border:1px solid rgba(15,108,189,.2)">
+      <div style="font-size:20px;margin-bottom:6px">📧</div>
+      <div style="font-size:10px;font-weight:700;color:var(--br)">Email</div>
+      <div style="font-size:9px;color:var(--g);margin-top:3px">Campagnes<br>Newsletters</div>
+      <div style="margin-top:6px"><span class="chip chip-g" style="font-size:9px">Priorité 1</span></div>
+    </div>
+    <div style="text-align:center;padding:12px 8px;background:var(--brb);border-radius:10px;border:1px solid rgba(15,108,189,.2)">
+      <div style="font-size:20px;margin-bottom:6px">⚙️</div>
+      <div style="font-size:10px;font-weight:700;color:var(--br)">Automation</div>
+      <div style="font-size:9px;color:var(--g);margin-top:3px">Workflows<br>Séquences</div>
+      <div style="margin-top:6px"><span class="chip chip-g" style="font-size:9px">Priorité 1</span></div>
+    </div>
+    <div style="text-align:center;padding:12px 8px;background:var(--brb);border-radius:10px;border:1px solid rgba(15,108,189,.2)">
+      <div style="font-size:20px;margin-bottom:6px">👥</div>
+      <div style="font-size:10px;font-weight:700;color:var(--br)">CRM</div>
+      <div style="font-size:9px;color:var(--g);margin-top:3px">Contacts<br>Pipeline</div>
+      <div style="margin-top:6px"><span class="chip chip-b" style="font-size:9px">Priorité 2</span></div>
+    </div>
+    <div style="text-align:center;padding:12px 8px;background:var(--cr);border-radius:10px;border:1px solid var(--gc)">
+      <div style="font-size:20px;margin-bottom:6px">📱</div>
+      <div style="font-size:10px;font-weight:700;color:var(--g)">SMS</div>
+      <div style="font-size:9px;color:var(--g);margin-top:3px">Rappels<br>Alertes</div>
+      <div style="margin-top:6px"><span class="chip chip-w" style="font-size:9px">Optionnel</span></div>
+    </div>
+    <div style="text-align:center;padding:12px 8px;background:var(--cr);border-radius:10px;border:1px solid var(--gc)">
+      <div style="font-size:20px;margin-bottom:6px">🏠</div>
+      <div style="font-size:10px;font-weight:700;color:var(--g)">Landing</div>
+      <div style="font-size:9px;color:var(--g);margin-top:3px">Pages de<br>capture</div>
+      <div style="margin-top:6px"><span class="chip chip-w" style="font-size:9px">Optionnel</span></div>
+    </div>
+    <div style="text-align:center;padding:12px 8px;background:var(--cr);border-radius:10px;border:1px solid var(--gc)">
+      <div style="font-size:20px;margin-bottom:6px">💬</div>
+      <div style="font-size:10px;font-weight:700;color:var(--g)">Chat</div>
+      <div style="font-size:9px;color:var(--g);margin-top:3px">Chat<br>site web</div>
+      <div style="margin-top:6px"><span class="chip chip-w" style="font-size:9px">Optionnel</span></div>
+    </div>
+    <div style="text-align:center;padding:12px 8px;background:var(--cr);border-radius:10px;border:1px solid var(--gc)">
+      <div style="font-size:20px;margin-bottom:6px">📊</div>
+      <div style="font-size:10px;font-weight:700;color:var(--g)">Reporting</div>
+      <div style="font-size:9px;color:var(--g);margin-top:3px">Stats<br>Analytics</div>
+      <div style="margin-top:6px"><span class="chip chip-b" style="font-size:9px">Priorité 2</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     02 — PLANS & TARIFS
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">02 — Plans & tarifs détaillés</div>
+  <h2 class="sh-title">4 plans, <em>un pour chaque étape</em> de Factelys.</h2>
+  <p class="sh-desc">Brevo facture au volume d'emails envoyés par mois (pas au nombre de contacts). Contacts illimités sur tous les plans. Engagement mensuel ou annuel (-10% annuel).</p>
+</div>
+
+<div class="plans-grid">
+
+  <!-- FREE -->
+  <div class="plan-card" style="background:var(--cr);border:1px solid var(--gc)">
+    <div class="plan-head" style="background:var(--cr)">
+      <span class="plan-badge" style="background:var(--gc);color:var(--g)">Gratuit · Forever</span>
+      <div class="plan-name">Free</div>
+      <div class="plan-tagline">Pour démarrer et tester avant de s'engager</div>
+    </div>
+    <div class="plan-price-block" style="background:var(--cr)">
+      <div class="plan-price" style="color:var(--m)">0€</div>
+      <div class="plan-price-unit">Sans engagement · Toujours gratuit</div>
+      <div class="plan-volume">300 emails / jour max</div>
+    </div>
+    <div class="plan-features">
+      <div class="plan-feat plan-feat-ok">Contacts illimités</div>
+      <div class="plan-feat plan-feat-ok">Campagnes email drag & drop</div>
+      <div class="plan-feat plan-feat-ok">CRM intégré (basique)</div>
+      <div class="plan-feat plan-feat-ok">Marketing automation (2 000 contacts)</div>
+      <div class="plan-feat plan-feat-ok">Formulaires d'inscription</div>
+      <div class="plan-feat plan-feat-ok">Support email (60 premiers jours : tél.)</div>
+      <div class="plan-feat plan-feat-no">A/B testing</div>
+      <div class="plan-feat plan-feat-no">Rapports avancés</div>
+      <div class="plan-feat plan-feat-no">Heure d'envoi optimisée IA</div>
+    </div>
+    <div class="plan-cta">
+      <button class="plan-btn" style="background:var(--gc);color:var(--g)">Démarrer gratuit</button>
+      <div style="font-size:10px;color:var(--g);text-align:center;margin-top:6px">Idéal pour lancer Factelys · 0 risque</div>
+    </div>
+  </div>
+
+  <!-- STARTER -->
+  <div class="plan-card" style="background:var(--w);border:1px solid var(--gc)">
+    <div class="plan-head">
+      <span class="plan-badge" style="background:var(--brb);color:var(--br)">Starter</span>
+      <div class="plan-name">Starter</div>
+      <div class="plan-tagline">Pour les newsletters régulières sans automation complexe</div>
+    </div>
+    <div class="plan-price-block">
+      <div class="plan-price" style="color:var(--br)">7€</div>
+      <div class="plan-price-unit">HT / mois · engagement mensuel</div>
+      <div class="plan-volume">5 000 emails / mois inclus</div>
+    </div>
+    <div class="plan-features">
+      <div class="plan-feat plan-feat-ok">Tout le plan Free +</div>
+      <div class="plan-feat plan-feat-ok">Suppression du logo Brevo</div>
+      <div class="plan-feat plan-feat-ok">Support chat & email</div>
+      <div class="plan-feat plan-feat-ok">Générateur contenu IA</div>
+      <div class="plan-feat plan-feat-ok">Segmentation avancée</div>
+      <div class="plan-feat plan-feat-no">A/B testing</div>
+      <div class="plan-feat plan-feat-no">Automation avancée illimitée</div>
+      <div class="plan-feat plan-feat-no">Heure optimisée IA</div>
+    </div>
+    <div class="plan-cta">
+      <button class="plan-btn" style="background:var(--brb);color:var(--br)">Choisir Starter</button>
+      <div style="font-size:10px;color:var(--g);text-align:center;margin-top:6px">Adapté si &lt; 5K emails/mois · 1 newsletter hebdo</div>
+    </div>
+  </div>
+
+  <!-- STANDARD — RECOMMANDÉ FACTELYS -->
+  <div class="plan-card featured" style="background:linear-gradient(180deg,var(--brb) 0%,var(--w) 60%)">
+    <div class="plan-head">
+      <span class="plan-badge" style="background:var(--br);color:#fff">⭐ Recommandé Factelys</span>
+      <div class="plan-name">Standard</div>
+      <div class="plan-tagline">L'offre idéale pour automatiser et scaler Factelys</div>
+    </div>
+    <div class="plan-price-block" style="background:rgba(15,108,189,.06);border-color:rgba(15,108,189,.1)">
+      <div class="plan-price" style="color:var(--br)">15€</div>
+      <div class="plan-price-unit">HT / mois · engagement mensuel</div>
+      <div class="plan-volume">20 000 emails / mois inclus</div>
+    </div>
+    <div class="plan-features">
+      <div class="plan-feat plan-feat-ok">Tout le plan Starter +</div>
+      <div class="plan-feat plan-feat-ok"><strong>Marketing automation illimitée</strong></div>
+      <div class="plan-feat plan-feat-ok"><strong>A/B testing campagnes</strong></div>
+      <div class="plan-feat plan-feat-ok">Rapports avancés (heatmaps, géo)</div>
+      <div class="plan-feat plan-feat-ok">Heure d'envoi optimisée IA</div>
+      <div class="plan-feat plan-feat-ok">Suivi web & événements</div>
+      <div class="plan-feat plan-feat-ok">Landing pages illimitées</div>
+      <div class="plan-feat plan-feat-ok">Support prioritaire</div>
+    </div>
+    <div class="plan-cta">
+      <button class="plan-btn" style="background:var(--br);color:#fff">Choisir Standard →</button>
+      <div style="font-size:10px;color:var(--g);text-align:center;margin-top:6px">20K emails = 200 contacts × 100 emails/mois</div>
+    </div>
+  </div>
+
+  <!-- BUSINESS -->
+  <div class="plan-card" style="background:var(--w);border:1px solid var(--gc)">
+    <div class="plan-head">
+      <span class="plan-badge" style="background:var(--m);color:#fff">Business</span>
+      <div class="plan-name">Business</div>
+      <div class="plan-tagline">Pour une liste de plus de 5 000 contacts actifs</div>
+    </div>
+    <div class="plan-price-block">
+      <div class="plan-price" style="color:var(--m)">~25€+</div>
+      <div class="plan-price-unit">HT / mois · selon volume</div>
+      <div class="plan-volume">50 000 emails / mois inclus</div>
+    </div>
+    <div class="plan-features">
+      <div class="plan-feat plan-feat-ok">Tout le plan Standard +</div>
+      <div class="plan-feat plan-feat-ok">IP dédiée (délivrabilité max)</div>
+      <div class="plan-feat plan-feat-ok">Expert délivrabilité (3h/an)</div>
+      <div class="plan-feat plan-feat-ok">Multi-comptes (agences)</div>
+      <div class="plan-feat plan-feat-ok">Objets personnalisés CRM</div>
+      <div class="plan-feat plan-feat-ok">Programme fidélité</div>
+    </div>
+    <div class="plan-cta">
+      <button class="plan-btn" style="background:var(--m);color:#fff">Choisir Business</button>
+      <div style="font-size:10px;color:var(--g);text-align:center;margin-top:6px">Pour Factelys avec 5000+ abonnés</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TARIF PAY-AS-YOU-GO -->
+<div class="card" style="margin-bottom:16px;border-left:3px solid var(--br)">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--br);margin-bottom:8px">Option Pay-As-You-Go</div>
+      <div style="font-family:var(--fd);font-size:26px;color:var(--m);font-style:italic;margin-bottom:4px">30€</div>
+      <div style="font-size:12px;color:var(--g)">pour 5 000 crédits email · validité illimitée · tarif dégressif</div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:8px">Idéal pour Factelys si</div>
+      <div style="font-size:12.5px;color:var(--ch);line-height:1.6">Volume d'envoi irrégulier · Campagnes ponctuelles (ex: invitation webinar unique) · Pas d'envoi quotidien · Veux éviter un abonnement au démarrage</div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:8px">Exemple coût Factelys</div>
+      <div style="font-size:12px;color:var(--ch);line-height:1.7;font-family:var(--fm)">100 contacts × 4 emails/mois = 400 emails<br>→ Pay-as-you-go : 30€ / 12 mois<br>→ Plan Starter 7€/mois : 84€/an<br><strong style="color:var(--br)">→ Starter moins cher au-delà de 3 mois</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Prix SMS -->
+<div class="card" style="margin-bottom:28px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center">
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--br);margin-bottom:8px">Tarification SMS (en supplément)</div>
+      <div style="font-size:12px;color:var(--g);line-height:1.7">SMS vendus séparément en crédits. Tarif indicatif France : ~0,08-0,12€ / SMS. Factelys peut utiliser les SMS pour rappeler les inscrits au webinar (J-24h et J-1h). Coût estimé pour 100 inscrits × 2 SMS = <strong style="color:var(--ch)">~20€</strong> par webinar.</div>
+    </div>
+    <div style="background:var(--cr);border-radius:10px;padding:14px 16px">
+      <div style="font-size:11px;color:var(--g);line-height:1.8;font-family:var(--fm)">
+        100 SMS France → ~10€<br>
+        Rappel webinar J-24h → 100 × 0,10€ = 10€<br>
+        Rappel webinar J-1h  → 100 × 0,10€ = 10€<br>
+        <strong style="color:var(--m)">Total SMS par webinar → ~20€</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     03 — CAS D'USAGE FACTELYS
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">03 — Cas d'usage concrets Factelys</div>
+  <h2 class="sh-title">6 usages <em>immédiatement activables.</em></h2>
+</div>
+
+<div class="usecase-grid">
+
+  <div class="uc-card" style="border-top-color:var(--br)">
+    <div class="uc-icon">🎙️</div>
+    <div class="uc-title">Invitation & confirmation webinar</div>
+    <div class="uc-desc">Envoyer l'email d'invitation au webinar à toute la base, puis la confirmation automatique à chaque inscrit via MS Forms + Brevo.</div>
+    <div class="uc-config">Déclencheur : inscription Forms<br>Email 1 : Confirmation (immédiat)<br>Email 2 : Rappel J-3<br>Email 3 : Rappel J-0 9h<br>SMS : Rappel J-0 12h00</div>
+    <div class="uc-impact">↑ Taux de présence +35% estimé</div>
+  </div>
+
+  <div class="uc-card" style="border-top-color:var(--ok)">
+    <div class="uc-icon">🔄</div>
+    <div class="uc-title">Séquence post-diagnostic</div>
+    <div class="uc-desc">Après un diagnostic gratuit (Forms), automatiser une séquence de nurturing sur 14 jours pour convertir le prospect en client.</div>
+    <div class="uc-config">J+0 : Récap du diagnostic<br>J+2 : Guide PDF "5 erreurs"<br>J+5 : Témoignage client<br>J+9 : Offre webinar<br>J+14 : Offre devis personnalisé</div>
+    <div class="uc-impact">↑ Conversion estimée +20% vs sans séquence</div>
+  </div>
+
+  <div class="uc-card" style="border-top-color:var(--m)">
+    <div class="uc-icon">📰</div>
+    <div class="uc-title">Newsletter mensuelle réglementaire</div>
+    <div class="uc-desc">Newsletter mensuelle "Veille FE" envoyée à tous les contacts (prospects + clients) pour maintenir la notoriété et positionner Factelys comme référence.</div>
+    <div class="uc-config">Fréquence : 1× par mois<br>Contenu : actu DGFiP + tips + cas client<br>Segment : tous contacts actifs<br>Template : DA Factelys marine/rouge</div>
+    <div class="uc-impact">→ Positionnement expert · rétention base</div>
+  </div>
+
+  <div class="uc-card" style="border-top-color:var(--r)">
+    <div class="uc-icon">🚨</div>
+    <div class="uc-title">Alerte réglementaire urgente</div>
+    <div class="uc-desc">En cas d'update réglementaire (ex: publication liste PA, report calendrier), envoyer une alerte immédiate à toute la base.</div>
+    <div class="uc-config">Déclencheur : manuel<br>Objet : "⚠️ Mise à jour DGFiP — Action requise"<br>Cible : tous contacts + partenaires EC<br>Délai d'envoi : &lt; 2h après publication</div>
+    <div class="uc-impact">→ Différenciation "expert qui informe en temps réel"</div>
+  </div>
+
+  <div class="uc-card" style="border-top-color:var(--ok)">
+    <div class="uc-icon">⭐</div>
+    <div class="uc-title">Suivi satisfaction post-mission</div>
+    <div class="uc-desc">7 jours après la fin d'une mission, déclencher automatiquement l'envoi du formulaire de satisfaction (lien Forms) et relancer à J+14 si pas répondu.</div>
+    <div class="uc-config">Déclencheur : tag "Mission terminée" dans CRM<br>J+7 : Email avec lien Forms satisfaction<br>J+14 : Relance si pas répondu<br>J+21 : Demande témoignage LinkedIn</div>
+    <div class="uc-impact">↑ Taux réponse satisfaction +60% vs envoi manuel</div>
+  </div>
+
+  <div class="uc-card" style="border-top-color:var(--y)">
+    <div class="uc-icon">🤝</div>
+    <div class="uc-title">Onboarding partenaires EC</div>
+    <div class="uc-desc">Quand un cabinet EC signe une convention partenaire, déclencher une séquence d'onboarding avec les supports, les codes promo et les ressources.</div>
+    <div class="uc-config">Déclencheur : tag "Partenaire EC" dans CRM<br>J+0 : Welcome + kit partenaire PDF<br>J+3 : Guide envoi clients<br>J+7 : Accès portail partenaire<br>J+30 : Premier bilan</div>
+    <div class="uc-impact">→ Réduction onboarding manuel · scalable</div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════
+     04 — AUTOMATION CLÉS
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">04 — Workflows d'automation prioritaires</div>
+  <h2 class="sh-title">Le workflow #1 à créer <em>en premier.</em></h2>
+  <p class="sh-desc">Séquence post-webinar — Le plus haute valeur pour Factelys : convertir les 100 participants en clients dans les 48h suivant le webinar.</p>
+</div>
+
+<div class="card" style="margin-bottom:28px;overflow-x:auto">
+  <span class="lbl">Workflow : Post-Webinar → Conversion client (automation Brevo)</span>
+  <div class="automation-flow" style="min-width:700px">
+    <div class="flow-node">
+      <div class="fn-box" style="background:linear-gradient(135deg,#0F6CBD,#0D47A1);border-color:transparent">
+        <div class="fn-icon">🎙️</div>
+        <div class="fn-label" style="color:#fff">FIN WEBINAR</div>
+      </div>
+      <div class="fn-sub">Déclencheur :<br>liste importée</div>
+      <div class="fn-time">J·0 · 13h30</div>
+    </div>
+    <div class="flow-node">
+      <div class="fn-box" style="background:var(--okb);border-color:rgba(30,107,60,.3)">
+        <div class="fn-icon">📧</div>
+        <div class="fn-label" style="color:var(--ok)">REPLAY +<br>CHECKLIST</div>
+      </div>
+      <div class="fn-sub">Email immédiat<br>avec ressources</div>
+      <div class="fn-time">J·0 · 14h00</div>
+    </div>
+    <div class="flow-node">
+      <div class="fn-box" style="background:var(--brb);border-color:rgba(15,108,189,.3)">
+        <div class="fn-icon">📊</div>
+        <div class="fn-label" style="color:var(--br)">SEGMENTATION</div>
+      </div>
+      <div class="fn-sub">Présent /<br>Absent / Engagé</div>
+      <div class="fn-time">J·0 automatique</div>
+    </div>
+    <div class="flow-node">
+      <div class="fn-box" style="background:var(--rc);border-color:rgba(192,57,43,.3)">
+        <div class="fn-icon">🔥</div>
+        <div class="fn-label" style="color:var(--r)">OFFRE FLASH<br>48H</div>
+      </div>
+      <div class="fn-sub">Email offre 990€<br>code WEBINAR2026</div>
+      <div class="fn-time">J·1 · 9h00</div>
+    </div>
+    <div class="flow-node">
+      <div class="fn-box" style="background:var(--yb);border-color:rgba(180,83,9,.3)">
+        <div class="fn-icon">⏱️</div>
+        <div class="fn-label" style="color:var(--y)">URGENCE<br>EXPIRE</div>
+      </div>
+      <div class="fn-sub">Rappel : offre<br>expire ce soir</div>
+      <div class="fn-time">J·2 · 17h00</div>
+    </div>
+    <div class="flow-node">
+      <div class="fn-box" style="background:var(--bc);border-color:rgba(0,68,181,.3)">
+        <div class="fn-icon">💼</div>
+        <div class="fn-label" style="color:var(--m)">OFFRE<br>STANDARD</div>
+      </div>
+      <div class="fn-sub">Email offre 1490€<br>pour non-convertis</div>
+      <div class="fn-time">J·5 · 10h00</div>
+    </div>
+    <div class="flow-node">
+      <div class="fn-box" style="background:var(--okb);border-color:rgba(30,107,60,.3)">
+        <div class="fn-icon">🤝</div>
+        <div class="fn-label" style="color:var(--ok)">NURTURING<br>LONG TERME</div>
+      </div>
+      <div class="fn-sub">Newsletter + veille<br>jusqu'à conversion</div>
+      <div class="fn-time">J·30+ mensuel</div>
+    </div>
+  </div>
+  <div style="margin-top:12px;padding:10px 14px;background:var(--okb);border-radius:8px;font-size:11.5px;color:var(--ok);line-height:1.6">
+    <strong>Estimation ROI de ce workflow :</strong> 100 participants × 5% conversion post-webinar = 5 clients × 1 490€ = <strong>7 450€ HT de CA généré · Coût Brevo : 15€/mois</strong>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     05 — FONCTIONNALITÉS DÉTAILLÉES
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">05 — Fonctionnalités clés pour Factelys</div>
+  <h2 class="sh-title">Ce que Brevo fait <em>concrètement.</em></h2>
+</div>
+
+<div class="comp-table-wrap" style="margin-bottom:28px">
+<table class="feat-table">
+  <thead>
+    <tr>
+      <th class="th-left">Fonctionnalité</th>
+      <th>Free</th>
+      <th class="col-rec">Standard ⭐</th>
+      <th>Business</th>
+      <th>Utilité Factelys</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="feat-section"><td colspan="5">Email Marketing</td></tr>
+    <tr>
+      <td class="td-left">Éditeur drag & drop + templates</td>
+      <td><span class="f-yes">✓</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Essentiel</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Contacts illimités</td>
+      <td><span class="f-yes">✓</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Essentiel</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Générateur de contenu IA (objets, corps)</td>
+      <td><span class="f-no">–</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-b" style="font-size:10px">Utile</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">A/B testing (objet, contenu)</td>
+      <td><span class="f-no">–</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-b" style="font-size:10px">Optimisation</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Heure d'envoi optimisée (IA)</td>
+      <td><span class="f-no">–</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-b" style="font-size:10px">+Ouvertures</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Rapports avancés (heatmaps, géo)</td>
+      <td><span class="f-no">–</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-b" style="font-size:10px">Analyse</span></td>
+    </tr>
+    <tr class="feat-section"><td colspan="5">Marketing Automation</td></tr>
+    <tr>
+      <td class="td-left">Workflows automatisés multi-étapes</td>
+      <td><span class="f-partial">2 000 contacts</span></td>
+      <td class="col-rec"><span class="f-yes">✓ Illimité</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Critique</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Déclencheurs comportementaux (clic, visite)</td>
+      <td><span class="f-partial">Basique</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Critique</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Suivi web & événements</td>
+      <td><span class="f-no">–</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-b" style="font-size:10px">Scoring leads</span></td>
+    </tr>
+    <tr class="feat-section"><td colspan="5">CRM</td></tr>
+    <tr>
+      <td class="td-left">Gestion contacts & entreprises</td>
+      <td><span class="f-yes">✓</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Essentiel</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Pipeline commercial (opportunités)</td>
+      <td><span class="f-yes">✓</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Essentiel</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Tags & segmentation</td>
+      <td><span class="f-yes">✓</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Essentiel</span></td>
+    </tr>
+    <tr class="feat-section"><td colspan="5">Canaux complémentaires</td></tr>
+    <tr>
+      <td class="td-left">SMS marketing (crédits séparés)</td>
+      <td><span class="f-yes">✓</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-b" style="font-size:10px">Rappels webinar</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">WhatsApp Business</td>
+      <td><span class="f-no">–</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-w" style="font-size:10px">Optionnel</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Landing pages</td>
+      <td><span class="f-no">–</span></td>
+      <td class="col-rec"><span class="f-yes">✓ Illimitées</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-b" style="font-size:10px">Webinar capture</span></td>
+    </tr>
+    <tr class="feat-section"><td colspan="5">Technique</td></tr>
+    <tr>
+      <td class="td-left">RGPD natif · Hébergement UE/France</td>
+      <td><span class="f-yes">✓</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Obligatoire</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">API RESTful + Webhooks</td>
+      <td><span class="f-yes">✓</span></td>
+      <td class="col-rec"><span class="f-yes">✓</span></td>
+      <td><span class="f-yes">✓</span></td>
+      <td><span class="chip chip-b" style="font-size:10px">Connexion Forms</span></td>
+    </tr>
+    <tr>
+      <td class="td-left">Délivrabilité garantie</td>
+      <td><span class="f-partial">Standard</span></td>
+      <td class="col-rec"><span class="f-yes">98%</span></td>
+      <td><span class="f-yes">99%+ IP dédié</span></td>
+      <td><span class="chip chip-g" style="font-size:10px">Critique</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     06 — INTÉGRATIONS
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">06 — Intégrations clés pour Factelys</div>
+  <h2 class="sh-title">Brevo s'intègre à <em>tout l'écosystème.</em></h2>
+</div>
+
+<div class="integ-grid" style="margin-bottom:28px">
+  <div class="integ-item" style="border-color:rgba(15,108,189,.25);background:var(--brb)">
+    <div class="integ-icon">📋</div>
+    <div class="integ-name" style="color:var(--br)">Microsoft Forms</div>
+    <div class="integ-type">Via Zapier · API</div>
+  </div>
+  <div class="integ-item" style="border-color:rgba(15,108,189,.25);background:var(--brb)">
+    <div class="integ-icon">🔗</div>
+    <div class="integ-name" style="color:var(--br)">Power Automate</div>
+    <div class="integ-type">Connexion native</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">🔴</div>
+    <div class="integ-name">Zapier</div>
+    <div class="integ-type">1000+ apps</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">📊</div>
+    <div class="integ-name">Google Analytics</div>
+    <div class="integ-type">Tracking</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">💼</div>
+    <div class="integ-name">LinkedIn</div>
+    <div class="integ-type">Sync contacts</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">💳</div>
+    <div class="integ-name">Stripe</div>
+    <div class="integ-type">Paiement auto</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">🌐</div>
+    <div class="integ-name">WordPress</div>
+    <div class="integ-type">Site Factelys</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">📅</div>
+    <div class="integ-name">Calendly</div>
+    <div class="integ-type">Via Zapier</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">🎥</div>
+    <div class="integ-name">Zoom</div>
+    <div class="integ-type">Webinar links</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">📦</div>
+    <div class="integ-name">Typeform</div>
+    <div class="integ-type">Formulaires alt.</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">🔔</div>
+    <div class="integ-name">Slack / Teams</div>
+    <div class="integ-type">Notifs internes</div>
+  </div>
+  <div class="integ-item">
+    <div class="integ-icon">📱</div>
+    <div class="integ-name">WhatsApp</div>
+    <div class="integ-type">Business API</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:28px;border-left:3px solid var(--br)">
+  <div style="font-size:13px;font-weight:600;color:var(--br);margin-bottom:8px">🔗 Connexion critique : Microsoft Forms → Brevo</div>
+  <div style="font-size:12.5px;color:var(--g);line-height:1.7">
+    Lorsqu'un prospect remplit le <strong>formulaire de diagnostic Factelys</strong> (MS Forms) → Power Automate déclenche une action → contact créé dans Brevo avec tags (secteur, taille, ERP) → déclenchement automatique de la séquence de nurturing appropriée. Aucune intervention manuelle. Délai : &lt; 2 minutes entre soumission et premier email de bienvenue.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     07 — ROI & PROJECTION
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">07 — ROI & projections financières</div>
+  <h2 class="sh-title">Brevo coûte 15€. Il peut <em>rapporter des milliers.</em></h2>
+</div>
+
+<div class="roi-grid">
+  <div class="roi-card">
+    <div class="roi-title">📊 Coût total annuel Brevo pour Factelys</div>
+    <div class="roi-row"><span class="roi-label">Plan Standard (12 mois)</span><span class="roi-val" style="color:var(--br)">180€</span></div>
+    <div class="roi-row"><span class="roi-label">SMS rappels webinar (6 sessions × 20€)</span><span class="roi-val">120€</span></div>
+    <div class="roi-row"><span class="roi-label">Zapier (plan gratuit suffisant départ)</span><span class="roi-val">0€</span></div>
+    <div class="roi-row" style="font-weight:700"><span>Total coût annuel Brevo</span><span class="roi-val" style="color:var(--ok)">300€ / an</span></div>
+    <div style="margin-top:10px;padding:10px;background:var(--okb);border-radius:7px;font-size:11.5px;color:var(--ok)">
+      <strong>Pour comparaison :</strong> Mailchimp Standard avec les mêmes fonctionnalités = ~1 200€/an. <strong>Économie : 900€/an</strong>.
+    </div>
+  </div>
+  <div class="roi-card">
+    <div class="roi-title">💰 CA généré via Brevo (estimations)</div>
+    <div class="roi-row"><span class="roi-label">1 webinar/mois × 5% conversion × 1490€</span><span class="roi-val" style="color:var(--ok)">+894€/mois</span></div>
+    <div class="roi-row"><span class="roi-label">Séquence nurturing post-diagnostic</span><span class="roi-val" style="color:var(--ok)">+20% leads</span></div>
+    <div class="roi-row"><span class="roi-label">Newsletter mensuelle → notoriété</span><span class="roi-val" style="color:var(--ok)">Indirect</span></div>
+    <div class="roi-row"><span class="roi-label">Rappels SMS → présence webinar +35%</span><span class="roi-val" style="color:var(--ok)">+35% show rate</span></div>
+    <div class="roi-row" style="font-weight:700"><span>ROI Brevo estimé</span><span class="roi-val" style="color:var(--ok)">×350+</span></div>
+    <div style="margin-top:10px;padding:10px;background:var(--okb);border-radius:7px;font-size:11.5px;color:var(--ok)">
+      300€ investis → ~10 000€ de CA additionnel via automation. <strong>ROI = ×33 minimum</strong>.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     08 — LIMITES & PRÉCAUTIONS
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">08 — Limites & points de vigilance</div>
+  <h2 class="sh-title">Ce que Brevo <em>ne fait pas bien.</em></h2>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px">
+  <div class="card" style="border-left:3px solid var(--r)">
+    <div style="font-size:13px;font-weight:600;color:var(--r);margin-bottom:12px">⚠️ Limitations connues</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--r);flex-shrink:0">•</span>Support client parfois lent selon les avis (délai 24-48h sur tickets complexes) — compenser avec la documentation fournie</div>
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--r);flex-shrink:0">•</span>Plan Free : logo Brevo visible dans les emails → peu professionnel pour Factelys. <strong>Passer directement au Starter (7€) pour le retirer</strong></div>
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--r);flex-shrink:0">•</span>Navigation entre modules parfois peu intuitive selon les avis · perte de 2-3 clics pour les stats</div>
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--r);flex-shrink:0">•</span>CRM Brevo reste basique vs HubSpot ou Pipedrive — suffisant pour Factelys à ce stade</div>
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--r);flex-shrink:0">•</span>Reporting avancé jugé limité par certains power users (moins abouti que Klaviyo)</div>
+    </div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--ok)">
+    <div style="font-size:13px;font-weight:600;color:var(--ok);margin-bottom:12px">✓ Comment mitiger</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--ok);flex-shrink:0">→</span>Pour le support : utiliser la documentation française très complète + communauté Brevo active. Contacter le chat en premier (plus rapide)</div>
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--ok);flex-shrink:0">→</span>Commencer directement sur le <strong>plan Standard à 15€</strong> : automation illimitée, A/B testing, logo retiré, rapports avancés</div>
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--ok);flex-shrink:0">→</span>Suivre le taux d'ouverture via Google Analytics en complément pour les rapports détaillés</div>
+      <div style="font-size:12px;color:var(--ch);display:flex;gap:8px;line-height:1.5"><span style="color:var(--ok);flex-shrink:0">→</span>Si le pipeline commercial devient critique : connecter Brevo à un CRM dédié (Pipedrive 15€/mois) via Zapier</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     09 — DÉCISION & PLAN DÉPLOIEMENT
+     ═══════════════════════════════════ -->
+<div class="sh">
+  <div class="sh-tag">09 — Décision & plan de déploiement</div>
+  <h2 class="sh-title">La recommandation <em>finale.</em></h2>
+</div>
+
+<div class="decision" style="margin-bottom:24px">
+  <div class="decision-bg"></div>
+  <div class="decision-left" style="position:relative;z-index:1">
+    <div class="decision-plan">Plan recommandé pour Factelys</div>
+    <div class="decision-title">Brevo Standard<br><em>Dès le premier jour.</em></div>
+    <div class="decision-desc">Le plan Free est trop limité (logo Brevo, automation restreinte). Le Standard à 15€/mois débloque l'automation illimitée (workflows post-webinar, nurturing), l'A/B testing et les rapports avancés — tout ce dont Factelys a besoin pour convertir. 20 000 emails/mois = largement suffisant pour 1 000+ contacts.</div>
+  </div>
+  <div class="decision-right" style="position:relative;z-index:1">
+    <div class="decision-plan">Brevo Standard</div>
+    <div class="decision-price">15€</div>
+    <div class="decision-unit">HT / mois · soit 180€ / an</div>
+    <div class="decision-reason">Inclut : automation illimitée · A/B testing · 20K emails/mois · contacts illimités · rapports avancés · RGPD natif</div>
+  </div>
+</div>
+
+<div class="setup-steps">
+  <div class="setup-step">
+    <div class="ss-num">1</div>
+    <div>
+      <div class="ss-title">Créer le compte Brevo et choisir le plan Standard</div>
+      <div class="ss-desc">Aller sur brevo.com → Inscription gratuite → Upgrade vers Standard. Configurer le domaine d'envoi (SPF, DKIM, DMARC) pour maximiser la délivrabilité. Vérifier le domaine factelys.fr.</div>
+    </div>
+    <div class="ss-time">Jour 1 · 1h</div>
+  </div>
+  <div class="setup-step">
+    <div class="ss-num">2</div>
+    <div>
+      <div class="ss-title">Créer le template email DA Factelys</div>
+      <div class="ss-desc">Reproduire la charte graphique Factelys (marine #002B6E / rouge #C0392B) dans l'éditeur drag & drop. Créer 3 templates : newsletter, email transactionnel, relance. Tester sur mobile et desktop.</div>
+    </div>
+    <div class="ss-time">Jour 1-2 · 3h</div>
+  </div>
+  <div class="setup-step">
+    <div class="ss-num">3</div>
+    <div>
+      <div class="ss-title">Importer la base de contacts et taguer</div>
+      <div class="ss-desc">Importer les contacts existants au format CSV avec colonnes : Prénom, Nom, Email, Société, SIREN, Segment (Prospect/Client/Partenaire EC), ERP, Taille. Créer les listes et segments dans Brevo.</div>
+    </div>
+    <div class="ss-time">Jour 2 · 2h</div>
+  </div>
+  <div class="setup-step">
+    <div class="ss-num">4</div>
+    <div>
+      <div class="ss-title">Connecter Microsoft Forms via Power Automate</div>
+      <div class="ss-desc">Créer un flux Power Automate : soumission Forms → ajout contact Brevo → ajout tag approprié → déclenchement workflow automation. Tester avec 5 soumissions fictives et vérifier que les emails partent correctement.</div>
+    </div>
+    <div class="ss-time">Jour 3 · 4h</div>
+  </div>
+  <div class="setup-step">
+    <div class="ss-num">5</div>
+    <div>
+      <div class="ss-title">Créer les 3 workflows prioritaires</div>
+      <div class="ss-desc">① Workflow post-webinar (7 emails sur 30 jours) · ② Workflow post-diagnostic (5 emails sur 14 jours) · ③ Workflow onboarding partenaire EC (4 emails sur 30 jours). Tester chaque workflow en mode "preview" avant activation.</div>
+    </div>
+    <div class="ss-time">Jour 4-5 · 6h</div>
+  </div>
+  <div class="setup-step">
+    <div class="ss-num">6</div>
+    <div>
+      <div class="ss-title">Programmer la première newsletter et mesurer</div>
+      <div class="ss-desc">Envoyer la newsletter "Veille FE — Mai 2026" à toute la base. Analyser : taux d'ouverture cible > 25%, taux de clic > 3%, désabonnements < 0.5%. Ajuster le contenu et l'heure d'envoi en conséquence.</div>
+    </div>
+    <div class="ss-time">Semaine 2 · 2h</div>
+  </div>
+</div>
+
+
+<!-- KPIs de performance Brevo -->
+<div class="card" style="margin-bottom:28px">
+  <span class="lbl">KPIs email marketing à suivre mensuellement dans Brevo</span>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+    <div style="background:var(--cr);border-radius:8px;padding:12px;text-align:center">
+      <div style="font-family:var(--fd);font-size:22px;color:var(--br);font-style:italic">≥25%</div>
+      <div style="font-size:10px;color:var(--g);margin-top:4px;line-height:1.4">Taux d'ouverture<br>moyen cible</div>
+      <div style="font-size:9px;color:rgba(92,104,128,.6);margin-top:3px">Moyenne secteur : 22%</div>
+    </div>
+    <div style="background:var(--cr);border-radius:8px;padding:12px;text-align:center">
+      <div style="font-family:var(--fd);font-size:22px;color:var(--br);font-style:italic">≥3%</div>
+      <div style="font-size:10px;color:var(--g);margin-top:4px;line-height:1.4">Taux de clic<br>(CTR)</div>
+      <div style="font-size:9px;color:rgba(92,104,128,.6);margin-top:3px">Moyenne secteur : 2.3%</div>
+    </div>
+    <div style="background:var(--cr);border-radius:8px;padding:12px;text-align:center">
+      <div style="font-family:var(--fd);font-size:22px;color:var(--ok);font-style:italic">≥98%</div>
+      <div style="font-size:10px;color:var(--g);margin-top:4px;line-height:1.4">Taux de<br>délivrabilité</div>
+      <div style="font-size:9px;color:rgba(92,104,128,.6);margin-top:3px">Brevo garantit 98%</div>
+    </div>
+    <div style="background:var(--cr);border-radius:8px;padding:12px;text-align:center">
+      <div style="font-family:var(--fd);font-size:22px;color:var(--r);font-style:italic">&lt;0.5%</div>
+      <div style="font-size:10px;color:var(--g);margin-top:4px;line-height:1.4">Taux de<br>désabonnement</div>
+      <div style="font-size:9px;color:rgba(92,104,128,.6);margin-top:3px">Alerte si > 1%</div>
+    </div>
+    <div style="background:var(--cr);border-radius:8px;padding:12px;text-align:center">
+      <div style="font-family:var(--fd);font-size:22px;color:var(--m);font-style:italic">≥5%</div>
+      <div style="font-size:10px;color:var(--g);margin-top:4px;line-height:1.4">Conversion<br>email → devis</div>
+      <div style="font-size:9px;color:rgba(92,104,128,.6);margin-top:3px">Objectif Factelys</div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <div class="df-logo"><div class="df-dot"></div><span class="df-name">Factelys</span></div>
+  <div style="font-size:12px;color:rgba(255,255,255,.4)">Étude Brevo · Document interne · Avril 2026</div>
+  <div class="df-contact">Christophe Hubert · Expert-Comptable<br>c.hubert@factelys.fr · factelys.fr</div>
+</div>
+
+</body>
+</html>

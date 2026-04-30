@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factelys — Kit LinkedIn 8 posts</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --m:#002B6E;--b:#0044B5;--bc:#D6E4FF;--bp:#EEF4FF;
+  --r:#C0392B;--rc:#FDECEA;
+  --cr:#F4F6FC;--ch:#111827;--g:#5C6880;--gc:#E2E6F0;--w:#FFFFFF;
+  --fd:'DM Serif Display',Georgia,serif;
+  --fs:'Sora',system-ui,sans-serif;
+  --fm:'JetBrains Mono',monospace;
+}
+html{font-family:var(--fs);background:#0d1117;color:var(--ch);min-height:100vh}
+
+/* ── PAGE HEADER ── */
+.page-header{background:var(--m);padding:40px 64px 36px;position:relative;overflow:hidden}
+.ph-c1{position:absolute;right:-80px;top:-80px;width:400px;height:400px;border-radius:50%;background:rgba(192,57,43,0.09);pointer-events:none}
+.ph-c2{position:absolute;right:200px;bottom:-120px;width:260px;height:260px;border-radius:50%;background:rgba(0,68,181,0.14);pointer-events:none}
+.ph-bar{width:36px;height:4px;background:var(--r);border-radius:2px;margin-bottom:22px;position:relative;z-index:1}
+.ph-logo{display:flex;align-items:center;gap:7px;margin-bottom:14px;position:relative;z-index:1}
+.ph-dot{width:9px;height:9px;background:var(--r);border-radius:2px}
+.ph-name{font-family:var(--fs);font-weight:600;font-size:14px;color:#fff;letter-spacing:-0.02em}
+.ph-title{font-family:var(--fd);font-size:48px;color:#fff;line-height:1.05;position:relative;z-index:1}
+.ph-title em{color:#F5A89A;font-style:italic}
+.ph-sub{font-size:11px;color:rgba(255,255,255,0.38);letter-spacing:0.1em;text-transform:uppercase;margin-top:10px;position:relative;z-index:1}
+.ph-meta{display:flex;gap:36px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.08);position:relative;z-index:1;flex-wrap:wrap}
+.pm-item{display:flex;flex-direction:column;gap:3px}
+.pm-label{font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:0.1em;text-transform:uppercase;font-family:var(--fm)}
+.pm-val{font-size:13px;color:rgba(255,255,255,0.72);font-weight:500}
+
+/* ── PLANNING ── */
+.planning{padding:44px 64px;background:#13161d;border-bottom:1px solid #22262f}
+.pl-title{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--r);margin-bottom:18px}
+.pl-table{width:100%;border-collapse:collapse}
+.pl-table th{font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:0 14px 10px 0;text-align:left;border-bottom:1px solid #22262f}
+.pl-table td{padding:11px 14px 11px 0;border-bottom:1px solid #1a1d24;vertical-align:middle}
+.pl-table tr:last-child td{border-bottom:none}
+.pl-n{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.2)}
+.pt{display:inline-flex;align-items:center;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:600;white-space:nowrap}
+.t-edu{background:rgba(0,68,181,0.22);color:#7AABFF}
+.t-stat{background:rgba(192,57,43,0.22);color:#FF8A7A}
+.t-testi{background:rgba(30,107,60,0.22);color:#6EE79A}
+.t-web{background:rgba(186,117,23,0.22);color:#FFD06E}
+.t-car{background:rgba(127,119,221,0.22);color:#BDB8FF}
+.pl-ttl{font-size:12px;color:#fff;font-weight:500}
+.pl-date{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.3);white-space:nowrap}
+.pl-obj{font-size:10px;color:rgba(255,255,255,0.38)}
+
+/* ── POSTS SECTION ── */
+.posts-wrap{padding:48px 64px 64px}
+.posts-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.post-card{background:#13161d;border:1px solid #22262f;border-radius:14px;overflow:hidden}
+.post-card-hd{padding:14px 18px;border-bottom:1px solid #1a1d24;display:flex;align-items:center;justify-content:space-between}
+.pc-num{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.22)}
+.pc-date{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.28)}
+
+/* ── VISUAL STAGE
+   Fixed 520×520px internal canvas, scaled to fill container width.
+   All child elements use px sizes designed for 520px.
+   ── */
+.visual-stage{
+  width:100%;
+  aspect-ratio:1;
+  position:relative;
+  overflow:hidden;
+}
+/* Scale trick: set a CSS custom property for the visual scale factor.
+   We use a 520px reference. The actual rendered width is tracked via ResizeObserver in JS. */
+.visual-stage > .vs-canvas{
+  position:absolute;
+  top:0; left:0;
+  width:520px;
+  height:520px;
+  transform-origin:top left;
+  /* scale applied via JS */
+}
+
+/* ── POST COPY ── */
+.post-copy{padding:18px 20px}
+.copy-type-badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:600;margin-bottom:10px}
+.copy-body{font-size:12px;color:rgba(255,255,255,0.72);line-height:1.75;white-space:pre-line}
+.copy-body strong{color:#fff}
+.copy-body .ht{color:#7AABFF}
+.copy-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid #1a1d24}
+.cf-chars{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,0.22)}
+.cf-tip{font-size:10px;color:rgba(255,255,255,0.32);font-style:italic}
+
+/* ══════════════════════════════════════════
+   CANVAS STYLES — designed for 520×520px
+   ══════════════════════════════════════════ */
+
+/* shared reset inside canvas */
+.vs-canvas *{box-sizing:border-box}
+.vs-canvas{font-family:var(--fs)}
+
+/* ── CANVAS 1 · Éducatif ── */
+.c1{background:#002B6E}
+.c1-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");opacity:0.5}
+.c1-diag{position:absolute;top:0;right:0;width:220px;height:520px;background:linear-gradient(135deg,transparent,rgba(0,68,181,0.14));clip-path:polygon(40% 0,100% 0,100% 100%,0 100%)}
+.c1-body{position:relative;z-index:2;height:520px;display:flex;flex-direction:column;padding:38px 36px 32px}
+.c1-tag{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C0392B;margin-bottom:28px}
+.c1-title{font-family:var(--fd);font-size:50px;color:#fff;line-height:1.0;margin-bottom:auto}
+.c1-title em{color:#F5A89A;font-style:italic}
+.c1-steps{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.c1-step{display:flex;align-items:flex-start;gap:10px}
+.c1-snum{width:22px;height:22px;min-width:22px;border-radius:5px;background:#C0392B;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;margin-top:1px}
+.c1-stext{font-size:12px;color:rgba(255,255,255,0.72);line-height:1.45}
+.c1-stext strong{color:#fff;font-weight:600}
+.c1-foot{display:flex;align-items:center;gap:6px;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.1)}
+.c1-fdot{width:7px;height:7px;background:#C0392B;border-radius:2px}
+.c1-fname{font-weight:600;font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:-0.01em}
+
+/* ── CANVAS 2 · Stat ── */
+.c2{background:#060a13}
+.c2-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,68,181,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,68,181,0.06) 1px,transparent 1px);background-size:36px 36px}
+.c2-glow{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:340px;height:340px;background:radial-gradient(ellipse,rgba(0,43,110,0.9) 0%,transparent 70%)}
+.c2-body{position:relative;z-index:2;height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center}
+.c2-eye{font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#C0392B;margin-bottom:30px;padding:4px 14px;border:1px solid rgba(192,57,43,0.35);border-radius:99px}
+.c2-num{font-family:var(--fd);font-size:130px;line-height:0.82;color:#fff;text-shadow:0 0 80px rgba(192,57,43,0.25)}
+.c2-unit{font-family:var(--fd);font-size:38px;color:rgba(255,255,255,0.38);font-style:italic;margin-top:14px}
+.c2-unit em{color:#C0392B;font-style:italic}
+.c2-label{font-size:14px;color:rgba(255,255,255,0.55);margin-top:22px;line-height:1.55;max-width:300px}
+.c2-label strong{color:#fff}
+.c2-rule{width:180px;height:1px;background:linear-gradient(to right,transparent,rgba(192,57,43,0.5),transparent);margin:18px auto 0}
+.c2-src{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,0.18);margin-top:12px;letter-spacing:0.06em}
+.c2-logo{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;z-index:2}
+.c2-ldot{width:6px;height:6px;background:#C0392B;border-radius:1px}
+.c2-lname{font-weight:600;font-size:10px;color:rgba(255,255,255,0.22)}
+
+/* ── CANVAS 3 · Carrousel cover ── */
+.c3{background:#C0392B}
+.c3-bgnum{position:absolute;right:-12px;bottom:-30px;font-family:var(--fd);font-size:340px;color:rgba(0,0,0,0.12);line-height:1;pointer-events:none;user-select:none}
+.c3-stripe{position:absolute;left:0;top:0;bottom:0;width:5px;background:rgba(255,255,255,0.18)}
+.c3-dots{position:absolute;top:32px;right:32px;display:flex;gap:7px}
+.c3-dot{width:7px;height:7px;border-radius:50%}
+.c3-body{position:relative;z-index:2;height:520px;display:flex;flex-direction:column;padding:36px 38px 32px}
+.c3-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+.c3-num{font-family:var(--fd);font-size:96px;color:#fff;line-height:1;margin-top:auto}
+.c3-title{font-family:var(--fd);font-size:36px;color:#fff;line-height:1.15;margin-top:8px}
+.c3-title em{font-style:italic;color:rgba(255,255,255,0.6)}
+.c3-sub{font-size:12px;color:rgba(255,255,255,0.55);margin-top:14px;line-height:1.55}
+.c3-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:22px}
+.c3-swipe{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:7px}
+.c3-logo{display:flex;align-items:center;gap:5px}
+.c3-ldot{width:7px;height:7px;background:rgba(255,255,255,0.6);border-radius:2px}
+.c3-lname{font-weight:600;font-size:10px;color:rgba(255,255,255,0.5)}
+
+/* ── CANVAS 4 · Comparaison ── */
+.c4{background:#060a13}
+/* Top bar */
+.c4-topbar{position:absolute;top:0;left:0;right:0;height:48px;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:4;backdrop-filter:blur(4px)}
+.c4-tb-title{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.45)}
+.c4-tb-logo{display:flex;align-items:center;gap:5px}
+.c4-tb-dot{width:6px;height:6px;background:#C0392B;border-radius:1px}
+.c4-tb-name{font-weight:600;font-size:10px;color:rgba(255,255,255,0.35)}
+/* Left panel — starts below topbar */
+.c4-left{position:absolute;left:0;top:48px;bottom:0;width:260px;background:#002B6E;display:flex;flex-direction:column;padding:22px 22px 22px 22px}
+/* Right panel */
+.c4-right{position:absolute;right:0;top:48px;bottom:0;width:260px;background:#0d1221;border-left:2px solid rgba(192,57,43,0.35);display:flex;flex-direction:column;padding:22px 22px 22px 22px}
+.c4-side-label{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:3px;display:inline-block;margin-bottom:12px;width:fit-content}
+.c4-ll{background:rgba(0,68,181,0.28);color:#7AABFF}
+.c4-rl{background:rgba(192,57,43,0.22);color:#FF8A7A}
+.c4-side-title{font-family:var(--fd);font-size:26px;color:#fff;line-height:1.15}
+.c4-side-sub{font-size:11px;color:rgba(255,255,255,0.45);margin-top:7px;line-height:1.5}
+.c4-points{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.c4-point{display:flex;align-items:flex-start;gap:7px;font-size:11px;color:rgba(255,255,255,0.62);line-height:1.4}
+.c4-pdot{width:5px;height:5px;min-width:5px;border-radius:50%;margin-top:4px}
+/* VS circle */
+.c4-vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:46px;height:46px;border-radius:50%;background:#060a13;border:1px solid rgba(192,57,43,0.5);display:flex;align-items:center;justify-content:center}
+.c4-vs-text{font-family:var(--fd);font-size:14px;color:#C0392B;font-style:italic}
+
+/* ── CANVAS 5 · Témoignage — all dark ── */
+.c5{background:#002B6E}
+.c5-accent{position:absolute;left:0;top:0;bottom:0;width:5px;background:#C0392B}
+.c5-deco{position:absolute;right:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;background:rgba(192,57,43,0.1)}
+.c5-body{position:relative;z-index:2;height:520px;display:flex;flex-direction:column;padding:36px 34px 30px 38px}
+.c5-qmark{font-family:var(--fd);font-size:120px;color:rgba(255,255,255,0.1);line-height:0.75;margin-bottom:8px}
+.c5-quote{font-family:var(--fd);font-size:24px;color:#fff;line-height:1.35;font-style:italic;flex:1}
+.c5-quote em{color:#F5A89A}
+.c5-rule{height:1px;background:rgba(255,255,255,0.14);margin:22px 0}
+.c5-person{display:flex;align-items:center;gap:14px}
+.c5-avatar{width:48px;height:48px;min-width:48px;border-radius:50%;background:#C0392B;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff;border:2px solid rgba(255,255,255,0.25)}
+.c5-pname{font-weight:600;font-size:14px;color:#fff}
+.c5-prole{font-size:11px;color:rgba(255,255,255,0.48);margin-top:2px}
+.c5-badge{display:inline-flex;align-items:center;gap:7px;margin-top:18px;padding:7px 14px;border-radius:7px;background:rgba(30,107,60,0.2);border:1px solid rgba(110,231,154,0.22)}
+.c5-bicon{font-size:12px}
+.c5-btext{font-size:11px;color:#6EE79A;font-weight:600}
+.c5-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:18px}
+.c5-stars{color:#C0392B;font-size:13px;letter-spacing:3px}
+.c5-logo{display:flex;align-items:center;gap:5px}
+.c5-ldot{width:7px;height:7px;background:#C0392B;border-radius:2px}
+.c5-lname{font-weight:600;font-size:11px;color:rgba(255,255,255,0.38)}
+
+/* ── CANVAS 6 · Countdown ── */
+.c6{background:#040710}
+.c6-svg{position:absolute;inset:0;width:520px;height:520px}
+.c6-body{position:relative;z-index:2;height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px;text-align:center}
+.c6-eye{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#C0392B;margin-bottom:22px;padding:4px 14px;border:1px solid rgba(192,57,43,0.3);border-radius:99px}
+.c6-jlabel{font-family:var(--fd);font-size:20px;color:rgba(255,255,255,0.28);letter-spacing:0.08em}
+.c6-num{font-family:var(--fd);font-size:148px;line-height:0.82;background:linear-gradient(135deg,#fff 25%,#C0392B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none}
+.c6-sublabel{font-size:16px;font-weight:600;color:rgba(255,255,255,0.55);letter-spacing:0.05em;text-transform:uppercase;margin-top:16px}
+.c6-date{font-family:var(--fm);font-size:13px;color:#C0392B;margin-top:20px;padding:6px 16px;border:1px solid rgba(192,57,43,0.3);border-radius:6px;letter-spacing:0.08em}
+.c6-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-top:18px;max-width:280px;line-height:1.6}
+.c6-bar{width:200px;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;margin:18px auto 0;overflow:hidden}
+.c6-fill{height:100%;width:67%;background:linear-gradient(to right,#0044B5,#C0392B)}
+.c6-blabel{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,0.18);margin-top:8px;letter-spacing:0.06em}
+.c6-logo{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;z-index:2}
+.c6-ldot{width:6px;height:6px;background:#C0392B;border-radius:1px}
+.c6-lname{font-weight:600;font-size:10px;color:rgba(255,255,255,0.2)}
+
+/* ── CANVAS 7 · Webinar ── */
+.c7{background:#002B6E}
+.c7-lines{position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 24px,rgba(255,255,255,0.012) 24px,rgba(255,255,255,0.012) 25px)}
+.c7-rtop{position:absolute;top:0;left:0;right:0;height:5px;background:#C0392B}
+.c7-deco{position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:rgba(192,57,43,0.07)}
+.c7-body{position:relative;z-index:2;height:520px;display:flex;flex-direction:column;padding:34px 34px 28px}
+.c7-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 13px;background:rgba(192,57,43,0.18);border:1px solid rgba(192,57,43,0.38);border-radius:99px;width:fit-content;margin-bottom:20px}
+.c7-bdot{width:6px;height:6px;border-radius:50%;background:#C0392B;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.45;transform:scale(0.8)}}
+.c7-btext{font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#C0392B}
+.c7-title{font-family:var(--fd);font-size:37px;color:#fff;line-height:1.13}
+.c7-title em{color:#F5A89A;font-style:italic}
+.c7-details{display:flex;flex-direction:column;gap:11px;margin-top:auto}
+.c7-row{display:flex;align-items:center;gap:11px}
+.c7-icon{width:30px;height:30px;min-width:30px;border-radius:7px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:13px}
+.c7-rtext{font-size:12.5px;color:rgba(255,255,255,0.65)}
+.c7-rtext strong{color:#fff}
+.c7-cta{margin-top:18px;background:#C0392B;border-radius:8px;padding:13px 20px;display:flex;align-items:center;justify-content:space-between}
+.c7-cta-text{font-size:13px;font-weight:600;color:#fff}
+.c7-cta-arr{font-size:18px;color:rgba(255,255,255,0.65)}
+.c7-foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.08)}
+.c7-logo{display:flex;align-items:center;gap:5px}
+.c7-ldot{width:7px;height:7px;background:#C0392B;border-radius:2px}
+.c7-lname{font-weight:600;font-size:10px;color:rgba(255,255,255,0.42)}
+.c7-url{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.22)}
+
+/* ── CANVAS 8 · Expert Insight ── */
+.c8{background:#F4F6FC}
+.c8-top{position:absolute;top:0;left:0;right:0;height:225px;background:#002B6E;clip-path:polygon(0 0,100% 0,100% 78%,0 100%)}
+.c8-rline{position:absolute;left:34px;top:0;width:3px;height:200px;background:#C0392B}
+.c8-body{position:relative;z-index:2;height:520px;display:flex;flex-direction:column;padding:32px 34px 28px}
+/* All top content (above diagonal) */
+.c8-eye{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.42);margin-bottom:16px}
+.c8-icon-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.c8-icon{width:44px;height:44px;min-width:44px;border-radius:10px;background:#C0392B;display:flex;align-items:center;justify-content:center;font-size:20px}
+.c8-tag{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C0392B;padding:3px 10px;background:#FDECEA;border-radius:4px}
+.c8-stat{font-family:var(--fd);font-size:56px;color:#fff;line-height:1}
+.c8-stat em{color:#F5A89A;font-style:italic}
+/* Below diagonal — dark text on light */
+.c8-divider{height:48px}/* spacer to clear the diagonal */
+.c8-insight-title{font-size:18px;font-weight:600;color:#002B6E;line-height:1.3}
+.c8-insight-body{font-size:12px;color:#5C6880;margin-top:12px;line-height:1.68}
+.c8-insight-body strong{color:#002B6E}
+.c8-source{font-family:var(--fm);font-size:9px;color:rgba(92,104,128,0.55);margin-top:10px}
+.c8-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;border-top:1px solid #E2E6F0}
+.c8-logo{display:flex;align-items:center;gap:5px}
+.c8-ldot{width:7px;height:7px;background:#C0392B;border-radius:2px}
+.c8-lname{font-weight:600;font-size:11px;color:#5C6880}
+.c8-cta{font-size:10px;font-weight:700;letter-spacing:0.04em;color:#C0392B}
+
+/* ── CAROUSEL SLIDES PREVIEW ── */
+.car-wrap{background:#0d1117;padding:14px;display:flex;flex-direction:column;gap:8px}
+.car-label{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:2px}
+.car-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;border-radius:10px;overflow:hidden}
+.cs{aspect-ratio:1;display:flex;flex-direction:column;padding:9px}
+.cs-n{font-family:var(--fm);font-size:8px;color:rgba(255,255,255,0.2);margin-bottom:auto}
+.cs-ico{font-size:18px;margin-bottom:5px}
+.cs-ttl{font-family:var(--fd);font-size:12px;color:#fff;line-height:1.2}
+.cs-body{font-size:9px;color:rgba(255,255,255,0.5);margin-top:4px;line-height:1.4}
+.cs-1{background:#C0392B}.cs-2,.cs-3,.cs-4,.cs-5{background:#0d1628}.cs-6{background:#002B6E}
+
+/* ── INFO FOOTER ── */
+.info-footer{margin-top:52px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.if-card{background:#13161d;border:1px solid #22262f;border-radius:12px;padding:20px 22px}
+.if-title{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C0392B;margin-bottom:10px}
+.if-body{font-size:11.5px;color:rgba(255,255,255,0.45);line-height:1.7}
+.if-body span{font-family:var(--fm);color:rgba(255,255,255,0.6)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .posts-grid{grid-template-columns:1fr}
+  .page-header,.planning,.posts-wrap{padding-left:24px;padding-right:24px}
+  .info-footer{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-c1"></div><div class="ph-c2"></div>
+  <div class="ph-bar"></div>
+  <div class="ph-logo"><div class="ph-dot"></div><span class="ph-name">Factelys</span></div>
+  <h1 class="ph-title">Kit LinkedIn<br><em>8 posts.</em></h1>
+  <p class="ph-sub">Visuels prêts à publier · Planning 8 semaines · Objectif expert</p>
+  <div class="ph-meta">
+    <div class="pm-item"><span class="pm-label">Posts</span><span class="pm-val">8 visuels</span></div>
+    <div class="pm-item"><span class="pm-label">Formats</span><span class="pm-val">Éducatif · Stat · Témoignage · Webinar · Carrousel</span></div>
+    <div class="pm-item"><span class="pm-label">Objectif</span><span class="pm-val">Positionnement expert</span></div>
+    <div class="pm-item"><span class="pm-label">Cible</span><span class="pm-val">TPE · PME · Dirigeants</span></div>
+  </div>
+</div>
+
+<!-- PLANNING -->
+<div class="planning">
+  <div class="pl-title">Planning de publication — 8 semaines</div>
+  <table class="pl-table">
+    <thead><tr>
+      <th>Sem.</th><th>Format</th><th>Titre / Angle</th><th>Date</th><th>Objectif</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="pl-n">01</td><td><span class="pt t-edu">📖 Éducatif</span></td><td class="pl-ttl">La facturation électronique, en clair</td><td class="pl-date">06 mai</td><td class="pl-obj">Notoriété · Portée</td></tr>
+      <tr><td class="pl-n">02</td><td><span class="pt t-stat">📊 Stat</span></td><td class="pl-ttl">10 millions d'entreprises concernées</td><td class="pl-date">13 mai</td><td class="pl-obj">Engagement · Partages</td></tr>
+      <tr><td class="pl-n">03</td><td><span class="pt t-car">🎠 Carrousel</span></td><td class="pl-ttl">5 erreurs qui coûtent cher avant sept. 2026</td><td class="pl-date">20 mai</td><td class="pl-obj">Sauvegardes · Expertise</td></tr>
+      <tr><td class="pl-n">04</td><td><span class="pt t-edu">📖 Éducatif</span></td><td class="pl-ttl">e-invoicing vs e-reporting : la vraie différence</td><td class="pl-date">27 mai</td><td class="pl-obj">Expertise · Confiance</td></tr>
+      <tr><td class="pl-n">05</td><td><span class="pt t-testi">⭐ Témoignage</span></td><td class="pl-ttl">PME Dubois : conforme en 3 semaines</td><td class="pl-date">03 juin</td><td class="pl-obj">Preuve sociale · Leads</td></tr>
+      <tr><td class="pl-n">06</td><td><span class="pt t-stat">⏱ Countdown</span></td><td class="pl-ttl">J-90 avant l'obligation légale</td><td class="pl-date">10 juin</td><td class="pl-obj">Urgence · Conversions</td></tr>
+      <tr><td class="pl-n">07</td><td><span class="pt t-web">🎙 Webinar</span></td><td class="pl-ttl">Webinar gratuit · Comprendre la réforme en 1h</td><td class="pl-date">17 juin</td><td class="pl-obj">Inscriptions</td></tr>
+      <tr><td class="pl-n">08</td><td><span class="pt t-edu">⚡ Expert</span></td><td class="pl-ttl">4 semaines : le délai qui change tout</td><td class="pl-date">24 juin</td><td class="pl-obj">Autorité · Leads</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- POSTS -->
+<div class="posts-wrap">
+<div class="posts-grid">
+
+<!-- ══ POST 1 ══ -->
+<div class="post-card">
+  <div class="post-card-hd"><span class="pc-num">POST 01 · Éducatif</span><span class="pc-date">06 mai 2026</span></div>
+  <div class="visual-stage">
+    <div class="vs-canvas c1">
+      <div class="c1-noise"></div>
+      <div class="c1-diag"></div>
+      <div class="c1-body">
+        <div class="c1-tag">Christophe Hubert · Expert-Comptable · Factelys</div>
+        <div class="c1-title">La facturation<br>électronique,<br><em>en clair.</em></div>
+        <div class="c1-steps">
+          <div class="c1-step"><div class="c1-snum">1</div><div class="c1-stext"><strong>PDF → plateforme agréée.</strong> Dès sept. 2026, toutes vos factures B2B transitent via un opérateur certifié DGFiP.</div></div>
+          <div class="c1-step"><div class="c1-snum">2</div><div class="c1-stext"><strong>Deux flux distincts.</strong> L'e-invoicing (entre entreprises) et l'e-reporting (données vers l'État).</div></div>
+          <div class="c1-step"><div class="c1-snum">3</div><div class="c1-stext"><strong>Échéance : 1er sept. 2026.</strong> Toutes tailles d'entreprises concernées.</div></div>
+        </div>
+        <div class="c1-foot"><div class="c1-fdot"></div><span class="c1-fname">factelys.fr</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="post-copy">
+    <span class="copy-type-badge t-edu">📖 Éducatif</span>
+    <div class="copy-body"><strong>La facturation électronique, en 3 points.</strong>
+
+Depuis l'annonce de la réforme, je reçois chaque semaine la même question :
+<em>"Concrètement, ça change quoi pour moi ?"</em>
+
+→ Vos factures B2B devront transiter par une <strong>plateforme agréée</strong>
+→ Deux obligations : <strong>e-invoicing</strong> (entre entreprises) et <strong>e-reporting</strong> (vers la DGFiP)
+→ Calendrier : <strong>1er septembre 2026</strong> pour toutes les entreprises
+
+C'est exactement ce que fait Factelys : on traduit la réforme en plan d'action concret.
+
+💬 Une question sur votre situation ? Posez-la en commentaire.
+
+— <em>Christophe Hubert, Expert-Comptable · Factelys</em>
+
+<span class="ht">#FacturationÉlectronique</span> <span class="ht">#PME</span> <span class="ht">#Réforme2026</span></div>
+    <div class="copy-foot"><span class="cf-chars">~680 car.</span><span class="cf-tip">Mardi 8h · portée max.</span></div>
+  </div>
+</div>
+
+<!-- ══ POST 2 ══ -->
+<div class="post-card">
+  <div class="post-card-hd"><span class="pc-num">POST 02 · Chiffre clé</span><span class="pc-date">13 mai 2026</span></div>
+  <div class="visual-stage">
+    <div class="vs-canvas c2">
+      <div class="c2-grid"></div>
+      <div class="c2-glow"></div>
+      <div class="c2-body">
+        <div class="c2-eye">Le chiffre que tout le monde ignore</div>
+        <div class="c2-num">10</div>
+        <div class="c2-unit"><em>millions</em></div>
+        <div class="c2-label"><strong>d'entreprises françaises</strong> doivent être conformes à la facturation électronique avant le 1er septembre 2026.</div>
+        <div class="c2-rule"></div>
+        <div class="c2-src">Source · DGFiP · Rapport de la réforme 2024</div>
+      </div>
+      <div class="c2-logo"><div class="c2-ldot"></div><span class="c2-lname">factelys.fr</span></div>
+    </div>
+  </div>
+  <div class="post-copy">
+    <span class="copy-type-badge t-stat">📊 Stat</span>
+    <div class="copy-body"><strong>10 000 000.</strong>
+
+C'est le nombre d'entreprises françaises qui doivent s'adapter avant le 1er septembre 2026.
+
+Et pourtant, selon nos données terrain :
+— <strong>62 %</strong> des dirigeants de PME n'ont pas encore commencé
+— <strong>41 %</strong> ne savent pas ce qu'est une PDP
+— <strong>28 %</strong> pensent que l'envoi par email suffit encore
+
+La réforme est complexe, les textes sont denses.
+C'est pour ça que Factelys existe.
+
+👉 Où en êtes-vous ? (1 = pas commencé / 5 = prêt)
+
+— <em>Christophe Hubert, Expert-Comptable · Factelys</em>
+
+<span class="ht">#Conformité</span> <span class="ht">#FacturationÉlectronique</span> <span class="ht">#PME</span></div>
+    <div class="copy-foot"><span class="cf-chars">~680 car.</span><span class="cf-tip">Mercredi 9h · fort engagement</span></div>
+  </div>
+</div>
+
+<!-- ══ POST 3 — FULL WIDTH ══ -->
+<div class="post-card" style="grid-column:1/-1">
+  <div class="post-card-hd"><span class="pc-num">POST 03 · Carrousel 6 slides</span><span class="pc-date">20 mai 2026</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr">
+    <!-- Cover slide -->
+    <div class="visual-stage" style="border-radius:0">
+      <div class="vs-canvas c3">
+        <div class="c3-bgnum">5</div>
+        <div class="c3-stripe"></div>
+        <div class="c3-dots">
+          <div class="c3-dot" style="background:#fff"></div>
+          <div class="c3-dot" style="background:rgba(255,255,255,0.25)"></div>
+          <div class="c3-dot" style="background:rgba(255,255,255,0.15)"></div>
+          <div class="c3-dot" style="background:rgba(255,255,255,0.15)"></div>
+          <div class="c3-dot" style="background:rgba(255,255,255,0.15)"></div>
+          <div class="c3-dot" style="background:rgba(255,255,255,0.15)"></div>
+        </div>
+        <div class="c3-body">
+          <div class="c3-label">Factelys · Carrousel expert</div>
+          <div class="c3-num">05</div>
+          <div class="c3-title">erreurs qui coûtent<br><em>cher avant sept. 2026</em></div>
+          <div class="c3-sub">Glissez pour découvrir les pièges à éviter absolument dans votre mise en conformité.</div>
+          <div class="c3-foot">
+            <div class="c3-swipe">GLISSER →</div>
+            <div class="c3-logo"><div class="c3-ldot"></div><span class="c3-lname">factelys.fr</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slides preview -->
+    <div class="car-wrap">
+      <div class="car-label">Aperçu des 6 slides</div>
+      <div class="car-grid">
+        <div class="cs cs-1"><div class="cs-n">01</div><div class="cs-ico">⚠️</div><div class="cs-ttl">Attendre le dernier moment</div><div class="cs-body">Les PDP ont 4–12 sem. de délai. En août, ce sera trop tard.</div></div>
+        <div class="cs cs-2"><div class="cs-n">02</div><div class="cs-ico">📧</div><div class="cs-ttl">Continuer par email</div><div class="cs-body">Un PDF par email ne sera plus légalement valide en B2B.</div></div>
+        <div class="cs cs-3"><div class="cs-n">03</div><div class="cs-ico">🔀</div><div class="cs-ttl">Confondre PDP et PPF</div><div class="cs-body">Le Portail Public est gratuit mais limité. Les PDP offrent plus.</div></div>
+        <div class="cs cs-4"><div class="cs-n">04</div><div class="cs-ico">🙈</div><div class="cs-ttl">Oublier l'e-reporting</div><div class="cs-body">Même sans B2B pur, vous avez des obligations vers la DGFiP.</div></div>
+        <div class="cs cs-5"><div class="cs-n">05</div><div class="cs-ico">🧩</div><div class="cs-ttl">Ne pas former ses équipes</div><div class="cs-body">Comptabilité, achats, ventes : tout le monde est concerné.</div></div>
+        <div class="cs cs-6"><div class="cs-n">CTA</div><div class="cs-ico" style="font-size:14px">✉️</div><div class="cs-ttl">On vérifie ensemble ?</div><div class="cs-body">Diagnostic gratuit 30 min · factelys.fr</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="post-copy">
+    <span class="copy-type-badge t-car">🎠 Carrousel</span>
+    <div class="copy-body"><strong>5 erreurs qui coûtent cher avant le 1er sept. 2026. ⬇️ (Glissez)</strong>
+
+Voici les 5 erreurs que je vois revenir en boucle — <strong>Christophe Hubert, Expert-Comptable · Factelys</strong> :
+
+<strong>❌ Erreur 1</strong> : Attendre le dernier moment. Les PDP ont des délais de 4 à 12 semaines.
+<strong>❌ Erreur 2</strong> : Continuer à envoyer des PDF par email. Illégal en B2B après le 1er sept.
+<strong>❌ Erreur 3</strong> : Confondre PDP et PPF. Deux choses très différentes.
+<strong>❌ Erreur 4</strong> : Oublier l'e-reporting. Obligatoire même sans B2B pur.
+<strong>❌ Erreur 5</strong> : Ne pas former ses équipes. Ce n'est pas un projet IT seul.
+
+💬 Laquelle avez-vous (presque) commise ?
+
+— <em>Christophe Hubert, Expert-Comptable · Factelys</em>
+
+<span class="ht">#FacturationÉlectronique</span> <span class="ht">#PME</span> <span class="ht">#Conformité2026</span></div>
+    <div class="copy-foot"><span class="cf-chars">~780 car. · Carrousel = +3× sauvegardes</span><span class="cf-tip">Jeudi 8h30</span></div>
+  </div>
+</div>
+
+<!-- ══ POST 4 ══ -->
+<div class="post-card">
+  <div class="post-card-hd"><span class="pc-num">POST 04 · Comparaison</span><span class="pc-date">27 mai 2026</span></div>
+  <div class="visual-stage">
+    <div class="vs-canvas c4">
+      <!-- Top bar -->
+      <div class="c4-topbar">
+        <span class="c4-tb-title">La vraie différence</span>
+        <div class="c4-tb-logo"><div class="c4-tb-dot"></div><span class="c4-tb-name">Factelys</span></div>
+      </div>
+      <!-- Left panel -->
+      <div class="c4-left">
+        <span class="c4-side-label c4-ll">E-INVOICING</span>
+        <div class="c4-side-title">Factures<br>entre entreprises</div>
+        <div class="c4-side-sub">Émission & réception via plateforme agréée</div>
+        <div class="c4-points">
+          <div class="c4-point"><div class="c4-pdot" style="background:#0044B5"></div>Toutes vos factures B2B</div>
+          <div class="c4-point"><div class="c4-pdot" style="background:#0044B5"></div>Formats : Factur-X, UBL, CII</div>
+          <div class="c4-point"><div class="c4-pdot" style="background:#0044B5"></div>Via PDP ou PPF obligatoire</div>
+          <div class="c4-point"><div class="c4-pdot" style="background:#0044B5"></div>Sept. 2026 · toutes tailles</div>
+        </div>
+      </div>
+      <!-- Right panel -->
+      <div class="c4-right">
+        <span class="c4-side-label c4-rl">E-REPORTING</span>
+        <div class="c4-side-title">Données<br>vers l'État</div>
+        <div class="c4-side-sub">Transmission à la DGFiP des données de transaction</div>
+        <div class="c4-points">
+          <div class="c4-point"><div class="c4-pdot" style="background:#C0392B"></div>Transactions B2C & international</div>
+          <div class="c4-point"><div class="c4-pdot" style="background:#C0392B"></div>Données TVA en temps réel</div>
+          <div class="c4-point"><div class="c4-pdot" style="background:#C0392B"></div>Via la même PDP que l'invoicing</div>
+          <div class="c4-point"><div class="c4-pdot" style="background:#C0392B"></div>Concerne aussi le B2C !</div>
+        </div>
+      </div>
+      <!-- VS -->
+      <div class="c4-vs"><span class="c4-vs-text">vs</span></div>
+    </div>
+  </div>
+  <div class="post-copy">
+    <span class="copy-type-badge t-edu">📖 Éducatif</span>
+    <div class="copy-body"><strong>E-invoicing ou e-reporting ? La distinction qui change tout.</strong>
+
+<strong>L'e-invoicing</strong> = échange de factures entre entreprises (B2B). Formats Factur-X, UBL ou CII, via une plateforme agréée.
+
+<strong>L'e-reporting</strong> = transmission de données de transaction à la DGFiP. Concerne aussi vos ventes B2C et opérations internationales.
+
+→ Les deux passent par la même plateforme.
+→ Les deux sont obligatoires dès septembre 2026.
+
+⚠️ Erreur classique : se préparer uniquement pour l'e-invoicing et découvrir trop tard les obligations d'e-reporting.
+
+Vous voulez un audit de votre situation ?
+👉 factelys.fr — diagnostic gratuit 30 min
+
+<span class="ht">#EInvoicing</span> <span class="ht">#EReporting</span> <span class="ht">#DGFiP</span></div>
+    <div class="copy-foot"><span class="cf-chars">~700 car.</span><span class="cf-tip">Mercredi matin · expertise</span></div>
+  </div>
+</div>
+
+<!-- ══ POST 5 ══ -->
+<div class="post-card">
+  <div class="post-card-hd"><span class="pc-num">POST 05 · Témoignage</span><span class="pc-date">03 juin 2026</span></div>
+  <div class="visual-stage">
+    <div class="vs-canvas c5">
+      <div class="c5-accent"></div>
+      <div class="c5-deco"></div>
+      <div class="c5-body">
+        <div class="c5-qmark">"</div>
+        <div class="c5-quote">On pensait que ça prendrait des mois. Factelys nous a rendu conformes en <em>3 semaines.</em></div>
+        <div class="c5-rule"></div>
+        <div class="c5-person">
+          <div class="c5-avatar">TD</div>
+          <div>
+            <div class="c5-pname">Thomas Dubois</div>
+            <div class="c5-prole">Directeur général · Dubois Logistique SAS · 28 sal.</div>
+          </div>
+        </div>
+        <div class="c5-badge">
+          <span class="c5-bicon">✓</span>
+          <span class="c5-btext">Conforme mars 2026 · Zéro interruption d'activité</span>
+        </div>
+        <div class="c5-foot">
+          <div class="c5-stars">★★★★★</div>
+          <div class="c5-logo"><div class="c5-ldot"></div><span class="c5-lname">factelys.fr</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="post-copy">
+    <span class="copy-type-badge t-testi">⭐ Témoignage</span>
+    <div class="copy-body"><strong>"On pensait que ça prendrait des mois. On a été conformes en 3 semaines."</strong>
+
+Thomas dirige une PME de logistique de 28 salariés. Je l'ai accompagné en mars 2026.
+
+En janvier, il avait deux certitudes :
+— Ça allait être un cauchemar
+— Il allait devoir recruter un profil IT
+
+Résultat 3 semaines plus tard :
+✅ PDP sélectionnée et déployée
+✅ Équipes formées (compta + achats)
+✅ Premiers flux envoyés sans incident
+✅ Zéro recrutement supplémentaire
+
+Ce n'est pas exceptionnel. C'est notre méthode standard.
+
+📩 Même résultat pour vous ? On en parle.
+
+<span class="ht">#Témoignage</span> <span class="ht">#PME</span> <span class="ht">#Factelys</span></div>
+    <div class="copy-foot"><span class="cf-chars">~680 car.</span><span class="cf-tip">Jeudi 9h · fort taux de conversion</span></div>
+  </div>
+</div>
+
+<!-- ══ POST 6 ══ -->
+<div class="post-card">
+  <div class="post-card-hd"><span class="pc-num">POST 06 · Countdown</span><span class="pc-date">10 juin 2026</span></div>
+  <div class="visual-stage">
+    <div class="vs-canvas c6">
+      <!-- SVG rings -->
+      <svg class="c6-svg" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="260" cy="240" r="75"  fill="none" stroke="rgba(192,57,43,0.18)" stroke-width="1"/>
+        <circle cx="260" cy="240" r="120" fill="none" stroke="rgba(0,43,110,0.14)"  stroke-width="1"/>
+        <circle cx="260" cy="240" r="170" fill="none" stroke="rgba(192,57,43,0.09)" stroke-width="1"/>
+        <circle cx="260" cy="240" r="224" fill="none" stroke="rgba(0,43,110,0.06)"  stroke-width="1"/>
+        <circle cx="260" cy="240" r="75"  fill="none" stroke="rgba(192,57,43,0.55)" stroke-width="2"
+          stroke-dasharray="471" stroke-dashoffset="155"
+          stroke-linecap="round" transform="rotate(-90 260 240)"/>
+      </svg>
+      <div class="c6-body">
+        <div class="c6-eye">⏱ Compte à rebours</div>
+        <div class="c6-jlabel">J —</div>
+        <div class="c6-num">90</div>
+        <div class="c6-sublabel">jours avant l'obligation légale</div>
+        <div class="c6-date">1ER SEPTEMBRE 2026</div>
+        <div class="c6-sub">Toutes les entreprises assujetties à la TVA devront émettre et recevoir leurs factures B2B via une plateforme agréée.</div>
+        <div class="c6-bar"><div class="c6-fill"></div></div>
+        <div class="c6-blabel">67% du temps de préparation écoulé</div>
+      </div>
+      <div class="c6-logo"><div class="c6-ldot"></div><span class="c6-lname">factelys.fr</span></div>
+    </div>
+  </div>
+  <div class="post-copy">
+    <span class="copy-type-badge t-stat">⏱ Countdown</span>
+    <div class="copy-body"><strong>J-90 avant le 1er septembre 2026.</strong>
+
+67% du temps de préparation est déjà écoulé.
+
+Pour ceux qui n'ont pas encore commencé, voici ce qu'il reste à faire :
+
+<strong>Sem. 1-2 :</strong> Audit situation actuelle (ERP, volumes, flux B2B/B2C)
+<strong>Sem. 3-4 :</strong> Sélection et contractualisation PDP
+<strong>Sem. 5-8 :</strong> Déploiement technique + paramétrage
+<strong>Sem. 9-10 :</strong> Formation des équipes + tests
+<strong>Sem. 11 :</strong> Premiers vrais flux en production
+
+C'est jouable. Mais <strong>uniquement si vous commencez maintenant.</strong>
+
+Notre offre de démarrage rapide : de zéro à opérationnel en 3 semaines.
+👉 factelys.fr
+
+<span class="ht">#J90</span> <span class="ht">#FacturationÉlectronique</span> <span class="ht">#Urgence</span></div>
+    <div class="copy-foot"><span class="cf-chars">~760 car.</span><span class="cf-tip">Lundi matin · crée l'urgence</span></div>
+  </div>
+</div>
+
+<!-- ══ POST 7 ══ -->
+<div class="post-card">
+  <div class="post-card-hd"><span class="pc-num">POST 07 · Annonce Webinar</span><span class="pc-date">17 juin 2026</span></div>
+  <div class="visual-stage">
+    <div class="vs-canvas c7">
+      <div class="c7-lines"></div>
+      <div class="c7-rtop"></div>
+      <div class="c7-deco"></div>
+      <div class="c7-body">
+        <div class="c7-badge">
+          <div class="c7-bdot"></div>
+          <span class="c7-btext">Webinar gratuit</span>
+        </div>
+        <div class="c7-title">Comprendre la réforme<br>facturation électronique<br><em>en 1 heure.</em></div>
+        <div class="c7-details">
+          <div class="c7-row"><div class="c7-icon">📅</div><div class="c7-rtext"><strong>Mardi 30 juin 2026</strong> · 12h30 – 13h30</div></div>
+          <div class="c7-row"><div class="c7-icon">💻</div><div class="c7-rtext"><strong>En ligne</strong> · Lien envoyé à l'inscription</div></div>
+          <div class="c7-row"><div class="c7-icon">🎯</div><div class="c7-rtext">Pour <strong>dirigeants, DAF, responsables admin.</strong> de TPE/PME</div></div>
+        </div>
+        <div class="c7-cta">
+          <span class="c7-cta-text">S'inscrire gratuitement</span>
+          <span class="c7-cta-arr">→</span>
+        </div>
+        <div class="c7-foot">
+          <div class="c7-logo"><div class="c7-ldot"></div><span class="c7-lname">Factelys</span></div>
+          <span class="c7-url">c.hubert@factelys.fr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="post-copy">
+    <span class="copy-type-badge t-web">🎙 Webinar</span>
+    <div class="copy-body"><strong>🎙 Webinar gratuit · 30 juin · 12h30</strong>
+<strong>« Facturation électronique : tout comprendre avant sept. 2026 »</strong>
+
+En 1h chrono, on répond à toutes vos questions :
+✅ Ce qui change concrètement pour vous
+✅ Choisir votre plateforme agréée (PDP vs PPF)
+✅ Le calendrier étape par étape
+✅ Les erreurs à éviter absolument
+✅ Q&R en direct
+
+Présenté par <strong>Christophe Hubert</strong>, Expert-Comptable · Factelys
+Pour : dirigeants TPE/PME, DAF, responsables compta.
+🎁 Bonus : checklist conformité 15 points offerte à tous les participants.
+
+👉 factelys.fr/webinar
+⚠️ Places limitées à 100 participants.
+
+<span class="ht">#Webinar</span> <span class="ht">#FacturationÉlectronique</span> <span class="ht">#Gratuit</span></div>
+    <div class="copy-foot"><span class="cf-chars">~700 car.</span><span class="cf-tip">Mercredi + rappel vendredi</span></div>
+  </div>
+</div>
+
+<!-- ══ POST 8 ══ -->
+<div class="post-card">
+  <div class="post-card-hd"><span class="pc-num">POST 08 · Expert Insight</span><span class="pc-date">24 juin 2026</span></div>
+  <div class="visual-stage">
+    <div class="vs-canvas c8">
+      <div class="c8-top"></div>
+      <div class="c8-rline"></div>
+      <div class="c8-body">
+        <div class="c8-eye">Factelys · Insight terrain</div>
+        <div class="c8-icon-row">
+          <div class="c8-icon">⚡</div>
+          <span class="c8-tag">Chiffre clé</span>
+        </div>
+        <div class="c8-stat">4 <em>semaines</em></div>
+        <!-- spacer to visually clear the diagonal -->
+        <div class="c8-divider"></div>
+        <div class="c8-insight-title">C'est le délai moyen de déploiement d'une PDP en période de rush.</div>
+        <div class="c8-insight-body">En juin-août, les équipes techniques des plateformes agréées sont surchargées. <strong>Chaque semaine perdue en juillet = une semaine de risque en septembre.</strong> Les entreprises qui attendent payent souvent le double en frais d'urgence.</div>
+        <div class="c8-source">Source · Retours terrain Factelys · 200+ accompagnements 2025-2026</div>
+        <div class="c8-foot">
+          <div class="c8-logo"><div class="c8-ldot"></div><span class="c8-lname">factelys.fr</span></div>
+          <span class="c8-cta">Démarrer maintenant →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="post-copy">
+    <span class="copy-type-badge t-edu">⚡ Expert</span>
+    <div class="copy-body"><strong>4 semaines. C'est le délai moyen de déploiement d'une PDP en période de rush.</strong>
+
+En juillet-août 2026, toutes les plateformes agréées seront sous pression.
+
+Ce que j'observe sur le terrain :
+
+📌 Les 20% les plus rapides → prix standard, temps de tester, sérénité.
+📌 Les 60% du milieu → ça passe, mais avec tension.
+📌 Les 20% qui attendent → <strong>2 à 3× plus cher</strong>, délais non respectés, risque légal.
+
+Le problème n'est jamais la complexité de la réforme.
+C'est le <strong>faux sentiment d'avoir encore le temps.</strong>
+
+Vous avez encore le temps. Mais la fenêtre se referme.
+
+💬 Où en êtes-vous ? Je réponds en commentaire.
+
+<span class="ht">#FacturationÉlectronique</span> <span class="ht">#PDP</span> <span class="ht">#Expert</span></div>
+    <div class="copy-foot"><span class="cf-chars">~730 car.</span><span class="cf-tip">Mardi ou mercredi · fort engagement</span></div>
+  </div>
+</div>
+
+</div><!-- /posts-grid -->
+
+<!-- INFO FOOTER -->
+<div class="info-footer">
+  <div class="if-card">
+    <div class="if-title">Bonnes pratiques</div>
+    <div class="if-body">Publier entre <span>7h30–9h</span> ou <span>17h–18h30</span>. Mardis, mercredis et jeudis obtiennent le plus d'engagement. Répondre aux commentaires dans les 2h après publication pour booster l'algorithme.</div>
+  </div>
+  <div class="if-card">
+    <div class="if-title">Export des visuels</div>
+    <div class="if-body">Posts image 1:1 → <span>1080×1080 px PNG</span>. Bannière profil → <span>1584×396 px</span>. Carrousel → une image par slide, même format 1:1. Exporter depuis Figma ou Canva (fichier maître sur demande).</div>
+  </div>
+  <div class="if-card">
+    <div class="if-title">Outils recommandés</div>
+    <div class="if-body"><span>Figma</span> pour les visuels (master file disponible). <span>Canva Pro</span> pour les variantes rapides. <span>Buffer</span> ou <span>Hootsuite</span> pour la programmation. <span>Shield</span> pour l'analytics LinkedIn.</div>
+  </div>
+</div>
+
+</div><!-- /posts-wrap -->
+
+<script>
+// Scale each .vs-canvas to fill its .visual-stage container
+function scaleCanvases() {
+  document.querySelectorAll('.visual-stage').forEach(stage => {
+    const canvas = stage.querySelector('.vs-canvas');
+    if (!canvas) return;
+    const w = stage.getBoundingClientRect().width;
+    const scale = w / 520;
+    canvas.style.transform = `scale(${scale})`;
+    // stage height = canvas height * scale
+    stage.style.height = (520 * scale) + 'px';
+  });
+}
+scaleCanvases();
+window.addEventListener('resize', scaleCanvases);
+// Also run after fonts load
+document.fonts.ready.then(scaleCanvases);
+</script>
+</body>
+</html>

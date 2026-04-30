@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factelys — Charte Graphique v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --marine:#002B6E;--bleu:#0044B5;--bleu-clair:#D6E4FF;--bleu-pale:#EEF4FF;
+  --rouge:#C0392B;--rouge-clair:#FDECEA;
+  --craie:#F4F6FC;--charbon:#111827;--gris:#5C6880;--gris-clair:#E2E6F0;--blanc:#FFFFFF;
+  --fd:'DM Serif Display',Georgia,serif;--fs:'Sora',system-ui,sans-serif;--fm:'JetBrains Mono',monospace;
+}
+html{font-family:var(--fs);background:var(--craie);color:var(--charbon);scroll-behavior:smooth}
+.layout{display:grid;grid-template-columns:200px 1fr;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:0;height:100vh;background:var(--marine);padding:0;display:flex;flex-direction:column;overflow-y:auto}
+.sb-brand{display:flex;align-items:center;gap:7px;padding:24px 24px 22px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-dot{width:9px;height:9px;background:var(--rouge);border-radius:2px;flex-shrink:0}
+.sb-name{font-family:var(--fs);font-weight:600;font-size:15px;color:#fff;letter-spacing:-0.02em}
+.sb-nav{padding:16px 0;flex:1}
+.sb-nav a{display:flex;align-items:center;gap:10px;padding:8px 24px;font-size:11.5px;color:rgba(255,255,255,0.45);text-decoration:none;transition:all .15s;letter-spacing:0.01em}
+.sb-nav a:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.sb-nav a.active{color:#fff;background:rgba(255,255,255,0.08);border-left:2px solid var(--rouge);padding-left:22px}
+.sb-num{font-family:var(--fm);font-size:10px;opacity:0.35;min-width:18px}
+.sb-footer{padding:16px 24px;border-top:1px solid rgba(255,255,255,0.08)}
+.sb-footer p{font-size:10px;color:rgba(255,255,255,0.25);line-height:1.7;font-family:var(--fm)}
+
+/* MAIN */
+.main{padding:0}
+
+/* COVER */
+.cover{background:var(--marine);padding:80px 64px 60px;position:relative;overflow:hidden}
+.cv-bg{position:absolute;border-radius:50%;pointer-events:none}
+.c1{width:500px;height:500px;right:-120px;top:-160px;background:rgba(192,57,43,0.1)}
+.c2{width:300px;height:300px;right:160px;bottom:-120px;background:rgba(0,68,181,0.18)}
+.cover-bar{width:40px;height:4px;background:var(--rouge);border-radius:2px;margin-bottom:28px}
+.cover-title{font-family:var(--fd);font-size:54px;color:#fff;line-height:1.05;max-width:480px;position:relative;z-index:1}
+.cover-title em{color:#F5A89A;font-style:italic}
+.cover-sub{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;text-transform:uppercase;margin-top:14px;position:relative;z-index:1}
+.cover-meta{display:flex;gap:36px;margin-top:52px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.1);position:relative;z-index:1;flex-wrap:wrap}
+.cm-item{display:flex;flex-direction:column;gap:3px}
+.cm-label{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;font-family:var(--fm)}
+.cm-val{font-size:13px;color:rgba(255,255,255,0.7);font-weight:500}
+
+/* SECTIONS */
+.sec{padding:60px 64px;border-bottom:1px solid var(--gris-clair)}
+.sec:last-child{border-bottom:none}
+.sec-tag{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--rouge);margin-bottom:8px}
+.sec-title{font-family:var(--fd);font-size:34px;color:var(--marine);margin-bottom:8px;line-height:1.15}
+.sec-desc{font-size:13.5px;color:var(--gris);max-width:540px;line-height:1.75;margin-bottom:36px}
+.label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gris);margin-bottom:14px;display:block}
+.card{background:var(--blanc);border:1px solid var(--gris-clair);border-radius:14px;overflow:hidden}
+.card-pad{padding:24px 28px}
+
+/* LOGO */
+.logo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.logo-box{border-radius:12px;padding:32px 28px;display:flex;flex-direction:column;gap:8px}
+.lgt{display:flex;align-items:center;gap:8px}
+.lgt-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.lgt-name{font-family:var(--fs);font-weight:600;font-size:24px;letter-spacing:-0.02em}
+.lgt-sub{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;margin-left:18px}
+.logo-tag{display:inline-block;margin-top:12px;font-size:10px;padding:3px 10px;border-radius:99px;font-family:var(--fm)}
+.clearspace{background:var(--craie);border:1px dashed var(--gris-clair);border-radius:12px;padding:36px;display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:12px}
+.cs-inner{position:relative;padding:20px;border:1px dashed rgba(192,57,43,0.35);border-radius:4px;display:inline-flex}
+.cs-note{font-size:11px;color:var(--gris);text-align:center;line-height:1.6}
+
+/* COULEURS */
+.color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+.color-chip{border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .15s}
+.color-chip:hover{transform:translateY(-3px)}
+.color-swatch{height:76px;position:relative}
+.copy-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.28);opacity:0;transition:opacity .15s;font-size:11px;color:#fff;font-family:var(--fm)}
+.color-chip:hover .copy-hint{opacity:1}
+.color-info{padding:10px 12px;background:var(--blanc);border-top:1px solid var(--gris-clair)}
+.c-name{font-size:12px;font-weight:600;color:var(--charbon)}
+.c-hex{font-size:11px;color:var(--gris);font-family:var(--fm);margin-top:1px}
+.c-role{font-size:10px;color:var(--gris);margin-top:3px;line-height:1.4}
+.color-grid-sm{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cs .color-swatch{height:48px}
+.contrast-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.ctr-item{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;border:1px solid var(--gris-clair);background:var(--blanc)}
+.ctr-sw{width:18px;height:18px;border-radius:3px;flex-shrink:0}
+.ctr-label{font-size:11px;color:var(--charbon);font-family:var(--fm)}
+.pass{font-size:10px;padding:2px 7px;border-radius:4px;background:#E6F4EA;color:#1E6B3C;font-weight:700}
+.warn{font-size:10px;padding:2px 7px;border-radius:4px;background:#FFF3CD;color:#856404;font-weight:700}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--charbon);color:#fff;padding:10px 20px;border-radius:8px;font-size:12px;font-family:var(--fm);opacity:0;transition:opacity .2s;pointer-events:none;z-index:9999}
+.toast.show{opacity:1}
+
+/* TYPO */
+.typo-block{margin-bottom:10px;padding:28px 32px;background:var(--blanc);border:1px solid var(--gris-clair);border-radius:12px}
+.typo-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--gris-clair)}
+.typo-family{font-size:13px;font-weight:600;color:var(--charbon)}
+.typo-use{font-size:11px;color:var(--gris);margin-top:3px}
+.typo-detail{font-size:10px;color:var(--gris);font-family:var(--fm);text-align:right;line-height:1.7}
+.scale-table{width:100%;border-collapse:collapse}
+.scale-table td{padding:11px 14px;border-bottom:1px solid var(--gris-clair);vertical-align:middle}
+.scale-table tr:last-child td{border-bottom:none}
+.scale-spec{font-size:10px;color:var(--gris);font-family:var(--fm);text-align:right;white-space:nowrap}
+
+/* ESPACEMENT */
+.sp-wrap{padding:24px 20px;background:var(--blanc);border:1px solid var(--gris-clair);border-radius:12px;overflow-x:auto}
+.sp-row{display:flex;align-items:flex-end;gap:14px}
+.sp-item{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:40px}
+.sp-bar{background:var(--bleu-clair);border-top:3px solid var(--bleu);border-radius:2px 2px 0 0;width:32px}
+.sp-label{font-family:var(--fm);font-size:9px;color:var(--gris);text-align:center}
+.sp-var{font-family:var(--fm);font-size:9px;color:var(--marine);font-weight:500}
+.rad-row{display:flex;gap:14px;padding:24px;background:var(--blanc);border-radius:12px;border:1px solid var(--gris-clair);margin-top:10px;flex-wrap:wrap}
+.rad-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.rad-box{width:48px;height:48px;background:var(--bleu-pale);border:2px solid var(--bleu)}
+.rad-label{font-family:var(--fm);font-size:9px;color:var(--gris);text-align:center}
+
+/* COMPOSANTS */
+.comp-block{padding:22px 26px;background:var(--blanc);border:1px solid var(--gris-clair);border-radius:12px;margin-bottom:10px}
+.comp-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;font-family:var(--fs);font-size:13px;font-weight:500;border:none;border-radius:8px;cursor:pointer;letter-spacing:-0.01em}
+.btn-p{background:var(--marine);color:#fff}
+.btn-s{background:transparent;color:var(--marine);border:1.5px solid var(--marine)}
+.btn-r{background:var(--rouge);color:#fff}
+.btn-g{background:var(--craie);color:var(--marine);border:1px solid var(--gris-clair)}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:600}
+.bdot{width:5px;height:5px;border-radius:50%}
+.b-bl{background:var(--bleu-pale);color:var(--marine)}.b-bl .bdot{background:var(--marine)}
+.b-re{background:var(--rouge-clair);color:var(--rouge)}.b-re .bdot{background:var(--rouge)}
+.b-gr{background:#E6F4EA;color:#1E6B3C}.b-gr .bdot{background:#1E6B3C}
+.b-gy{background:var(--gris-clair);color:var(--gris)}.b-gy .bdot{background:var(--gris)}
+.inp{font-family:var(--fs);font-size:13px;padding:9px 13px;border:1.5px solid var(--gris-clair);border-radius:8px;color:var(--charbon);background:var(--blanc);width:100%;outline:none}
+.form-group{margin-bottom:10px}
+.form-label{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--charbon);margin-bottom:4px;display:block}
+.ui-card{background:var(--blanc);border:1px solid var(--gris-clair);border-radius:12px;padding:18px;border-top:3px solid var(--marine)}
+.ui-card-dark{background:var(--marine);border-radius:12px;padding:18px}
+
+/* VOIX */
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vc{border-radius:12px;padding:22px 24px}
+.vc-trait{background:var(--blanc);border:1px solid var(--gris-clair)}
+.vc-ok{background:#E6F4EA;border-left:3px solid #1E6B3C}
+.vc-no{background:var(--rouge-clair);border-left:3px solid var(--rouge)}
+.vc-icon{font-size:18px;margin-bottom:8px}
+.vc-name{font-size:13px;font-weight:600;color:var(--marine);margin-bottom:6px}
+.vc-desc{font-size:12px;color:var(--gris);line-height:1.6}
+.vc-verdict{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px}
+.vc-ok .vc-verdict{color:#1E6B3C}
+.vc-no .vc-verdict{color:var(--rouge)}
+.vc-ex{font-size:12px;line-height:1.65;font-style:italic}
+.vc-ok .vc-ex{color:#1E4A2D}
+.vc-no .vc-ex{color:#7B2020}
+
+/* CARTE DE VISITE */
+.cv-scene{display:flex;justify-content:center;gap:40px;padding:36px 0;flex-wrap:wrap}
+.cv-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.cv-tag{font-size:10px;color:var(--gris);letter-spacing:0.08em;text-transform:uppercase;font-family:var(--fm)}
+.cv{width:300px;height:175px;border-radius:10px;position:relative;overflow:hidden;transition:transform .35s}
+.cv:hover{transform:translateY(-5px)}
+.cv-r{background:var(--marine)}
+.cv-v{background:var(--blanc);border:1px solid var(--gris-clair)}
+.cv-d1{position:absolute;width:200px;height:200px;right:-60px;bottom:-80px;border-radius:50%;background:rgba(192,57,43,0.14);pointer-events:none}
+.cv-d2{position:absolute;width:110px;height:110px;right:60px;bottom:-40px;border-radius:50%;background:rgba(0,68,181,0.16);pointer-events:none}
+.cv-inner{position:relative;z-index:1;height:100%;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between}
+.cv-logo-r{display:flex;align-items:center;gap:6px}
+.cv-logo-dot{width:7px;height:7px;background:var(--rouge);border-radius:2px}
+.cv-logo-name{font-family:var(--fs);font-weight:600;font-size:13px;color:#fff;letter-spacing:-0.02em}
+.cv-pname{font-family:var(--fs);font-weight:600;font-size:13px;color:#fff}
+.cv-prole{font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:0.04em;text-transform:uppercase;margin-top:2px}
+.cv-contacts{display:flex;flex-direction:column;gap:2px;margin-top:7px}
+.cv-contact{font-size:9px;color:rgba(255,255,255,0.6);font-family:var(--fm)}
+.cv-accent{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--rouge);border-radius:10px 0 0 10px}
+.cv-vinner{position:relative;z-index:1;height:100%;padding:20px 22px 20px 26px;display:flex;flex-direction:column;justify-content:center}
+.cv-tagline{font-family:var(--fd);font-size:17px;color:var(--marine);line-height:1.25}
+.cv-tagline em{color:var(--rouge);font-style:italic}
+.cv-vsub{font-size:9px;color:var(--gris);letter-spacing:0.07em;text-transform:uppercase;margin-top:8px}
+.cv-vbrand{display:flex;align-items:center;gap:4px;position:absolute;bottom:16px;right:18px}
+.cv-vbrand-dot{width:6px;height:6px;background:var(--rouge);border-radius:1px}
+.cv-vbrand-name{font-family:var(--fs);font-weight:600;font-size:10px;color:var(--marine)}
+.cv-spec{padding:12px 16px;background:var(--blanc);border:1px solid var(--gris-clair);border-radius:8px;width:300px}
+.cv-spec-row{display:flex;justify-content:space-between;font-size:10px;padding:3px 0}
+.cv-spec-key{color:var(--gris)}
+.cv-spec-val{font-family:var(--fm);color:var(--charbon)}
+
+/* LINKEDIN */
+.li-banner-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--gris-clair)}
+.li-banner{background:var(--marine);padding:32px 48px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;position:relative;overflow:hidden;min-height:130px}
+.li-bc1{position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(192,57,43,0.09);pointer-events:none}
+.li-bc2{position:absolute;right:130px;bottom:-80px;width:180px;height:180px;border-radius:50%;background:rgba(0,68,181,0.16);pointer-events:none}
+.li-bar{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--rouge)}
+.li-left{position:relative;z-index:1}
+.li-logo-row{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.li-logo-dot{width:8px;height:8px;background:var(--rouge);border-radius:2px}
+.li-logo-name{font-family:var(--fs);font-weight:600;font-size:14px;color:#fff;letter-spacing:-0.02em}
+.li-headline{font-family:var(--fd);font-size:24px;color:#fff;line-height:1.2}
+.li-headline em{color:#F5A89A;font-style:italic}
+.li-sub{font-size:10px;color:rgba(255,255,255,0.4);margin-top:7px;letter-spacing:0.08em;text-transform:uppercase}
+.li-right{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.li-cta{background:var(--rouge);color:#fff;padding:9px 18px;border-radius:7px;font-family:var(--fs);font-size:11px;font-weight:600;white-space:nowrap}
+.li-url{font-size:9px;color:rgba(255,255,255,0.3);font-family:var(--fm)}
+.li-profile-bar{background:var(--blanc);padding:12px 18px;display:flex;align-items:center;gap:12px}
+.li-avatar{width:44px;height:44px;border-radius:50%;background:var(--bleu-clair);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--marine);border:2px solid var(--blanc);margin-top:-22px;flex-shrink:0}
+.li-pname{font-size:12px;font-weight:600;color:var(--charbon)}
+.li-prole{font-size:10px;color:var(--gris)}
+.li-spec{font-size:10px;color:var(--gris);font-family:var(--fm);margin-top:8px;padding:8px 12px;background:var(--blanc);border-radius:7px;border:1px solid var(--gris-clair)}
+.li-post{background:var(--blanc);border:1px solid var(--gris-clair);border-radius:12px;overflow:hidden;max-width:540px}
+.li-post-head{padding:14px 16px;display:flex;align-items:center;gap:10px}
+.li-post-av{width:38px;height:38px;border-radius:50%;background:var(--bleu-clair);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:var(--marine);flex-shrink:0}
+.li-post-pname{font-size:12px;font-weight:600;color:var(--charbon)}
+.li-post-prole{font-size:10px;color:var(--gris)}
+.li-post-visual{background:var(--marine);padding:24px 28px;position:relative;overflow:hidden}
+.li-post-vc{position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(192,57,43,0.1)}
+.li-post-stat{font-family:var(--fd);font-size:40px;color:#fff;position:relative;z-index:1;line-height:1}
+.li-post-stat em{color:#F5A89A}
+.li-post-statlabel{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;position:relative;z-index:1}
+.li-post-tags{display:flex;gap:7px;margin-top:14px;position:relative;z-index:1}
+.li-post-tag{font-size:9px;padding:4px 10px;border-radius:4px;font-weight:600;letter-spacing:0.04em}
+.tag-r{background:var(--rouge);color:#fff}
+.tag-w{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.75)}
+.li-post-body{padding:14px 16px;font-size:12px;color:var(--charbon);line-height:1.7}
+.li-post-body strong{color:var(--marine)}
+.li-post-body .ht{color:var(--bleu)}
+.li-post-actions{padding:9px 16px;border-top:1px solid var(--gris-clair);display:flex;gap:18px}
+.li-action{font-size:11px;color:var(--gris);font-weight:500}
+
+/* EMAIL */
+.email-wrap{max-width:560px;border-radius:12px;overflow:hidden;border:1px solid var(--gris-clair)}
+.email-head{background:var(--marine);padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+.email-logo{display:flex;align-items:center;gap:6px}
+.email-logo-dot{width:8px;height:8px;background:var(--rouge);border-radius:2px}
+.email-logo-name{font-family:var(--fs);font-weight:600;font-size:14px;color:#fff;letter-spacing:-0.02em}
+.email-pre{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.08em;text-transform:uppercase}
+.email-hero{background:var(--bleu-pale);padding:24px 28px;border-bottom:1px solid var(--bleu-clair)}
+.email-hero-tag{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rouge);margin-bottom:6px}
+.email-hero-title{font-family:var(--fd);font-size:24px;color:var(--marine);line-height:1.2}
+.email-body{background:var(--blanc);padding:24px 28px}
+.email-text{font-size:13px;color:var(--gris);line-height:1.75;margin-bottom:20px}
+.email-cta{display:inline-block;padding:11px 24px;background:var(--marine);color:#fff;font-family:var(--fs);font-size:13px;font-weight:600;border-radius:8px;text-decoration:none}
+.email-steps{display:flex;flex-direction:column;gap:10px;margin:20px 0}
+.email-step{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--charbon);line-height:1.5}
+.email-step-num{width:20px;height:20px;border-radius:50%;background:#E6F4EA;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#1E6B3C;flex-shrink:0;margin-top:1px}
+.email-hr{height:1px;background:var(--gris-clair);margin:20px 0}
+.email-footer{background:var(--craie);padding:14px 28px;border-top:3px solid var(--rouge)}
+.email-footer-text{font-size:10px;color:var(--gris);line-height:1.65}
+
+/* RÈGLES */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rule{padding:20px 22px;border-radius:12px}
+.rule-ok{background:#E6F4EA;border-left:4px solid #1E6B3C}
+.rule-no{background:var(--rouge-clair);border-left:4px solid var(--rouge)}
+.rule-v{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px}
+.rule-ok .rule-v{color:#1E6B3C}
+.rule-no .rule-v{color:var(--rouge)}
+.rule-title{font-size:13px;font-weight:600;color:var(--charbon);margin-bottom:5px}
+.rule-body{font-size:12px;line-height:1.6}
+.rule-ok .rule-body{color:#2D6A4F}
+.rule-no .rule-body{color:#7B2020}
+
+/* FOOTER */
+.brand-footer{margin:0 64px 64px;padding:22px 28px;background:var(--marine);border-radius:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:16px}
+
+@media(max-width:720px){
+  .layout{grid-template-columns:1fr}.sidebar{display:none}
+  .cover,.sec{padding:36px 20px}
+  .logo-grid,.color-grid,.voice-grid,.rules-grid{grid-template-columns:1fr}
+  .color-grid-sm{grid-template-columns:repeat(2,1fr)}
+  .cv-scene{flex-direction:column;align-items:center}
+  .li-banner{grid-template-columns:1fr;padding:20px}
+  .li-right{align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-brand"><div class="sb-dot"></div><span class="sb-name">Factelys</span></div>
+  <nav class="sb-nav">
+    <a href="#logo" class="active"><span class="sb-num">01</span>Logo & marque</a>
+    <a href="#couleurs"><span class="sb-num">02</span>Couleurs</a>
+    <a href="#typo"><span class="sb-num">03</span>Typographie</a>
+    <a href="#espacement"><span class="sb-num">04</span>Espacement</a>
+    <a href="#composants"><span class="sb-num">05</span>Composants</a>
+    <a href="#voix"><span class="sb-num">06</span>Voix de marque</a>
+    <a href="#carte"><span class="sb-num">07</span>Carte de visite</a>
+    <a href="#linkedin"><span class="sb-num">08</span>LinkedIn</a>
+    <a href="#email"><span class="sb-num">09</span>Email</a>
+    <a href="#regles"><span class="sb-num">10</span>Règles d'usage</a>
+  </nav>
+  <div class="sb-footer"><p>Charte graphique<br>Version 2.0 · 2026<br>Usage confidentiel</p></div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- COVER -->
+<div class="cover" id="cover">
+  <div class="cv-bg c1"></div><div class="cv-bg c2"></div>
+  <div class="cover-bar"></div>
+  <h1 class="cover-title">Charte<br>graphique<br><em>Factelys.</em></h1>
+  <p class="cover-sub">Identité visuelle · Version 2.0 · 2026</p>
+  <div class="cover-meta">
+    <div class="cm-item"><span class="cm-label">Marque</span><span class="cm-val">Factelys</span></div>
+    <div class="cm-item"><span class="cm-label">Direction artistique</span><span class="cm-val">Marine & Rouge</span></div>
+    <div class="cm-item"><span class="cm-label">Secteur</span><span class="cm-val">Facturation électronique</span></div>
+    <div class="cm-item"><span class="cm-label">Cible</span><span class="cm-val">TPE · PME · France</span></div>
+    <div class="cm-item"><span class="cm-label">Échéance clé</span><span class="cm-val">01/09/2026</span></div>
+  </div>
+</div>
+
+<!-- 01 LOGO -->
+<section class="sec" id="logo">
+  <div class="sec-tag">01 — Logo & marque</div>
+  <h2 class="sec-title">Logotype & variantes</h2>
+  <p class="sec-desc">Le logotype Factelys est composé d'un carré rouge (10×10 px, rx:2) suivi du nom en Sora 600. Ce point rouge est la signature permanente — il symbolise l'action, l'alerte de mise en conformité et ancre visuellement la marque. Il ne peut jamais être supprimé.</p>
+  <div class="logo-grid">
+    <div class="logo-box" style="background:var(--blanc);border:1px solid var(--gris-clair)">
+      <div class="lgt"><div class="lgt-dot" style="background:var(--rouge)"></div><span class="lgt-name" style="color:var(--marine)">Factelys</span></div>
+      <div class="lgt-sub" style="color:var(--bleu)">Facturation électronique</div>
+      <span class="logo-tag" style="background:var(--bleu-pale);color:var(--marine)">Principal · fond clair</span>
+    </div>
+    <div class="logo-box" style="background:var(--marine)">
+      <div class="lgt"><div class="lgt-dot" style="background:var(--rouge)"></div><span class="lgt-name" style="color:#fff">Factelys</span></div>
+      <div class="lgt-sub" style="color:rgba(255,255,255,0.38)">Facturation électronique</div>
+      <span class="logo-tag" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.45)">Inversé · fond marine</span>
+    </div>
+    <div class="logo-box" style="background:var(--craie);border:1px solid var(--gris-clair)">
+      <div class="lgt"><div class="lgt-dot" style="background:var(--rouge)"></div><span class="lgt-name" style="color:var(--marine)">Factelys</span></div>
+      <div class="lgt-sub" style="color:var(--gris)">Facturation électronique</div>
+      <span class="logo-tag" style="background:var(--gris-clair);color:var(--gris)">Fond craie</span>
+    </div>
+    <div class="logo-box" style="background:var(--rouge)">
+      <div class="lgt"><div class="lgt-dot" style="background:#fff;box-shadow:0 0 0 1.5px rgba(255,255,255,0.3)"></div><span class="lgt-name" style="color:#fff">Factelys</span></div>
+      <div class="lgt-sub" style="color:rgba(255,255,255,0.5)">Facturation électronique</div>
+      <span class="logo-tag" style="background:rgba(0,0,0,0.15);color:rgba(255,255,255,0.55)">Avec parcimonie</span>
+    </div>
+  </div>
+  <div class="clearspace" style="margin-top:12px">
+    <div class="cs-inner">
+      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--rouge);font-family:var(--fm);white-space:nowrap">← espace de protection minimum →</div>
+      <div class="lgt"><div class="lgt-dot" style="background:var(--rouge)"></div><span class="lgt-name" style="color:var(--marine);font-size:22px">Factelys</span></div>
+    </div>
+    <p class="cs-note">Garder une zone libre d'au moins <strong>1× la hauteur du logotype</strong> sur tous ses côtés.<br>Taille minimale recommandée : 80 px de large en digital, 20 mm en print.</p>
+  </div>
+</section>
+
+<!-- 02 COULEURS -->
+<section class="sec" id="couleurs">
+  <div class="sec-tag">02 — Couleurs</div>
+  <h2 class="sec-title">Palette chromatique</h2>
+  <p class="sec-desc">Marine et Rouge évoquent la réglementation française et l'autorité bienveillante. <strong>Cliquer sur une couleur</strong> pour copier son code hexadécimal.</p>
+  <div class="color-grid">
+    <div class="color-chip" onclick="copyColor('#002B6E','Marine')"><div class="color-swatch" style="background:#002B6E"><div class="copy-hint">Copier #002B6E</div></div><div class="color-info"><div class="c-name">Marine</div><div class="c-hex">#002B6E</div><div class="c-role">Principal · fonds · textes forts</div></div></div>
+    <div class="color-chip" onclick="copyColor('#0044B5','Bleu vif')"><div class="color-swatch" style="background:#0044B5"><div class="copy-hint">Copier #0044B5</div></div><div class="color-info"><div class="c-name">Bleu vif</div><div class="c-hex">#0044B5</div><div class="c-role">Liens · accents · CTA secondaire</div></div></div>
+    <div class="color-chip" onclick="copyColor('#C0392B','Rouge')"><div class="color-swatch" style="background:#C0392B"><div class="copy-hint">Copier #C0392B</div></div><div class="color-info"><div class="c-name">Rouge</div><div class="c-hex">#C0392B</div><div class="c-role">Accent · signature · urgence</div></div></div>
+    <div class="color-chip" onclick="copyColor('#1A1A2E','Charbon')"><div class="color-swatch" style="background:#1A1A2E"><div class="copy-hint">Copier #1A1A2E</div></div><div class="color-info"><div class="c-name">Charbon</div><div class="c-hex">#1A1A2E</div><div class="c-role">Texte corps · fonds alt</div></div></div>
+  </div>
+  <div class="color-grid-sm">
+    <div class="color-chip cs" onclick="copyColor('#D6E4FF','Bleu clair')"><div class="color-swatch" style="background:#D6E4FF;height:48px"><div class="copy-hint">Copier</div></div><div class="color-info"><div class="c-name">Bleu clair</div><div class="c-hex">#D6E4FF</div><div class="c-role">Badges info</div></div></div>
+    <div class="color-chip cs" onclick="copyColor('#FDECEA','Rouge pâle')"><div class="color-swatch" style="background:#FDECEA;height:48px"><div class="copy-hint">Copier</div></div><div class="color-info"><div class="c-name">Rouge pâle</div><div class="c-hex">#FDECEA</div><div class="c-role">Alertes urgence</div></div></div>
+    <div class="color-chip cs" onclick="copyColor('#F4F6FC','Craie')"><div class="color-swatch" style="background:#F4F6FC;border-bottom:1px solid #E2E6F0;height:48px"><div class="copy-hint">Copier</div></div><div class="color-info"><div class="c-name">Craie</div><div class="c-hex">#F4F6FC</div><div class="c-role">Fond page</div></div></div>
+    <div class="color-chip cs" onclick="copyColor('#5C6880','Gris')"><div class="color-swatch" style="background:#5C6880;height:48px"><div class="copy-hint">Copier</div></div><div class="color-info"><div class="c-name">Gris texte</div><div class="c-hex">#5C6880</div><div class="c-role">Texte secondaire</div></div></div>
+  </div>
+  <span class="label" style="margin-top:22px">Ratios de contraste WCAG</span>
+  <div class="contrast-row">
+    <div class="ctr-item"><div class="ctr-sw" style="background:#002B6E"></div><span class="ctr-label">Blanc / Marine 12.3:1</span><span class="pass">AAA</span></div>
+    <div class="ctr-item"><div class="ctr-sw" style="background:#C0392B"></div><span class="ctr-label">Blanc / Rouge 5.1:1</span><span class="pass">AA</span></div>
+    <div class="ctr-item"><div class="ctr-sw" style="background:#D6E4FF"></div><span class="ctr-label">Marine / Bleu clair 8.7:1</span><span class="pass">AAA</span></div>
+    <div class="ctr-item"><div class="ctr-sw" style="background:#5C6880"></div><span class="ctr-label">Blanc / Gris 3.4:1</span><span class="warn">Grand texte</span></div>
+  </div>
+</section>
+
+<!-- 03 TYPO -->
+<section class="sec" id="typo">
+  <div class="sec-tag">03 — Typographie</div>
+  <h2 class="sec-title">Système typographique</h2>
+  <p class="sec-desc">Deux familles complémentaires. <strong>DM Serif Display</strong> pour la chaleur et le caractère. <strong>Sora</strong> pour la clarté et la lisibilité numérique. JetBrains Mono pour les données.</p>
+  <div class="typo-block">
+    <div class="typo-meta"><div><div class="typo-family">DM Serif Display</div><div class="typo-use">Titres d'impact · Taglines · Hero · Citations · Cartes de visite</div></div><div class="typo-detail">Google Fonts · serif<br>Regular · Italic</div></div>
+    <div style="font-family:var(--fd);font-size:46px;color:var(--marine);line-height:1.05">La facturation<br>électronique,<br><em style="color:var(--rouge)">enfin simple.</em></div>
+    <div style="font-family:var(--fd);font-size:20px;color:var(--gris);margin-top:14px;font-style:italic">"Accompagner, c'est simplifier l'invisible."</div>
+  </div>
+  <div class="typo-block">
+    <div class="typo-meta"><div><div class="typo-family">Sora</div><div class="typo-use">Corps · UI · Navigation · Boutons · Labels · Sous-titres</div></div><div class="typo-detail">Google Fonts · sans-serif<br>300 · 400 · 500 · 600 · 700</div></div>
+    <table class="scale-table">
+      <tr><td><span style="font-family:var(--fs);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--rouge)">Label de section</span></td><td class="scale-spec">10px · 700 · uppercase · 0.12em ls</td></tr>
+      <tr><td><span style="font-family:var(--fs);font-size:32px;font-weight:600;color:var(--marine);letter-spacing:-0.02em">Titre H1</span></td><td class="scale-spec">32px · 600 · −0.02em ls</td></tr>
+      <tr><td><span style="font-family:var(--fs);font-size:22px;font-weight:500;color:var(--marine)">Titre H2</span></td><td class="scale-spec">22px · 500</td></tr>
+      <tr><td><span style="font-family:var(--fs);font-size:17px;font-weight:500;color:var(--charbon)">Titre H3</span></td><td class="scale-spec">17px · 500</td></tr>
+      <tr><td><span style="font-family:var(--fs);font-size:15px;font-weight:400;color:var(--charbon);line-height:1.7">Corps — Factelys vous accompagne dans votre passage à la facturation électronique, obligatoire dès septembre 2026, sans jargon et à votre rythme.</span></td><td class="scale-spec">15px · 400 · 1.7 lh</td></tr>
+      <tr><td><span style="font-family:var(--fs);font-size:12px;color:var(--gris)">Texte secondaire — Mentions légales, métadonnées et informations de second niveau.</span></td><td class="scale-spec">12px · 400</td></tr>
+    </table>
+  </div>
+  <div class="typo-block">
+    <div class="typo-meta"><div><div class="typo-family">JetBrains Mono</div><div class="typo-use">SIREN · TVA · Références · Codes · Dates · Données chiffrées</div></div><div class="typo-detail">Google Fonts · monospace<br>400 · 500</div></div>
+    <div style="font-family:var(--fm);font-size:14px;color:var(--charbon);line-height:1.85">SIREN · 123 456 789<br>TVA · FR12 345 678 900<br>REF-2026-FACT-0042<br><span style="color:var(--rouge)">Échéance · 01/09/2026</span></div>
+  </div>
+</section>
+
+<!-- 04 ESPACEMENT -->
+<section class="sec" id="espacement">
+  <div class="sec-tag">04 — Espacement & grille</div>
+  <h2 class="sec-title">Système de spacing</h2>
+  <p class="sec-desc">Unité de base : 4 px. Tous les espacements sont des multiples de 4. Cette cohérence garantit un rythme visuel harmonieux sur tous les supports.</p>
+  <div class="sp-wrap"><div class="sp-row">
+    <div class="sp-item"><div class="sp-bar" style="height:4px"></div><div class="sp-label">4px</div><div class="sp-var">sp-1</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:8px"></div><div class="sp-label">8px</div><div class="sp-var">sp-2</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:12px"></div><div class="sp-label">12px</div><div class="sp-var">sp-3</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:16px"></div><div class="sp-label">16px</div><div class="sp-var">sp-4</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:20px"></div><div class="sp-label">20px</div><div class="sp-var">sp-5</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:24px"></div><div class="sp-label">24px</div><div class="sp-var">sp-6</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:32px"></div><div class="sp-label">32px</div><div class="sp-var">sp-8</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:48px"></div><div class="sp-label">48px</div><div class="sp-var">sp-12</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:64px"></div><div class="sp-label">64px</div><div class="sp-var">sp-16</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:80px"></div><div class="sp-label">80px</div><div class="sp-var">sp-20</div></div>
+  </div></div>
+  <span class="label" style="margin-top:20px">Rayons d'arrondi</span>
+  <div class="rad-row">
+    <div class="rad-item"><div class="rad-box" style="border-radius:0"></div><div class="rad-label">0 · aucun</div></div>
+    <div class="rad-item"><div class="rad-box" style="border-radius:4px"></div><div class="rad-label">4px · tags</div></div>
+    <div class="rad-item"><div class="rad-box" style="border-radius:8px"></div><div class="rad-label">8px · boutons</div></div>
+    <div class="rad-item"><div class="rad-box" style="border-radius:12px"></div><div class="rad-label">12px · cartes</div></div>
+    <div class="rad-item"><div class="rad-box" style="border-radius:16px"></div><div class="rad-label">16px · panels</div></div>
+    <div class="rad-item"><div class="rad-box" style="border-radius:99px;height:28px"></div><div class="rad-label">99px · pill</div></div>
+  </div>
+</section>
+
+<!-- 05 COMPOSANTS -->
+<section class="sec" id="composants">
+  <div class="sec-tag">05 — Composants</div>
+  <h2 class="sec-title">Éléments d'interface</h2>
+  <p class="sec-desc">Boutons, badges, formulaires et cartes. Chaque composant respecte la palette et la typographie Factelys.</p>
+  <div class="comp-block"><span class="label">Boutons</span><div class="comp-row"><button class="btn btn-p">Commencer ›</button><button class="btn btn-s">En savoir plus</button><button class="btn btn-r">Action requise</button><button class="btn btn-g">Secondaire</button></div></div>
+  <div class="comp-block"><span class="label">Badges & statuts</span><div class="comp-row"><span class="badge b-bl"><span class="bdot"></span>En cours</span><span class="badge b-re"><span class="bdot"></span>Action requise</span><span class="badge b-gr"><span class="bdot"></span>Conforme</span><span class="badge b-gy"><span class="bdot"></span>Non démarré</span></div></div>
+  <div class="comp-block">
+    <span class="label">Formulaire type</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:460px">
+      <div class="form-group"><label class="form-label">Raison sociale</label><input class="inp" placeholder="Votre société…" readonly></div>
+      <div class="form-group"><label class="form-label">SIRET</label><input class="inp" placeholder="123 456 789" readonly style="font-family:var(--fm)"></div>
+      <div class="form-group" style="grid-column:1/-1"><label class="form-label">Email</label><input class="inp" placeholder="contact@entreprise.fr" readonly></div>
+    </div>
+    <button class="btn btn-p" style="margin-top:14px">Envoyer ›</button>
+  </div>
+  <div class="comp-block">
+    <span class="label">Cartes de contenu</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="ui-card"><div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rouge);margin-bottom:7px">Formation</div><div style="font-family:var(--fs);font-size:14px;font-weight:600;color:var(--marine);margin-bottom:7px">Mise en conformité 2026</div><div style="font-size:12px;color:var(--gris);line-height:1.6;margin-bottom:14px">Comprenez la réforme et choisissez votre plateforme agréée en 2h.</div><div style="display:flex;justify-content:space-between;align-items:center"><span class="badge b-gr"><span class="bdot"></span>Disponible</span><button class="btn btn-p" style="padding:7px 13px;font-size:11px">Réserver ›</button></div></div>
+      <div class="ui-card-dark"><div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px">Conseil</div><div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:7px">Audit de conformité</div><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:14px">Diagnostic personnalisé de votre situation réglementaire.</div><div style="display:flex;justify-content:space-between;align-items:center"><span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.65)"><span class="bdot" style="background:rgba(255,255,255,0.4)"></span>Sur RDV</span><button class="btn" style="padding:7px 13px;font-size:11px;background:var(--rouge);color:#fff">Contacter ›</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 VOIX -->
+<section class="sec" id="voix">
+  <div class="sec-tag">06 — Voix de marque</div>
+  <h2 class="sec-title">Ton éditorial</h2>
+  <p class="sec-desc">Factelys parle à des dirigeants de TPE/PME, souvent dépassés par la réforme. Le ton doit rassurer sans condescendance, simplifier sans trahir, accompagner sans imposer.</p>
+  <div class="voice-grid" style="margin-bottom:12px">
+    <div class="vc vc-trait"><div class="vc-icon">🤝</div><div class="vc-name">Humain & direct</div><div class="vc-desc">On parle à des personnes, pas à des entités juridiques. On dit "vous" avec respect, jamais "les entreprises" de façon distante.</div></div>
+    <div class="vc vc-trait"><div class="vc-icon">💡</div><div class="vc-name">Clair & sans jargon</div><div class="vc-desc">PDP, UBL, e-invoicing : tout acronyme s'explique dès sa première mention. La réforme est complexe — Factelys la rend simple.</div></div>
+    <div class="vc vc-trait"><div class="vc-icon">📅</div><div class="vc-name">Concret & daté</div><div class="vc-desc">"Avant le 1er septembre 2026" plutôt que "dans les meilleurs délais". On parle de délais réels et d'étapes précises.</div></div>
+    <div class="vc vc-trait"><div class="vc-icon">🛡️</div><div class="vc-name">Rassurant & positif</div><div class="vc-desc">On ne joue pas sur la peur. La conformité est une opportunité de modernisation, pas une menace.</div></div>
+  </div>
+  <span class="label" style="margin-bottom:10px">Exemples de formulations</span>
+  <div class="voice-grid">
+    <div class="vc vc-ok"><div class="vc-verdict">✓ À écrire</div><div class="vc-ex">"La facturation électronique devient obligatoire en septembre 2026. On vous explique tout, étape par étape, en moins de 2h."</div></div>
+    <div class="vc vc-no"><div class="vc-verdict">✗ À éviter</div><div class="vc-ex">"Les entreprises assujetties à la TVA devront implémenter un dispositif de e-invoicing via une PDP immatriculée par la DGFiP."</div></div>
+    <div class="vc vc-ok"><div class="vc-verdict">✓ À écrire</div><div class="vc-ex">"Vous n'êtes pas seul. Nos conseillers ont déjà accompagné 200+ PME dans leur passage à la facturation électronique."</div></div>
+    <div class="vc vc-no"><div class="vc-verdict">✗ À éviter</div><div class="vc-ex">"Factelys, leader de l'accompagnement en dématérialisation des flux de factures inter-entreprises B2B sur le territoire national."</div></div>
+  </div>
+</section>
+
+<!-- 07 CARTE DE VISITE -->
+<section class="sec" id="carte">
+  <div class="sec-tag">07 — Supports print</div>
+  <h2 class="sec-title">Carte de visite</h2>
+  <p class="sec-desc">Format standard 85×55 mm. Impression quadrichromie recto/verso sur papier 350g satiné. Passer la commande à l'imprimeur avec les codes couleurs CMJN : Marine C100/M70/J0/N30 · Rouge C0/M80/J90/N10.</p>
+  <div class="cv-scene">
+    <div class="cv-wrap">
+      <div class="cv-tag">Recto</div>
+      <div class="cv cv-r">
+        <div class="cv-d1"></div><div class="cv-d2"></div>
+        <div class="cv-inner">
+          <div class="cv-logo-r"><div class="cv-logo-dot"></div><span class="cv-logo-name">Factelys</span></div>
+          <div><div class="cv-pname">Christophe Hubert</div><div class="cv-prole">Expert-Comptable</div><div class="cv-contacts"><span class="cv-contact">c.hubert@factelys.fr</span><span class="cv-contact">+33 6 00 00 00 00</span><span class="cv-contact">factelys.fr</span></div></div>
+        </div>
+      </div>
+      <div class="cv-spec">
+        <div class="cv-spec-row"><span class="cv-spec-key">Format</span><span class="cv-spec-val">85 × 55 mm</span></div>
+        <div class="cv-spec-row"><span class="cv-spec-key">Fond</span><span class="cv-spec-val">#002B6E</span></div>
+        <div class="cv-spec-row"><span class="cv-spec-key">Accent</span><span class="cv-spec-val">#C0392B</span></div>
+        <div class="cv-spec-row"><span class="cv-spec-key">Typographie</span><span class="cv-spec-val">Sora 600</span></div>
+      </div>
+    </div>
+    <div class="cv-wrap">
+      <div class="cv-tag">Verso</div>
+      <div class="cv cv-v">
+        <div class="cv-accent"></div>
+        <div class="cv-vinner">
+          <div class="cv-tagline">La facturation<br>électronique, <em>enfin simple.</em></div>
+          <div class="cv-vsub">Accompagnement · Formation · Conformité</div>
+          <div class="cv-vbrand"><div class="cv-vbrand-dot"></div><span class="cv-vbrand-name">factelys.fr</span></div>
+        </div>
+      </div>
+      <div class="cv-spec">
+        <div class="cv-spec-row"><span class="cv-spec-key">Fond</span><span class="cv-spec-val">#FFFFFF</span></div>
+        <div class="cv-spec-row"><span class="cv-spec-key">Barre</span><span class="cv-spec-val">#C0392B · 4px</span></div>
+        <div class="cv-spec-row"><span class="cv-spec-key">Titre</span><span class="cv-spec-val">DM Serif Display</span></div>
+        <div class="cv-spec-row"><span class="cv-spec-key">Grammage</span><span class="cv-spec-val">350g satiné</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 LINKEDIN -->
+<section class="sec" id="linkedin">
+  <div class="sec-tag">08 — Réseaux sociaux</div>
+  <h2 class="sec-title">LinkedIn</h2>
+  <p class="sec-desc">Bannière de profil (1584×396 px) et exemple de post de contenu. La barre rouge gauche et les cercles décoratifs sont la signature visuelle récurrente sur tous les formats LinkedIn.</p>
+  <span class="label" style="margin-bottom:8px">Bannière de profil · 1584 × 396 px</span>
+  <div class="li-banner-wrap">
+    <div class="li-banner"><div class="li-bc1"></div><div class="li-bc2"></div><div class="li-bar"></div>
+      <div class="li-left"><div class="li-logo-row"><div class="li-logo-dot"></div><span class="li-logo-name">Factelys</span></div><div class="li-headline">Prêt pour septembre 2026 ?<br><em>On vous accompagne.</em></div><div class="li-sub">Facturation électronique · TPE · PME · France</div></div>
+      <div class="li-right"><div class="li-cta">Webinar gratuit ›</div><div class="li-url">factelys.fr</div></div>
+    </div>
+    <div class="li-profile-bar"><div class="li-avatar">CH</div><div><div class="li-pname">Christophe Hubert</div><div class="li-prole">Expert-Comptable · Factelys</div></div></div>
+  </div>
+  <div class="li-spec">Exporter PNG 1584×396 px · Profil LinkedIn → Modifier → Photo de couverture</div>
+  <span class="label" style="margin-top:28px;margin-bottom:8px">Post de contenu LinkedIn</span>
+  <div class="li-post">
+    <div class="li-post-head"><div class="li-post-av">CH</div><div><div class="li-post-pname">Christophe Hubert</div><div class="li-post-prole">Expert-Comptable · Factelys</div></div></div>
+    <div class="li-post-visual"><div class="li-post-vc"></div><div class="li-post-stat">10 <em>millions</em></div><div class="li-post-statlabel">d'entreprises concernées par la réforme en France</div><div class="li-post-tags"><span class="li-post-tag tag-r">Obligatoire · sept. 2026</span><span class="li-post-tag tag-w">Factelys vous guide</span></div></div>
+    <div class="li-post-body"><strong>10 millions d'entreprises ont jusqu'au 1er septembre 2026.</strong> Après cette date, toute facture B2B devra passer par une plateforme agréée par l'État.<br><br>Chez Factelys, on accompagne les TPE et PME qui ne savent pas par où commencer :<br>↳ Diagnostic de votre situation en 30 min<br>↳ Choix de la bonne plateforme agréée<br>↳ Formation de vos équipes<br><br>Pas de jargon. Pas de stress. Juste un plan clair.<br><br><span class="ht">#FacturationÉlectronique</span> <span class="ht">#PME</span> <span class="ht">#Conformité2026</span> <span class="ht">#Factelys</span></div>
+    <div class="li-post-actions"><span class="li-action">👍 J'aime</span><span class="li-action">💬 Commenter</span><span class="li-action">↗ Partager</span></div>
+  </div>
+</section>
+
+<!-- 09 EMAIL -->
+<section class="sec" id="email">
+  <div class="sec-tag">09 — Communication digitale</div>
+  <h2 class="sec-title">Template email</h2>
+  <p class="sec-desc">Largeur fixe 600 px. En-tête marine, hero en bleu pâle avec accent rouge sur le tag, corps blanc avec checklist à étapes, footer craie avec bordure rouge. Compatible tous clients email.</p>
+  <div class="email-wrap">
+    <div class="email-head"><div class="email-logo"><div class="email-logo-dot"></div><span class="email-logo-name">Factelys</span></div><span class="email-pre">Facturation électronique</span></div>
+    <div class="email-hero"><div class="email-hero-tag">Votre diagnostic</div><div class="email-hero-title">Votre plan de mise<br>en conformité est prêt.</div></div>
+    <div class="email-body">
+      <div class="email-text">Bonjour Marie,<br><br>Nous avons analysé votre situation. Voici les 3 étapes à suivre pour être en règle avant le 1er septembre 2026, sans stress et sans jargon.</div>
+      <div class="email-steps">
+        <div class="email-step"><div class="email-step-num">1</div><div><strong>Choisir votre plateforme agréée</strong> — Nous avons sélectionné 2 options adaptées à votre volume de facturation.</div></div>
+        <div class="email-step"><div class="email-step-num">2</div><div><strong>Configurer votre SIREN</strong> dans l'annuaire DGFiP — 10 minutes, accompagné.</div></div>
+        <div class="email-step"><div class="email-step-num">3</div><div><strong>Former vos équipes</strong> — Une session de 2h suffit pour être opérationnel.</div></div>
+      </div>
+      <div class="email-hr"></div>
+      <a class="email-cta" href="#">Voir mon plan complet ›</a>
+    </div>
+    <div class="email-footer"><div class="email-footer-text"><strong style="color:var(--marine)">Factelys</strong> · contact@factelys.fr · factelys.fr<br><a href="#" style="color:var(--rouge);text-decoration:none">Se désabonner</a> · <a href="#" style="color:var(--gris);text-decoration:none">Mentions légales</a></div></div>
+  </div>
+</section>
+
+<!-- 10 RÈGLES -->
+<section class="sec" id="regles">
+  <div class="sec-tag">10 — Règles d'usage</div>
+  <h2 class="sec-title">À faire & à éviter</h2>
+  <p class="sec-desc">Ces règles s'appliquent à tous les prestataires et collaborateurs qui utilisent la marque Factelys sur n'importe quel support.</p>
+  <div class="rules-grid">
+    <div class="rule rule-ok"><div class="rule-v">✓ À faire</div><div class="rule-title">Toujours inclure le point rouge</div><div class="rule-body">Le carré rouge précède systématiquement le nom. C'est la signature visuelle permanente — elle ne peut jamais être supprimée.</div></div>
+    <div class="rule rule-no"><div class="rule-v">✗ À éviter</div><div class="rule-title">Modifier les couleurs du logo</div><div class="rule-body">Ne jamais mettre le nom en rouge, le point en bleu. L'association Marine + Rouge est fixe et immuable.</div></div>
+    <div class="rule rule-ok"><div class="rule-v">✓ À faire</div><div class="rule-title">Respecter l'espace de protection</div><div class="rule-body">Minimum 1× hauteur du logotype d'espace libre autour de la marque. Le logo ne touche jamais un bord.</div></div>
+    <div class="rule rule-no"><div class="rule-v">✗ À éviter</div><div class="rule-title">Utiliser d'autres polices</div><div class="rule-body">Seules DM Serif Display, Sora et JetBrains Mono sont autorisées. Calibri, Arial, Helvetica sont interdites.</div></div>
+    <div class="rule rule-ok"><div class="rule-v">✓ À faire</div><div class="rule-title">Rouge = accent & signature</div><div class="rule-body">Le rouge est réservé aux points de signature, CTA et alertes. Il ne couvre jamais de grandes surfaces.</div></div>
+    <div class="rule rule-no"><div class="rule-v">✗ À éviter</div><div class="rule-title">Dégradés et effets</div><div class="rule-body">La charte est flat design. Aucun dégradé, ombre portée forte ou flou non documenté. La force est dans la sobriété.</div></div>
+    <div class="rule rule-ok"><div class="rule-v">✓ À faire</div><div class="rule-title">Vérifier le contraste</div><div class="rule-body">Tout texte sur fond coloré doit atteindre WCAG AA (4.5:1). Utiliser le tableau de contrastes de la section 02.</div></div>
+    <div class="rule rule-no"><div class="rule-v">✗ À éviter</div><div class="rule-title">Déformer ou étirer le logo</div><div class="rule-body">Le logotype s'utilise uniquement dans ses proportions d'origine. Toute déformation ou rotation est interdite.</div></div>
+  </div>
+  <div style="margin-top:48px;padding:22px 28px;background:var(--marine);border-radius:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div><div class="lgt" style="margin-bottom:5px"><div class="lgt-dot" style="background:var(--rouge)"></div><span class="lgt-name" style="color:#fff;font-size:18px">Factelys</span></div><div style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;font-family:var(--fm)">Charte graphique v2.0 · 2026 · Confidentiel</div></div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);font-family:var(--fm);text-align:right;line-height:1.8">contact@factelys.fr<br>factelys.fr</div>
+  </div>
+</section>
+</main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function copyColor(hex,name){
+  try{navigator.clipboard.writeText(hex)}catch(e){}
+  const t=document.getElementById('toast');
+  t.textContent=name+' · '+hex+' copié !';
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer=setTimeout(()=>t.classList.remove('show'),2000);
+}
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.sb-nav a');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+id)});
+    }
+  });
+},{threshold:0.25,rootMargin:'-60px 0px -60px 0px'});
+secs.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

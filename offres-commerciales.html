@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factelys — Offres Commerciales 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --m:#002B6E;--b:#0044B5;--bc:#D6E4FF;--bp:#EEF4FF;
+  --r:#C0392B;--rc:#FDECEA;
+  --cr:#F4F6FC;--ch:#111827;--g:#5C6880;--gc:#E2E6F0;--w:#fff;
+  --ok:#1E6B3C;--okb:#E6F4EA;
+  --fd:'DM Serif Display',Georgia,serif;
+  --fs:'Sora',system-ui,sans-serif;
+  --fm:'JetBrains Mono',monospace;
+}
+html{font-family:var(--fs);background:var(--cr);color:var(--ch);font-size:15px;line-height:1.6}
+body{max-width:960px;margin:0 auto;padding:0 24px 80px}
+
+/* ── PRINT ── */
+@media print{
+  body{max-width:100%;padding:0;background:#fff}
+  .no-print{display:none!important}
+  .page-break{page-break-before:always}
+  .offer-card{break-inside:avoid}
+}
+
+/* ── COVER ── */
+.cover{background:var(--m);margin:0 -24px;padding:52px 64px 48px;position:relative;overflow:hidden;margin-bottom:0}
+.cover-bg1{position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:rgba(192,57,43,.1);pointer-events:none}
+.cover-bg2{position:absolute;left:-60px;bottom:-80px;width:300px;height:300px;border-radius:50%;background:rgba(0,68,181,.15);pointer-events:none}
+.cover-bar{width:40px;height:4px;background:var(--r);border-radius:2px;margin-bottom:24px;position:relative;z-index:1}
+.cover-logo{display:flex;align-items:center;gap:7px;margin-bottom:14px;position:relative;z-index:1}
+.cover-dot{width:9px;height:9px;background:var(--r);border-radius:2px}
+.cover-name{font-weight:600;font-size:14px;color:#fff;letter-spacing:-.02em}
+.cover-title{font-family:var(--fd);font-size:48px;color:#fff;line-height:1.05;position:relative;z-index:1}
+.cover-title em{color:#F5A89A;font-style:italic}
+.cover-sub{font-size:13px;color:rgba(255,255,255,.42);letter-spacing:.08em;text-transform:uppercase;margin-top:10px;position:relative;z-index:1}
+.cover-pills{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;position:relative;z-index:1}
+.cover-pill{padding:5px 14px;border-radius:99px;font-size:12px;font-weight:500;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.1)}
+.cover-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:1}
+.cover-contact{display:flex;flex-direction:column;gap:4px}
+.cover-contact-name{font-size:15px;font-weight:600;color:#fff}
+.cover-contact-role{font-size:12px;color:rgba(255,255,255,.45)}
+.cover-meta{text-align:right;display:flex;flex-direction:column;gap:3px}
+.cover-meta-item{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,.3)}
+
+/* ── SECTION HEADER ── */
+.section-header{padding:40px 0 24px}
+.sh-tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--r);margin-bottom:8px}
+.sh-title{font-family:var(--fd);font-size:34px;color:var(--m);line-height:1.1;margin-bottom:8px}
+.sh-title em{color:var(--r);font-style:italic}
+.sh-desc{font-size:13.5px;color:var(--g);max-width:600px;line-height:1.7}
+.divider{height:1px;background:var(--gc);margin:32px 0}
+
+/* ── URGENCY BANNER ── */
+.urgency-banner{background:var(--r);border-radius:12px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;gap:16px;flex-wrap:wrap}
+.ub-left{display:flex;align-items:center;gap:14px}
+.ub-icon{font-size:22px}
+.ub-text{display:flex;flex-direction:column;gap:2px}
+.ub-title{font-size:14px;font-weight:700;color:#fff}
+.ub-sub{font-size:12px;color:rgba(255,255,255,.65)}
+.ub-countdown{display:flex;gap:10px}
+.ub-count{display:flex;flex-direction:column;align-items:center;gap:2px;background:rgba(0,0,0,.2);border-radius:6px;padding:6px 12px}
+.ub-count-num{font-family:var(--fd);font-size:22px;color:#fff;line-height:1;font-style:italic}
+.ub-count-label{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;font-family:var(--fm)}
+
+/* ── OFFER CARDS ── */
+.offers-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:48px}
+.offer-card{background:var(--w);border:1.5px solid var(--gc);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s}
+.offer-card:hover{box-shadow:0 8px 32px rgba(0,43,110,.1)}
+.offer-card.featured{border-color:var(--b);box-shadow:0 0 0 1px var(--bc),0 8px 32px rgba(0,43,110,.12)}
+.offer-card.flash{border-color:var(--r);box-shadow:0 0 0 1px rgba(192,57,43,.3),0 8px 32px rgba(192,57,43,.1)}
+
+/* Offer top */
+.offer-top{padding:24px 24px 0}
+.offer-badge-row{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.offer-badge{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:99px}
+.badge-standard{background:var(--cr);color:var(--g);border:1px solid var(--gc)}
+.badge-featured{background:var(--bc);color:var(--m)}
+.badge-flash{background:var(--rc);color:var(--r);animation:flash-pulse 2s ease-in-out infinite}
+@keyframes flash-pulse{0%,100%{opacity:1}50%{opacity:.7}}
+.badge-expert{background:#E6F4EA;color:var(--ok)}
+.offer-name{font-size:20px;font-weight:700;color:var(--ch);margin-bottom:6px;letter-spacing:-.02em}
+.offer-tagline{font-size:13px;color:var(--g);line-height:1.5;margin-bottom:20px}
+
+/* Price block */
+.offer-price-block{padding:16px 24px;border-top:1px solid var(--gc);border-bottom:1px solid var(--gc);display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.offer-price{font-family:var(--fd);font-size:40px;color:var(--ch);line-height:1;font-style:italic}
+.offer-price.flash-price{color:var(--r)}
+.offer-price-unit{font-size:13px;color:var(--g);margin-bottom:6px}
+.offer-price-old{font-size:14px;color:rgba(92,104,128,.5);text-decoration:line-through;margin-left:4px}
+.offer-price-save{font-size:12px;font-weight:700;color:var(--r);background:var(--rc);padding:2px 8px;border-radius:99px;margin-left:4px}
+
+/* Offer includes */
+.offer-includes{padding:20px 24px;flex:1}
+.offer-includes-title{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:12px}
+.offer-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:13px;color:var(--ch);line-height:1.5}
+.offer-item-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;margin-top:1px}
+.icon-check{background:var(--okb);color:var(--ok)}
+.icon-star{background:var(--bc);color:var(--m)}
+.icon-flash{background:var(--rc);color:var(--r)}
+.offer-item strong{font-weight:600;color:var(--m)}
+
+/* Offer conditions */
+.offer-conditions{padding:0 24px 16px}
+.offer-cond-item{font-size:11px;color:var(--g);display:flex;align-items:flex-start;gap:6px;margin-bottom:4px;line-height:1.4}
+.offer-cond-item::before{content:'→';color:var(--r);flex-shrink:0;font-weight:700}
+
+/* Offer CTA */
+.offer-cta{padding:16px 24px 24px}
+.cta-btn{display:block;width:100%;padding:12px 20px;border-radius:8px;font-family:var(--fs);font-size:14px;font-weight:600;text-align:center;cursor:pointer;border:none;letter-spacing:-.01em;transition:all .15s}
+.cta-standard{background:var(--cr);color:var(--m);border:1.5px solid var(--gc)}
+.cta-standard:hover{border-color:var(--m);background:var(--bp)}
+.cta-featured{background:var(--m);color:#fff}
+.cta-featured:hover{background:#003A96}
+.cta-flash{background:var(--r);color:#fff}
+.cta-flash:hover{background:#a93224}
+.cta-expert{background:var(--ok);color:#fff}
+.cta-sub{font-size:11px;color:var(--g);text-align:center;margin-top:8px}
+
+/* ── FLASH FULL-WIDTH ── */
+.flash-banner{background:linear-gradient(135deg,#8B1A0F 0%,var(--r) 50%,#E74C3C 100%);border-radius:16px;padding:32px 36px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-bottom:48px;position:relative;overflow:hidden}
+.fb-bg{position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:rgba(0,0,0,.1);pointer-events:none}
+.fb-bg2{position:absolute;left:-40px;bottom:-60px;width:200px;height:200px;border-radius:50%;background:rgba(0,0,0,.08);pointer-events:none}
+.fb-left{position:relative;z-index:1}
+.fb-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(0,0,0,.2);border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:14px;border:1px solid rgba(255,255,255,.15)}
+.fb-title{font-family:var(--fd);font-size:32px;color:#fff;line-height:1.1;margin-bottom:8px}
+.fb-title em{color:rgba(255,255,255,.65);font-style:italic}
+.fb-desc{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;max-width:480px;margin-bottom:20px}
+.fb-includes{display:flex;gap:16px;flex-wrap:wrap}
+.fb-include{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.7)}
+.fb-include::before{content:'✓';font-weight:700;color:rgba(255,255,255,.9)}
+.fb-right{position:relative;z-index:1;text-align:center;flex-shrink:0}
+.fb-price-old{font-size:14px;color:rgba(255,255,255,.4);text-decoration:line-through;margin-bottom:4px}
+.fb-price{font-family:var(--fd);font-size:52px;color:#fff;line-height:1;font-style:italic;margin-bottom:4px}
+.fb-price-unit{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:16px}
+.fb-save{font-size:13px;font-weight:700;color:#fff;background:rgba(0,0,0,.25);padding:4px 14px;border-radius:99px;margin-bottom:16px;display:inline-block}
+.fb-cta{padding:13px 28px;background:#fff;color:var(--r);border-radius:8px;font-family:var(--fs);font-size:14px;font-weight:700;cursor:pointer;border:none;display:block;width:100%;margin-bottom:8px;transition:all .15s}
+.fb-cta:hover{background:var(--rc)}
+.fb-limit{font-size:11px;color:rgba(255,255,255,.45);font-family:var(--fm)}
+.fb-code{font-size:12px;color:rgba(255,255,255,.55);margin-top:6px}
+.fb-code strong{color:rgba(255,255,255,.8);font-family:var(--fm)}
+
+/* ── COMPARISON TABLE ── */
+.compare-wrap{background:var(--w);border:1px solid var(--gc);border-radius:16px;overflow:hidden;margin-bottom:48px}
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table th{padding:14px 18px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);text-align:left;border-bottom:1px solid var(--gc);background:var(--cr)}
+.compare-table th.col-offer{text-align:center;font-size:12px;color:var(--ch);font-weight:600;letter-spacing:0;text-transform:none}
+.compare-table th.col-featured{background:var(--bp);color:var(--m)}
+.compare-table th.col-flash{background:var(--rc);color:var(--r)}
+.compare-table td{padding:11px 18px;font-size:13px;border-bottom:1px solid rgba(0,0,0,.04);vertical-align:middle}
+.compare-table td.col-feature{color:var(--ch);font-weight:400}
+.compare-table td.col-center{text-align:center}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table tr:hover td{background:rgba(0,0,0,.015)}
+.compare-table td.col-featured{background:rgba(0,68,181,.03)}
+.compare-table td.col-flash{background:rgba(192,57,43,.03)}
+.ct-check{color:var(--ok);font-size:15px;font-weight:700}
+.ct-dash{color:var(--gc);font-size:18px}
+.ct-partial{color:var(--g);font-size:12px}
+.ct-section{background:var(--cr)!important}
+.ct-section td{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);padding:8px 18px}
+.price-row td{font-family:var(--fd);font-size:24px;font-style:italic}
+.price-row td.col-featured{color:var(--m)}
+.price-row td.col-flash{color:var(--r)}
+
+/* ── PROCESSUS ── */
+.process-section{margin-bottom:48px}
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.process-steps::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:2px;background:linear-gradient(to right,var(--bc),var(--b));z-index:0}
+.process-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;position:relative;z-index:1}
+.ps-num{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;border:3px solid var(--w);box-shadow:0 0 0 2px var(--b)}
+.ps-label{font-size:12px;font-weight:600;color:var(--m);line-height:1.3}
+.ps-sub{font-size:11px;color:var(--g);line-height:1.4;margin-top:2px}
+.ps-time{font-family:var(--fm);font-size:10px;color:var(--r);margin-top:2px}
+
+/* ── FAQ ── */
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px}
+.faq-item{background:var(--w);border:1px solid var(--gc);border-radius:12px;padding:20px 22px}
+.faq-q{font-size:13.5px;font-weight:600;color:var(--m);margin-bottom:8px;line-height:1.4}
+.faq-a{font-size:13px;color:var(--g);line-height:1.65}
+
+/* ── BON DE COMMANDE ── */
+.bon-wrap{background:var(--w);border:2px solid var(--gc);border-radius:16px;overflow:hidden;margin-bottom:48px}
+.bon-header{background:var(--m);padding:20px 28px;display:flex;align-items:center;justify-content:space-between}
+.bon-header-logo{display:flex;align-items:center;gap:7px}
+.bon-hdot{width:8px;height:8px;background:var(--r);border-radius:2px}
+.bon-hname{font-weight:600;font-size:14px;color:#fff;letter-spacing:-.02em}
+.bon-htitle{font-size:13px;color:rgba(255,255,255,.45)}
+.bon-body{padding:28px}
+.bon-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.bon-field{display:flex;flex-direction:column;gap:5px}
+.bon-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g)}
+.bon-input{padding:9px 13px;border:1.5px solid var(--gc);border-radius:7px;font-family:var(--fs);font-size:13px;color:var(--ch);background:var(--cr)}
+.bon-divider{height:1px;background:var(--gc);margin:20px 0}
+.bon-offer-select{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.bon-offer-opt{border:1.5px solid var(--gc);border-radius:8px;padding:12px 14px;cursor:pointer;transition:all .15s;text-align:center}
+.bon-offer-opt:hover{border-color:var(--m);background:var(--bp)}
+.bon-offer-opt.selected{border-color:var(--m);background:var(--bp)}
+.bon-offer-opt-name{font-size:12px;font-weight:600;color:var(--m);margin-bottom:3px}
+.bon-offer-opt-price{font-family:var(--fd);font-size:18px;color:var(--ch);font-style:italic}
+.bon-cgu{display:flex;align-items:flex-start;gap:10px;margin-bottom:20px}
+.bon-cgu-check{width:16px;height:16px;border:1.5px solid var(--gc);border-radius:3px;flex-shrink:0;margin-top:2px}
+.bon-cgu-text{font-size:12px;color:var(--g);line-height:1.5}
+.bon-submit{width:100%;padding:14px;background:var(--m);color:#fff;border:none;border-radius:8px;font-family:var(--fs);font-size:15px;font-weight:600;cursor:pointer;letter-spacing:-.01em}
+.bon-note{font-size:11px;color:var(--g);text-align:center;margin-top:10px;line-height:1.5}
+
+/* ── CGV ── */
+.cgv-wrap{background:var(--w);border:1px solid var(--gc);border-radius:12px;padding:24px 28px;margin-bottom:48px}
+.cgv-title{font-size:13px;font-weight:700;color:var(--m);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.cgv-title::before{content:'📄';font-size:15px}
+.cgv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cgv-block-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);margin-bottom:8px}
+.cgv-text{font-size:12px;color:var(--g);line-height:1.65}
+
+/* ── FOOTER ── */
+.doc-footer{background:var(--m);border-radius:12px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.df-logo{display:flex;align-items:center;gap:7px}
+.df-dot{width:8px;height:8px;background:var(--r);border-radius:2px}
+.df-name{font-weight:600;font-size:13px;color:#fff;letter-spacing:-.02em}
+.df-contact{font-size:11px;color:rgba(255,255,255,.35);font-family:var(--fm);line-height:1.7;text-align:right}
+
+/* ── PRINT BTN ── */
+.print-bar{background:var(--w);border:1px solid var(--gc);border-radius:10px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;margin-top:4px}
+.print-bar-text{font-size:13px;color:var(--g)}
+.print-btns{display:flex;gap:8px}
+.btn-print{padding:8px 18px;border-radius:6px;font-family:var(--fs);font-size:12px;font-weight:600;cursor:pointer;border:1px solid}
+.btn-print-outline{background:transparent;color:var(--m);border-color:var(--gc)}
+.btn-print-solid{background:var(--m);color:#fff;border-color:var(--m)}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg1"></div><div class="cover-bg2"></div>
+  <div class="cover-bar"></div>
+  <div class="cover-logo"><div class="cover-dot"></div><span class="cover-name">Factelys</span></div>
+  <h1 class="cover-title">Offres commerciales<br><em>Facturation électronique 2026.</em></h1>
+  <p class="cover-sub">Document tarifaire · Version juillet 2026 · Confidentiel</p>
+  <div class="cover-pills">
+    <div class="cover-pill">4 offres structurées</div>
+    <div class="cover-pill">Accompagnement TPE · PME · France</div>
+    <div class="cover-pill">Expert-Comptable certifié</div>
+    <div class="cover-pill">Réforme sept. 2026</div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-contact">
+      <div class="cover-contact-name">Christophe Hubert</div>
+      <div class="cover-contact-role">Expert-Comptable · Factelys</div>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">c.hubert@factelys.fr</div>
+      <div class="cover-meta-item">factelys.fr</div>
+      <div class="cover-meta-item">Juillet 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRINT BAR -->
+<div class="print-bar no-print" style="margin-top:24px">
+  <span class="print-bar-text">Document commercial Factelys · 4 offres + comparatif + bon de commande</span>
+  <div class="print-btns">
+    <button class="btn-print btn-print-outline" onclick="window.print()">🖨 Imprimer</button>
+    <button class="btn-print btn-print-solid" onclick="window.print()">📄 Exporter PDF</button>
+  </div>
+</div>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <div class="ub-left">
+    <div class="ub-icon">⏱</div>
+    <div class="ub-text">
+      <div class="ub-title">Obligation légale au 1er septembre 2026 — J-60</div>
+      <div class="ub-sub">Toutes les entreprises assujetties à la TVA sont concernées · Amende : 15€ / facture non conforme</div>
+    </div>
+  </div>
+  <div class="ub-countdown">
+    <div class="ub-count"><div class="ub-count-num">60</div><div class="ub-count-label">Jours</div></div>
+    <div class="ub-count"><div class="ub-count-num">4-8</div><div class="ub-count-label">Sem. délai PDP</div></div>
+    <div class="ub-count"><div class="ub-count-num">3</div><div class="ub-count-label">Sem. formation</div></div>
+  </div>
+</div>
+
+
+<!-- OFFRES -->
+<div class="section-header">
+  <div class="sh-tag">01 — Nos offres</div>
+  <h2 class="sh-title">4 niveaux d'accompagnement,<br><em>un seul objectif.</em></h2>
+  <p class="sh-desc">Que vous ayez besoin d'un simple plan d'action ou d'un accompagnement clé en main, Factelys s'adapte à votre situation, votre volume et votre budget.</p>
+</div>
+
+<div class="offers-grid">
+
+  <!-- OFFRE 1 — ESSENTIEL -->
+  <div class="offer-card">
+    <div class="offer-top">
+      <div class="offer-badge-row">
+        <span class="offer-badge badge-standard">Essentiel</span>
+      </div>
+      <div class="offer-name">Diagnostic & Plan d'action</div>
+      <div class="offer-tagline">Pour les équipes autonomes qui veulent comprendre leur situation et avoir un plan clair pour agir seules.</div>
+    </div>
+    <div class="offer-price-block">
+      <div class="offer-price">490€</div>
+      <div class="offer-price-unit">HT · one-shot</div>
+    </div>
+    <div class="offer-includes">
+      <div class="offer-includes-title">Ce qui est inclus</div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Audit de situation complet <strong>(2h en visio)</strong></div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Recommandation PDP personnalisée et neutre</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Plan d'action structuré en <strong>10 étapes</strong></div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Checklist de conformité 15 points</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>1 session Q&R de suivi <strong>(1h, dans les 30 jours)</strong></div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Accès à la base documentaire Factelys</div></div>
+    </div>
+    <div class="offer-conditions">
+      <div class="offer-cond-item">Délai de livraison : 5 jours ouvrés</div>
+      <div class="offer-cond-item">Paiement à la commande par virement ou CB</div>
+      <div class="offer-cond-item">Idéal si votre ERP est récent et votre volume &lt; 50 factures/mois</div>
+    </div>
+    <div class="offer-cta">
+      <button class="cta-btn cta-standard">Choisir cette offre</button>
+      <div class="cta-sub">Réponse sous 24h · Sans engagement</div>
+    </div>
+  </div>
+
+  <!-- OFFRE 2 — ACCOMPAGNEMENT COMPLET -->
+  <div class="offer-card featured">
+    <div class="offer-top">
+      <div class="offer-badge-row">
+        <span class="offer-badge badge-featured">⭐ Recommandé</span>
+      </div>
+      <div class="offer-name">Accompagnement Complet</div>
+      <div class="offer-tagline">Pour les PME qui veulent être prises en charge de A à Z, sans mobiliser leurs équipes internes sur le sujet.</div>
+    </div>
+    <div class="offer-price-block">
+      <div class="offer-price">1 490€</div>
+      <div class="offer-price-unit">HT · tout compris</div>
+    </div>
+    <div class="offer-includes">
+      <div class="offer-includes-title">Ce qui est inclus</div>
+      <div class="offer-item"><div class="offer-item-icon icon-star">✓</div><div>Tout le plan <strong>Essentiel</strong> +</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-star">✓</div><div>Sélection et contractualisation de la PDP</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-star">✓</div><div>Suivi du déploiement technique (coordination IT)</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-star">✓</div><div>Formation des équipes : comptabilité, achats, commercial <strong>(session 2h)</strong></div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-star">✓</div><div>Inscription dans l'<strong>annuaire SIREN DGFiP</strong></div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-star">✓</div><div>Suivi J+30 post mise en production</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-star">✓</div><div>Accès tableau de bord conformité Factelys <strong>1 an</strong></div></div>
+    </div>
+    <div class="offer-conditions">
+      <div class="offer-cond-item">Délai de mise en production : 8 à 10 semaines</div>
+      <div class="offer-cond-item">Acompte 50% à la commande, solde à la mise en production</div>
+      <div class="offer-cond-item">Financement OPCO possible (code NAF éligible)</div>
+    </div>
+    <div class="offer-cta">
+      <button class="cta-btn cta-featured">Choisir cette offre →</button>
+      <div class="cta-sub">Démarrage sous 48h · Devis sous 24h</div>
+    </div>
+  </div>
+
+  <!-- OFFRE 3 — EXPRESS -->
+  <div class="offer-card">
+    <div class="offer-top">
+      <div class="offer-badge-row">
+        <span class="offer-badge badge-expert">🚀 Prioritaire</span>
+      </div>
+      <div class="offer-name">Mise en conformité Express</div>
+      <div class="offer-tagline">Pour les entreprises qui ont peu de temps. Conformité garantie avant le 1er septembre 2026, quelles que soient les contraintes.</div>
+    </div>
+    <div class="offer-price-block">
+      <div class="offer-price">2 490€</div>
+      <div class="offer-price-unit">HT · garantie conformité</div>
+    </div>
+    <div class="offer-includes">
+      <div class="offer-includes-title">Ce qui est inclus</div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Tout l'<strong>Accompagnement Complet</strong> +</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div><strong>Priorité agenda</strong> — démarrage sous 24h</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Déploiement accéléré en <strong>3 semaines</strong></div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Interlocuteur dédié disponible 6j/7</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div><strong>Garantie conformité</strong> avant le 1er sept. 2026</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Tableau de bord conformité Factelys <strong>2 ans</strong></div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>2 sessions de formation équipes <strong>(vs 1)</strong></div></div>
+    </div>
+    <div class="offer-conditions">
+      <div class="offer-cond-item">Places limitées — 3 missions Express par mois maximum</div>
+      <div class="offer-cond-item">Paiement intégral à la commande</div>
+      <div class="offer-cond-item">Remboursement total si conformité non atteinte au 1er sept.</div>
+    </div>
+    <div class="offer-cta">
+      <button class="cta-btn cta-expert">Réserver une place Express →</button>
+      <div class="cta-sub">Places limitées · 3 max / mois</div>
+    </div>
+  </div>
+
+  <!-- OFFRE 4 — EXPERT-COMPTABLE / CABINET -->
+  <div class="offer-card">
+    <div class="offer-top">
+      <div class="offer-badge-row">
+        <span class="offer-badge badge-standard">Cabinet · EC</span>
+      </div>
+      <div class="offer-name">Offre Cabinet Comptable</div>
+      <div class="offer-tagline">Pour les experts-comptables et cabinets qui veulent accompagner leurs clients PME sur la facturation électronique.</div>
+    </div>
+    <div class="offer-price-block">
+      <div class="offer-price">Sur devis</div>
+      <div class="offer-price-unit">par portefeuille client</div>
+    </div>
+    <div class="offer-includes">
+      <div class="offer-includes-title">Ce qui est inclus</div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Audit mutualisé sur votre portefeuille clients</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Formation de vos collaborateurs (demi-journée)</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Supports pédagogiques Factelys à votre marque</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Tarifs dégressifs selon volume (5, 10, 20+ clients)</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Commission de recommandation (programme partenaire)</div></div>
+      <div class="offer-item"><div class="offer-item-icon icon-check">✓</div><div>Accès plateforme Factelys multi-clients</div></div>
+    </div>
+    <div class="offer-conditions">
+      <div class="offer-cond-item">Tarif indicatif : 290€ HT / client à partir de 5 clients</div>
+      <div class="offer-cond-item">Réduction volume : −20% à partir de 10 clients</div>
+      <div class="offer-cond-item">Convention de partenariat à signer</div>
+    </div>
+    <div class="offer-cta">
+      <button class="cta-btn cta-standard">Demander un devis cabinet</button>
+      <div class="cta-sub">Réponse sous 24h · Rendez-vous possible</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- OFFRE FLASH -->
+<div class="section-header">
+  <div class="sh-tag">02 — Offre flash</div>
+  <h2 class="sh-title">L'offre limitée dans le temps.<br><em>48h · 5 places seulement.</em></h2>
+</div>
+
+<div class="flash-banner">
+  <div class="fb-bg"></div><div class="fb-bg2"></div>
+  <div class="fb-left">
+    <div class="fb-badge">🔥 Offre flash · Durée limitée</div>
+    <div class="fb-title">Flash Conformité<br><em>Tout inclus. Prix réduit.</em></div>
+    <div class="fb-desc">L'accompagnement complet à −33% pour les entreprises qui s'engagent maintenant. Même contenu, même qualité, même garantie que l'offre Accompagnement Complet — réservée aux 5 premières entreprises à signer ce mois-ci.</div>
+    <div class="fb-includes">
+      <div class="fb-include">Accompagnement complet A→Z</div>
+      <div class="fb-include">Formation équipes 2h</div>
+      <div class="fb-include">Suivi J+30</div>
+      <div class="fb-include">Tableau de bord 1 an</div>
+      <div class="fb-include">Démarrage sous 48h</div>
+    </div>
+  </div>
+  <div class="fb-right">
+    <div class="fb-price-old">1 490€ HT</div>
+    <div class="fb-price">990€</div>
+    <div class="fb-price-unit">HT · tout compris</div>
+    <div class="fb-save">Économie de 500€</div>
+    <button class="fb-cta">Réserver ma place Flash →</button>
+    <div class="fb-limit">⚠️ 5 places · Expire dans 48h</div>
+    <div class="fb-code">Code : <strong>FLASH2026</strong></div>
+  </div>
+</div>
+
+
+<!-- COMPARATIF -->
+<div class="section-header">
+  <div class="sh-tag">03 — Comparatif</div>
+  <h2 class="sh-title">Que comprend chaque <em>offre ?</em></h2>
+</div>
+
+<div class="compare-wrap">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th style="width:35%">Prestation</th>
+        <th class="col-offer" style="width:16%">Essentiel<br><span style="font-family:var(--fm);font-size:13px;color:var(--g)">490€</span></th>
+        <th class="col-offer col-featured" style="width:16%">Complet ⭐<br><span style="font-family:var(--fm);font-size:13px;color:var(--b)">1 490€</span></th>
+        <th class="col-offer col-flash" style="width:16%">🔥 Flash<br><span style="font-family:var(--fm);font-size:13px;color:var(--r)">990€</span></th>
+        <th class="col-offer" style="width:17%">Express 🚀<br><span style="font-family:var(--fm);font-size:13px;color:var(--g)">2 490€</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ct-section"><td colspan="5">Diagnostic & Analyse</td></tr>
+      <tr>
+        <td class="col-feature">Audit de situation complet (2h)</td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Recommandation PDP neutre et personnalisée</td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Plan d'action 10 étapes</td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Checklist conformité 15 points</td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr class="ct-section"><td colspan="5">Déploiement & mise en conformité</td></tr>
+      <tr>
+        <td class="col-feature">Sélection et contractualisation PDP</td>
+        <td class="col-center"><span class="ct-dash">–</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Suivi du déploiement technique</td>
+        <td class="col-center"><span class="ct-dash">–</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Inscription annuaire SIREN DGFiP</td>
+        <td class="col-center"><span class="ct-dash">–</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Démarrage prioritaire sous 24h</td>
+        <td class="col-center"><span class="ct-dash">–</span></td>
+        <td class="col-center col-featured"><span class="ct-dash">–</span></td>
+        <td class="col-center col-flash"><span class="ct-dash">–</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Garantie conformité 1er septembre</td>
+        <td class="col-center"><span class="ct-dash">–</span></td>
+        <td class="col-center col-featured"><span class="ct-dash">–</span></td>
+        <td class="col-center col-flash"><span class="ct-dash">–</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr class="ct-section"><td colspan="5">Formation & suivi</td></tr>
+      <tr>
+        <td class="col-feature">Session Q&R de suivi (1h)</td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Formation équipes (2h · compta, achats, commercial)</td>
+        <td class="col-center"><span class="ct-dash">–</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓ ×2</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Suivi J+30 post mise en production</td>
+        <td class="col-center"><span class="ct-dash">–</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+      <tr>
+        <td class="col-feature">Tableau de bord conformité Factelys</td>
+        <td class="col-center"><span class="ct-dash">–</span></td>
+        <td class="col-center col-featured"><span class="ct-partial">1 an</span></td>
+        <td class="col-center col-flash"><span class="ct-partial">1 an</span></td>
+        <td class="col-center"><span class="ct-partial">2 ans</span></td>
+      </tr>
+      <tr class="ct-section"><td colspan="5">Tarif & conditions</td></tr>
+      <tr>
+        <td class="col-feature">Délai de mise en production</td>
+        <td class="col-center" style="font-size:12px;color:var(--g)">5 j. ouvrés</td>
+        <td class="col-center col-featured" style="font-size:12px">8–10 sem.</td>
+        <td class="col-center col-flash" style="font-size:12px">8–10 sem.</td>
+        <td class="col-center" style="font-size:12px;color:var(--ok);font-weight:600">3 sem. ⚡</td>
+      </tr>
+      <tr>
+        <td class="col-feature">Financement OPCO</td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+        <td class="col-center col-featured"><span class="ct-check">✓</span></td>
+        <td class="col-center col-flash"><span class="ct-check">✓</span></td>
+        <td class="col-center"><span class="ct-check">✓</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- PROCESSUS -->
+<div class="section-header">
+  <div class="sh-tag">04 — Notre méthode</div>
+  <h2 class="sh-title">5 étapes, <em>0 surprise.</em></h2>
+</div>
+
+<div class="process-section">
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="ps-num" style="background:var(--bc);color:var(--m)">01</div>
+      <div class="ps-label">Audit de situation</div>
+      <div class="ps-sub">ERP, volumes, flux B2B/B2C</div>
+      <div class="ps-time">Sem. 1–2</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num" style="background:var(--bc);color:var(--m)">02</div>
+      <div class="ps-label">Choix de la PDP</div>
+      <div class="ps-sub">Sélection neutre + contrat</div>
+      <div class="ps-time">Sem. 2–3</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num" style="background:var(--rc);color:var(--r)">03</div>
+      <div class="ps-label">Déploiement</div>
+      <div class="ps-sub">Connexion ERP + tests</div>
+      <div class="ps-time">Sem. 4–7</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num" style="background:var(--okb);color:var(--ok)">04</div>
+      <div class="ps-label">Formation</div>
+      <div class="ps-sub">Toutes équipes concernées</div>
+      <div class="ps-time">Sem. 8–9</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num" style="background:var(--bc);color:var(--m)">05</div>
+      <div class="ps-label">Mise en production</div>
+      <div class="ps-sub">Premiers flux + suivi J+30</div>
+      <div class="ps-time">Sem. 10–12</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FAQ -->
+<div class="section-header">
+  <div class="sh-tag">05 — Questions fréquentes</div>
+  <h2 class="sh-title">Avant de vous <em>décider.</em></h2>
+</div>
+
+<div class="faq-grid">
+  <div class="faq-item">
+    <div class="faq-q">Pourquoi faire appel à Factelys plutôt que de gérer en interne ?</div>
+    <div class="faq-a">Parce que la réforme touche la comptabilité, l'IT, les achats et le commercial en même temps. Un accompagnement externe garantit une mise en conformité complète en 3 semaines contre 3 à 6 mois en gestion solo — et évite les erreurs coûteuses.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Factelys touche-t-il des commissions des PDP qu'il recommande ?</div>
+    <div class="faq-a">Non. Factelys ne perçoit aucune commission de la part des plateformes (PDP). Notre recommandation est 100% neutre et basée uniquement sur votre situation : ERP, volume, budget. C'est notre engagement de transparence.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Mon entreprise est-elle vraiment concernée par la réforme ?</div>
+    <div class="faq-a">Oui, si vous êtes assujetti à la TVA et que vous avez des clients professionnels (B2B) en France. Cela concerne 10 millions d'entreprises, y compris les TPE, artisans et professions libérales, sans exception de taille ou de secteur.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Que se passe-t-il si je ne suis pas conforme au 1er septembre ?</div>
+    <div class="faq-a">Amende de 15€ par facture non conforme, plafonnée à 15 000€/an. Au-delà du risque légal, vos clients grands comptes pourront refuser vos factures non conformes, créant des retards de paiement immédiats.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Les offres sont-elles finançables par l'OPCO ?</div>
+    <div class="faq-a">Oui. Les missions d'accompagnement Factelys sont éligibles au financement OPCO (formation professionnelle). Nous vous fournissons les justificatifs nécessaires à la demande de prise en charge. Renseignez-vous auprès de votre OPCO.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">L'offre Flash est-elle vraiment limitée dans le temps ?</div>
+    <div class="faq-a">Oui, sans exception. L'offre Flash à 990€ HT est disponible pour les 5 premières entreprises à signer ce mois-ci. Une fois les 5 places prises, le tarif revient automatiquement à 1 490€ HT — aucune exception possible.</div>
+  </div>
+</div>
+
+
+<!-- BON DE COMMANDE -->
+<div class="section-header page-break">
+  <div class="sh-tag">06 — Commander</div>
+  <h2 class="sh-title">Bon de commande <em>Factelys.</em></h2>
+  <p class="sh-desc">Remplissez ce bon de commande et renvoyez-le à c.hubert@factelys.fr — vous recevrez une confirmation et une facture proforma sous 4h ouvrées.</p>
+</div>
+
+<div class="bon-wrap">
+  <div class="bon-header">
+    <div class="bon-header-logo"><div class="bon-hdot"></div><span class="bon-hname">Factelys</span></div>
+    <span class="bon-htitle">Bon de commande · Juillet 2026</span>
+  </div>
+  <div class="bon-body">
+
+    <div class="bon-row">
+      <div class="bon-field"><div class="bon-label">Raison sociale</div><input class="bon-input" placeholder="Nom de votre entreprise..."></div>
+      <div class="bon-field"><div class="bon-label">SIRET</div><input class="bon-input" placeholder="123 456 789 00012" style="font-family:var(--fm)"></div>
+    </div>
+    <div class="bon-row">
+      <div class="bon-field"><div class="bon-label">Prénom et nom du signataire</div><input class="bon-input" placeholder="Prénom NOM..."></div>
+      <div class="bon-field"><div class="bon-label">Fonction</div><input class="bon-input" placeholder="Directeur général, DAF..."></div>
+    </div>
+    <div class="bon-row">
+      <div class="bon-field"><div class="bon-label">Email professionnel</div><input class="bon-input" type="email" placeholder="prenom@societe.fr"></div>
+      <div class="bon-field"><div class="bon-label">Téléphone</div><input class="bon-input" placeholder="+33 6 00 00 00 00"></div>
+    </div>
+    <div class="bon-row">
+      <div class="bon-field"><div class="bon-label">Adresse de facturation</div><input class="bon-input" placeholder="Rue, code postal, ville..."></div>
+      <div class="bon-field"><div class="bon-label">Numéro de TVA intracommunautaire</div><input class="bon-input" placeholder="FR12 345 678 900" style="font-family:var(--fm)"></div>
+    </div>
+
+    <div class="bon-divider"></div>
+
+    <div class="bon-label" style="margin-bottom:14px">Offre choisie</div>
+    <div class="bon-offer-select">
+      <div class="bon-offer-opt" onclick="selectOffer(this)">
+        <div class="bon-offer-opt-name">Essentiel</div>
+        <div class="bon-offer-opt-price">490€</div>
+        <div style="font-size:10px;color:var(--g);margin-top:3px">HT · one-shot</div>
+      </div>
+      <div class="bon-offer-opt selected" onclick="selectOffer(this)">
+        <div class="bon-offer-opt-name">Complet ⭐</div>
+        <div class="bon-offer-opt-price">1 490€</div>
+        <div style="font-size:10px;color:var(--g);margin-top:3px">HT · tout compris</div>
+      </div>
+      <div class="bon-offer-opt" onclick="selectOffer(this)">
+        <div class="bon-offer-opt-name">🔥 Flash</div>
+        <div class="bon-offer-opt-price" style="color:var(--r)">990€</div>
+        <div style="font-size:10px;color:var(--r);margin-top:3px">HT · limité 5 places</div>
+      </div>
+      <div class="bon-offer-opt" onclick="selectOffer(this)">
+        <div class="bon-offer-opt-name">Express 🚀</div>
+        <div class="bon-offer-opt-price">2 490€</div>
+        <div style="font-size:10px;color:var(--g);margin-top:3px">HT · garanti sept.</div>
+      </div>
+    </div>
+
+    <div class="bon-row" style="margin-top:16px">
+      <div class="bon-field">
+        <div class="bon-label">Code promotionnel (si applicable)</div>
+        <input class="bon-input" placeholder="Ex: FLASH2026 · WEBINAR2026" style="font-family:var(--fm)">
+      </div>
+      <div class="bon-field">
+        <div class="bon-label">Financement OPCO</div>
+        <select class="bon-input" style="cursor:pointer">
+          <option>Non applicable</option>
+          <option>Oui — prise en charge OPCO souhaitée</option>
+          <option>À renseigner ultérieurement</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="bon-divider"></div>
+
+    <div class="bon-field" style="margin-bottom:16px">
+      <div class="bon-label">Informations complémentaires</div>
+      <textarea class="bon-input" rows="3" placeholder="ERP utilisé, contraintes particulières, délai souhaité..." style="resize:vertical"></textarea>
+    </div>
+
+    <div class="bon-cgu">
+      <div class="bon-cgu-check"></div>
+      <div class="bon-cgu-text">J'accepte les <strong>conditions générales de vente</strong> de Factelys (disponibles ci-dessous et sur factelys.fr/cgv) et je confirme avoir le pouvoir d'engager mon entreprise. Le présent bon de commande vaut engagement d'achat ferme à réception de la facture proforma.</div>
+    </div>
+
+    <button class="bon-submit">Envoyer mon bon de commande →</button>
+    <div class="bon-note">Renvoyez ce document signé à <strong>c.hubert@factelys.fr</strong> · Facture proforma émise sous 4h ouvrées<br>Ou contactez directement : <strong>factelys.fr</strong> · Paiement par virement ou CB sécurisé</div>
+  </div>
+</div>
+
+
+<!-- CGV -->
+<div class="section-header">
+  <div class="sh-tag">07 — Conditions générales</div>
+  <h2 class="sh-title">CGV <em>simplifiées.</em></h2>
+</div>
+
+<div class="cgv-wrap">
+  <div class="cgv-title">Conditions générales de vente — Factelys · Version juillet 2026</div>
+  <div class="cgv-grid">
+    <div>
+      <div class="cgv-block-title">Objet & prestations</div>
+      <div class="cgv-text">Factelys propose des prestations d'accompagnement à la mise en conformité à la facturation électronique obligatoire. Chaque prestation fait l'objet d'un bon de commande signé des deux parties. Le périmètre exact est défini lors de l'audit de situation initial.</div>
+    </div>
+    <div>
+      <div class="cgv-block-title">Tarifs & paiement</div>
+      <div class="cgv-text">Les tarifs sont exprimés HT. TVA applicable au taux en vigueur (20%). Offre Essentiel : paiement intégral à la commande. Offre Complet et Flash : acompte 50% à la commande, solde à la mise en production. Offre Express : paiement intégral à la commande.</div>
+    </div>
+    <div>
+      <div class="cgv-block-title">Délais & obligations</div>
+      <div class="cgv-text">Les délais indiqués (Sem. 1-12) sont indicatifs et dépendent de la réactivité du client et de sa plateforme PDP. Factelys s'engage sur les délais de l'Offre Express sous réserve de la disponibilité des équipes du client et de la PDP choisie.</div>
+    </div>
+    <div>
+      <div class="cgv-block-title">Garantie & réclamations</div>
+      <div class="cgv-text">L'Offre Express inclut une garantie de conformité avant le 1er septembre 2026. En cas de non-conformité imputable à Factelys, remboursement intégral de la prestation. Toute réclamation doit être formulée par écrit sous 15 jours suivant la prestation.</div>
+    </div>
+    <div>
+      <div class="cgv-block-title">Confidentialité & données</div>
+      <div class="cgv-text">Factelys s'engage à la confidentialité absolue des informations partagées (données comptables, SIRET, volumes, ERP). Aucune donnée client n'est partagée avec des tiers sans accord écrit. Conformité RGPD assurée. DPO désigné sur demande.</div>
+    </div>
+    <div>
+      <div class="cgv-block-title">Annulation & droit de rétractation</div>
+      <div class="cgv-text">Droit de rétractation de 14 jours pour les professionnels (hors prestation démarrée). Au-delà, annulation possible avec frais de 30% du montant total HT. L'Offre Flash n'est pas remboursable une fois les 5 places attribuées.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div class="df-logo"><div class="df-dot"></div><span class="df-name">Factelys</span></div>
+  <div style="font-size:13px;color:rgba(255,255,255,.5)">Accompagnement facturation électronique · TPE · PME · France</div>
+  <div class="df-contact">
+    c.hubert@factelys.fr<br>
+    factelys.fr · Juillet 2026
+  </div>
+</div>
+
+<script>
+function selectOffer(el) {
+  document.querySelectorAll('.bon-offer-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+</script>
+</body>
+</html>

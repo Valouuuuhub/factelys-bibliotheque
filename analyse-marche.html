@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factelys — Analyse Marché & Concurrents v2 · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --m:#002B6E;--b:#0044B5;--bc:#D6E4FF;--bp:#EEF4FF;
+  --r:#C0392B;--rc:#FDECEA;
+  --cr:#F4F6FC;--ch:#111827;--g:#5C6880;--gc:#E2E6F0;--w:#fff;
+  --ok:#1E6B3C;--okb:#E6F4EA;
+  --y:#B45309;--yb:#FEF3C7;
+  --fd:'DM Serif Display',Georgia,serif;
+  --fs:'Sora',system-ui,sans-serif;
+  --fm:'JetBrains Mono',monospace;
+}
+html{font-family:var(--fs);background:var(--cr);color:var(--ch);font-size:15px;line-height:1.6}
+body{max-width:1060px;margin:0 auto;padding:0 24px 80px}
+
+/* COVER */
+.cover{background:var(--m);margin:0 -24px;padding:48px 64px 44px;position:relative;overflow:hidden;margin-bottom:40px}
+.cover-bg1{position:absolute;right:-80px;top:-80px;width:450px;height:450px;border-radius:50%;background:rgba(192,57,43,.1);pointer-events:none}
+.cover-bg2{position:absolute;left:-40px;bottom:-80px;width:260px;height:260px;border-radius:50%;background:rgba(0,68,181,.15);pointer-events:none}
+.cover-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:40px 40px}
+.cover-bar{width:40px;height:4px;background:var(--r);border-radius:2px;margin-bottom:20px;position:relative;z-index:1}
+.cover-logo{display:flex;align-items:center;gap:7px;margin-bottom:12px;position:relative;z-index:1}
+.cl-dot{width:9px;height:9px;background:var(--r);border-radius:2px}
+.cl-name{font-weight:600;font-size:14px;color:#fff;letter-spacing:-.02em}
+.cover-title{font-family:var(--fd);font-size:46px;color:#fff;line-height:1.0;position:relative;z-index:1}
+.cover-title em{color:#F5A89A;font-style:italic}
+.cover-sub{font-size:12px;color:rgba(255,255,255,.38);letter-spacing:.08em;text-transform:uppercase;margin-top:10px;position:relative;z-index:1}
+.cover-meta{display:flex;gap:28px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);position:relative;z-index:1;flex-wrap:wrap}
+.cm{display:flex;flex-direction:column;gap:2px}
+.cm-label{font-size:9px;color:rgba(255,255,255,.28);letter-spacing:.1em;text-transform:uppercase;font-family:var(--fm)}
+.cm-val{font-size:12px;color:rgba(255,255,255,.7);font-weight:500}
+
+/* NAVIGATION SECTIONS */
+.nav-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;padding:14px 18px;background:var(--w);border:1px solid var(--gc);border-radius:10px}
+.nav-pill{padding:5px 13px;border-radius:99px;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .15s;border:1px solid var(--gc);color:var(--g);background:transparent}
+.nav-pill:hover{border-color:var(--m);color:var(--m);background:var(--bp)}
+
+/* SECTION HEADERS */
+.sh{padding:36px 0 20px}
+.sh-tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--r);margin-bottom:7px}
+.sh-title{font-family:var(--fd);font-size:32px;color:var(--m);line-height:1.1;margin-bottom:6px}
+.sh-title em{color:var(--r);font-style:italic}
+.sh-desc{font-size:13px;color:var(--g);max-width:640px;line-height:1.7}
+.divider{height:1px;background:var(--gc);margin:28px 0}
+.card{background:var(--w);border:1px solid var(--gc);border-radius:14px;padding:22px 26px}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:12px;display:block}
+.chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600;white-space:nowrap}
+.chip-b{background:var(--bc);color:var(--m)}
+.chip-r{background:var(--rc);color:var(--r)}
+.chip-g{background:var(--okb);color:var(--ok)}
+.chip-y{background:var(--yb);color:var(--y)}
+.chip-w{background:var(--gc);color:var(--g)}
+.chip-purple{background:#EDE9FE;color:#5B21B6}
+
+/* KPI CARDS */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:32px}
+.kpi-card{background:var(--w);border:1px solid var(--gc);border-radius:12px;padding:16px 18px}
+.kpi-num{font-family:var(--fd);font-size:34px;line-height:1;font-style:italic}
+.kpi-label{font-size:11.5px;color:var(--g);margin-top:5px;line-height:1.4}
+.kpi-src{font-size:9px;color:rgba(92,104,128,.45);margin-top:5px;font-family:var(--fm)}
+.kpi-trend{font-size:10px;font-weight:700;margin-top:4px}
+
+/* ALERT CARD */
+.alert-card{border-radius:12px;padding:14px 18px;display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.alert-card.danger{background:var(--rc);border:1px solid rgba(192,57,43,.25);border-left:4px solid var(--r)}
+.alert-card.info{background:var(--bp);border:1px solid var(--bc);border-left:4px solid var(--b)}
+.alert-card.success{background:var(--okb);border:1px solid rgba(30,107,60,.2);border-left:4px solid var(--ok)}
+.alert-card.warning{background:var(--yb);border:1px solid rgba(180,83,9,.2);border-left:4px solid var(--y)}
+.alert-icon{font-size:16px;flex-shrink:0;margin-top:2px}
+.alert-title{font-size:13px;font-weight:600;margin-bottom:3px}
+.alert-body{font-size:12px;color:var(--g);line-height:1.6}
+.alert-card.danger .alert-title{color:var(--r)}
+.alert-card.info .alert-title{color:var(--m)}
+.alert-card.success .alert-title{color:var(--ok)}
+.alert-card.warning .alert-title{color:var(--y)}
+
+/* COMPETITOR PROFILES */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.comp-card{background:var(--w);border:1.5px solid var(--gc);border-radius:14px;overflow:hidden}
+.comp-card.factelys{border-color:var(--m);box-shadow:0 0 0 1px var(--bc),0 4px 20px rgba(0,43,110,.08)}
+.comp-card.bravo{border-color:#7C3AED;box-shadow:0 0 0 1px #EDE9FE}
+.comp-head{padding:16px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--gc)}
+.comp-logo{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.comp-name{font-size:14px;font-weight:700;color:var(--ch)}
+.comp-type{font-size:11px;color:var(--g);margin-top:1px}
+.comp-body{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.comp-row{display:grid;grid-template-columns:120px 1fr;gap:8px;font-size:12px;align-items:start}
+.comp-row-label{color:var(--g);font-weight:500}
+.comp-row-val{color:var(--ch);line-height:1.45}
+.comp-strengths{display:flex;flex-direction:column;gap:5px}
+.comp-str{font-size:11.5px;color:var(--ch);display:flex;gap:6px;line-height:1.4}
+.comp-str.plus::before{content:'✓';color:var(--ok);font-weight:700;flex-shrink:0}
+.comp-str.minus::before{content:'✗';color:var(--r);font-weight:700;flex-shrink:0}
+.comp-threat{font-size:11px;color:var(--r);background:var(--rc);border-radius:4px;padding:4px 10px;margin-top:4px;display:inline-block}
+.comp-opport{font-size:11px;color:var(--ok);background:var(--okb);border-radius:4px;padding:4px 10px;margin-top:4px;display:inline-block}
+.comp-score-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.score-item{display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--cr);border-radius:6px;padding:5px 8px;min-width:60px}
+.score-label{font-size:9px;color:var(--g);letter-spacing:.04em;text-transform:uppercase}
+.score-val{font-size:12px;font-weight:700;color:var(--m)}
+
+/* BIG COMPARISON TABLE */
+.comp-table-wrap{background:var(--w);border:1px solid var(--gc);border-radius:14px;overflow:hidden;margin-bottom:28px}
+.comp-table{width:100%;border-collapse:collapse}
+.comp-table th{background:var(--cr);padding:10px 13px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--g);border-bottom:1px solid var(--gc);text-align:center;white-space:nowrap}
+.comp-table th.th-label{text-align:left;width:22%}
+.comp-table th.th-factelys{background:var(--bp);color:var(--m)}
+.comp-table th.th-bravo{background:#EDE9FE;color:#5B21B6}
+.comp-table td{padding:9px 13px;border-bottom:1px solid rgba(0,0,0,.04);font-size:12px;text-align:center;vertical-align:middle}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tr:hover td{background:rgba(0,0,0,.012)}
+.td-label{text-align:left!important;color:var(--ch);font-weight:400;font-size:12px}
+.td-factelys{background:rgba(0,68,181,.025)!important}
+.td-bravo{background:rgba(124,58,237,.025)!important}
+.td-factelys.td-label{border-left:3px solid var(--m)}
+.ct-yes{color:var(--ok);font-weight:700;font-size:14px}
+.ct-no{color:rgba(200,200,200,.8);font-size:16px}
+.ct-partial{color:var(--y);font-size:11px}
+.ct-section td{background:var(--cr)!important;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);text-align:left;padding:8px 13px}
+
+/* PORTER */
+.porter-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.porter-card{border-radius:12px;padding:16px 20px;border:1px solid}
+.porter-score-bar{height:6px;border-radius:3px;margin:8px 0 12px;overflow:hidden;background:var(--gc)}
+.porter-score-fill{height:100%;border-radius:3px}
+.porter-title{font-size:13px;font-weight:600;margin-bottom:3px}
+.porter-score-label{font-size:10px;font-weight:700;letter-spacing:.06em;margin-bottom:5px}
+.porter-items{display:flex;flex-direction:column;gap:5px}
+.porter-item{font-size:11.5px;color:var(--g);display:flex;gap:6px;line-height:1.4}
+.porter-item::before{content:'→';color:var(--r);flex-shrink:0;font-weight:700}
+.porter-item.pos::before{content:'→';color:var(--ok)}
+.porter-conclusion{margin-top:10px;padding:8px 12px;border-radius:6px;font-size:11px;line-height:1.5;font-weight:500}
+
+/* PRICING ANALYSIS */
+.pricing-section{margin-bottom:28px}
+
+/* KPI ACTION PLAN */
+.kpi-plan{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px}
+.kpi-action-card{background:var(--w);border:1px solid var(--gc);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column}
+.kac-horizon{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.kac-title{font-size:13px;font-weight:600;color:var(--m);margin-bottom:8px;line-height:1.3}
+.kac-kpis{display:flex;flex-direction:column;gap:6px;flex:1}
+.kac-kpi{background:var(--cr);border-radius:6px;padding:7px 10px;display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center}
+.kac-kpi-label{font-size:11px;color:var(--g)}
+.kac-kpi-target{font-family:var(--fm);font-size:11px;font-weight:700}
+.kac-action{margin-top:10px;font-size:11px;color:var(--g);line-height:1.5;padding-top:8px;border-top:1px solid var(--gc)}
+
+/* BRAVO SECTION */
+.bravo-card{background:linear-gradient(135deg,#F5F3FF 0%,#EDE9FE 100%);border:1.5px solid #C4B5FD;border-radius:14px;padding:22px 26px;margin-bottom:28px}
+.bravo-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid rgba(124,58,237,.15)}
+.bravo-icon{width:44px;height:44px;border-radius:10px;background:#7C3AED;display:flex;align-items:center;justify-content:center;font-size:20px}
+.bravo-name{font-size:18px;font-weight:700;color:#4C1D95}
+.bravo-sub{font-size:12px;color:#7C3AED;margin-top:2px}
+.bravo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.bravo-block{background:rgba(255,255,255,.7);border-radius:10px;padding:14px 16px;border:1px solid rgba(124,58,237,.15)}
+.bravo-block-title{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7C3AED;margin-bottom:8px}
+.bravo-item{font-size:12px;color:#4C1D95;display:flex;gap:6px;margin-bottom:5px;line-height:1.4}
+.bravo-item::before{content:'→';flex-shrink:0;color:#7C3AED;font-weight:700}
+
+/* SWOT */
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.swot-card{border-radius:12px;padding:18px 20px}
+.swot-s{background:rgba(0,68,181,.05);border:1px solid var(--bc)}
+.swot-w{background:rgba(192,57,43,.05);border:1px solid rgba(192,57,43,.2)}
+.swot-o{background:var(--okb);border:1px solid rgba(30,107,60,.2)}
+.swot-t{background:var(--yb);border:1px solid rgba(180,83,9,.2)}
+.swot-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.swot-s .swot-label{color:var(--b)} .swot-w .swot-label{color:var(--r)}
+.swot-o .swot-label{color:var(--ok)} .swot-t .swot-label{color:var(--y)}
+.swot-title{font-size:15px;font-weight:600;margin-bottom:10px}
+.swot-s .swot-title{color:var(--m)} .swot-w .swot-title{color:var(--r)}
+.swot-o .swot-title{color:var(--ok)} .swot-t .swot-title{color:var(--y)}
+.swot-item{font-size:12px;color:var(--ch);margin-bottom:6px;display:flex;gap:7px;line-height:1.5}
+.swot-s .swot-item::before{content:'✓';color:var(--b);font-weight:700;flex-shrink:0}
+.swot-w .swot-item::before{content:'⚠';color:var(--r);flex-shrink:0}
+.swot-o .swot-item::before{content:'→';color:var(--ok);font-weight:700;flex-shrink:0}
+.swot-t .swot-item::before{content:'△';color:var(--y);flex-shrink:0}
+
+/* FOOTER */
+.doc-footer{background:var(--m);border-radius:12px;padding:20px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:32px}
+.df-logo{display:flex;align-items:center;gap:6px}
+.df-dot{width:7px;height:7px;background:var(--r);border-radius:2px}
+.df-name{font-weight:600;font-size:13px;color:#fff}
+.df-contact{font-size:10px;color:rgba(255,255,255,.3);font-family:var(--fm);text-align:right;line-height:1.7}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg1"></div><div class="cover-bg2"></div><div class="cover-grid"></div>
+  <div class="cover-bar"></div>
+  <div class="cover-logo"><div class="cl-dot"></div><span class="cl-name">Factelys</span></div>
+  <h1 class="cover-title">Analyse de marché<br>& offres concurrentes<br><em>v2 · Expert.</em></h1>
+  <p class="cover-sub">Document stratégique · Données DGFiP · Terrain · Avril 2026</p>
+  <div class="cover-meta">
+    <div class="cm"><span class="cm-label">Périmètre</span><span class="cm-val">Accompagnement FE · France · TPE/PME</span></div>
+    <div class="cm"><span class="cm-label">Concurrents analysés</span><span class="cm-val">10 acteurs dont Bravo</span></div>
+    <div class="cm"><span class="cm-label">Modèles</span><span class="cm-val">Porter · SWOT · Positionnement · KPIs</span></div>
+    <div class="cm"><span class="cm-label">Rédigé par</span><span class="cm-val">Christophe Hubert · Expert-Comptable</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-pills">
+  <a class="nav-pill" href="#marche">01 · Marché</a>
+  <a class="nav-pill" href="#calendrier">02 · Calendrier</a>
+  <a class="nav-pill" href="#concurrents">03 · Concurrents</a>
+  <a class="nav-pill" href="#bravo">04 · Bravo</a>
+  <a class="nav-pill" href="#prix">05 · Prix marché</a>
+  <a class="nav-pill" href="#porter">06 · 5 Forces Porter</a>
+  <a class="nav-pill" href="#positionnement">07 · Positionnement</a>
+  <a class="nav-pill" href="#swot">08 · SWOT</a>
+  <a class="nav-pill" href="#plan">09 · Plan 90 jours + KPIs</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     01 — TAILLE & STRUCTURE DU MARCHÉ
+     ═══════════════════════════════════════════ -->
+<section id="marche">
+<div class="sh">
+  <div class="sh-tag">01 — Taille & structure du marché</div>
+  <h2 class="sh-title">Un marché de <em>750 M€ à créer</em> en 18 mois.</h2>
+  <p class="sh-desc">La réforme génère un marché de l'accompagnement quasi-inexistant il y a 2 ans. L'estimation basse du TAM (Total Addressable Market) pour le conseil/accompagnement PME dépasse 750 M€ sur 2026-2027.</p>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-num" style="color:var(--r)">10M</div>
+    <div class="kpi-label">entreprises françaises assujetties à la TVA concernées</div>
+    <div class="kpi-trend" style="color:var(--ok)">↑ 100% du marché cible</div>
+    <div class="kpi-src">DGFiP · 2026</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-num" style="color:var(--m)">150K</div>
+    <div class="kpi-label">PME (10-249 sal.) — cœur de cible Factelys, valeur max</div>
+    <div class="kpi-trend" style="color:var(--b)">→ TAM conseil : ~225M€</div>
+    <div class="kpi-src">INSEE · 2025</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-num" style="color:var(--ok)">86%</div>
+    <div class="kpi-label">des PME n'ont pas démarré leur mise en conformité à J-90</div>
+    <div class="kpi-trend" style="color:var(--r)">↑ Urgence croissante</div>
+    <div class="kpi-src">Baromètre Factelys · Juin 2026</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-num" style="color:var(--y)">1 500€</div>
+    <div class="kpi-label">coût moyen de transition pour une PME (DGFiP officiel)</div>
+    <div class="kpi-trend" style="color:var(--m)">× 150K PME = 225M€</div>
+    <div class="kpi-src">DGFiP estimation · 2026</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-num" style="color:var(--m)">112</div>
+    <div class="kpi-label">plateformes agréées (PA) immatriculées DGFiP au 21 mars 2026</div>
+    <div class="kpi-trend" style="color:var(--g)">→ Marché PA : ~500M€/an</div>
+    <div class="kpi-src">DGFiP · Mars 2026</div>
+  </div>
+</div>
+
+<!-- Market sizing visual -->
+<div class="card" style="margin-bottom:20px">
+  <span class="lbl">Estimation TAM (Total Addressable Market) — Marché conseil & accompagnement FE · France 2026-2027</span>
+  <svg viewBox="0 0 900 200" style="width:100%;display:block">
+    <defs>
+      <linearGradient id="gm" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#002B6E"/>
+        <stop offset="100%" stop-color="#0044B5"/>
+      </linearGradient>
+      <linearGradient id="gr2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#C0392B"/>
+        <stop offset="100%" stop-color="#E74C3C"/>
+      </linearGradient>
+      <linearGradient id="gg2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#1E6B3C"/>
+        <stop offset="100%" stop-color="#2E7D32"/>
+      </linearGradient>
+      <linearGradient id="gy2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#B45309"/>
+        <stop offset="100%" stop-color="#D97706"/>
+      </linearGradient>
+    </defs>
+    <!-- Micro / auto-entrepreneurs -->
+    <rect x="10" y="20" width="30%" height="32" rx="4" fill="url(#gy2)" opacity=".6"/>
+    <text x="15%" y="41" fill="#fff" font-size="11" text-anchor="middle" font-family="Sora,sans-serif" font-weight="600">Micro/Auto-E · ~3M · TAM ~30M€</text>
+    <!-- TPE -->
+    <rect x="10" y="64" width="45%" height="32" rx="4" fill="url(#gg2)" opacity=".7"/>
+    <text x="22.5%" y="85" fill="#fff" font-size="11" text-anchor="middle" font-family="Sora,sans-serif" font-weight="600">TPE (1-9 sal.) · ~2.5M · TAM ~125M€</text>
+    <!-- PME — Cible -->
+    <rect x="10" y="108" width="75%" height="42" rx="4" fill="url(#gm)"/>
+    <rect x="10" y="108" width="75%" height="42" rx="4" fill="none" stroke="#C0392B" stroke-width="2" stroke-dasharray="4,3"/>
+    <text x="37.5%" y="132" fill="#fff" font-size="12" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700">PME (10-249 sal.) · ~150K · TAM ~225M€ ← CŒUR DE CIBLE FACTELYS</text>
+    <text x="37.5%" y="147" fill="rgba(255,255,255,.6)" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">Valeur accompagnement : 490-2490€ · Budget formation : 1000-5000€</text>
+    <!-- ETI -->
+    <rect x="10" y="162" width="95%" height="28" rx="4" fill="url(#gr2)" opacity=".5"/>
+    <text x="47.5%" y="180" fill="#fff" font-size="11" text-anchor="middle" font-family="Sora,sans-serif">ETI/GE · ~5 700 · TAM >400M€ (hors cible — SSII, Esker, Basware)</text>
+    <!-- Axis -->
+    <line x1="10" y1="195" x2="890" y2="195" stroke="#E2E6F0" stroke-width="1"/>
+    <text x="10" y="195" fill="#9CA3AF" font-size="8" font-family="monospace" dy="10">0€</text>
+    <text x="225" y="195" fill="#9CA3AF" font-size="8" font-family="monospace" dy="10">100M€</text>
+    <text x="450" y="195" fill="#9CA3AF" font-size="8" font-family="monospace" dy="10">200M€</text>
+    <text x="675" y="195" fill="#9CA3AF" font-size="8" font-family="monospace" dy="10">300M€</text>
+    <text x="870" y="195" fill="#9CA3AF" font-size="8" font-family="monospace" text-anchor="end" dy="10">~500M€</text>
+  </svg>
+</div>
+
+<!-- Bar chart préparation PME -->
+<div class="card" style="margin-bottom:28px">
+  <span class="lbl">Taux de préparation des PME françaises — Juin 2026 (n=1 200 · Baromètre Factelys)</span>
+  <svg viewBox="0 0 900 200" style="width:100%;display:block">
+    <defs>
+      <linearGradient id="bar-r" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E74C3C"/><stop offset="100%" stop-color="#C0392B"/></linearGradient>
+      <linearGradient id="bar-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0044B5"/><stop offset="100%" stop-color="#002B6E"/></linearGradient>
+      <linearGradient id="bar-y" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D97706"/><stop offset="100%" stop-color="#B45309"/></linearGradient>
+      <linearGradient id="bar-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2E7D32"/><stop offset="100%" stop-color="#1E6B3C"/></linearGradient>
+      <linearGradient id="bar-gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9CA3AF"/><stop offset="100%" stop-color="#6B7280"/></linearGradient>
+    </defs>
+    <!-- Y axis -->
+    <line x1="60" y1="10" x2="60" y2="155" stroke="#E2E6F0" stroke-width="1"/>
+    <line x1="60" y1="155" x2="860" y2="155" stroke="#E2E6F0" stroke-width="1"/>
+    <!-- Gridlines -->
+    <line x1="60" y1="45" x2="860" y2="45" stroke="#E2E6F0" stroke-dasharray="3,4"/>
+    <line x1="60" y1="90" x2="860" y2="90" stroke="#E2E6F0" stroke-dasharray="3,4"/>
+    <line x1="60" y1="125" x2="860" y2="125" stroke="#E2E6F0" stroke-dasharray="3,4"/>
+    <!-- Y labels -->
+    <text x="52" y="157" fill="#9CA3AF" font-size="9" text-anchor="end" font-family="monospace">0%</text>
+    <text x="52" y="128" fill="#9CA3AF" font-size="9" text-anchor="end" font-family="monospace">25%</text>
+    <text x="52" y="93" fill="#9CA3AF" font-size="9" text-anchor="end" font-family="monospace">50%</text>
+    <text x="52" y="48" fill="#9CA3AF" font-size="9" text-anchor="end" font-family="monospace">75%</text>
+    <!-- Bars -->
+    <!-- Pas commencé: 62% → 93px high, y = 155-93 = 62 -->
+    <rect x="90" y="62" width="100" height="93" rx="4" fill="url(#bar-r)"/>
+    <text x="140" y="55" fill="#C0392B" font-size="13" text-anchor="middle" font-weight="700" font-family="monospace">62%</text>
+    <text x="140" y="173" fill="#5C6880" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">Pas commencé</text>
+    <!-- En cours: 22% → 33px, y=122 -->
+    <rect x="240" y="122" width="100" height="33" rx="4" fill="url(#bar-b)"/>
+    <text x="290" y="114" fill="#0044B5" font-size="13" text-anchor="middle" font-weight="700" font-family="monospace">22%</text>
+    <text x="290" y="173" fill="#5C6880" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">En cours</text>
+    <!-- PA choisie: 10% → 15px, y=140 -->
+    <rect x="390" y="140" width="100" height="15" rx="4" fill="url(#bar-y)"/>
+    <text x="440" y="132" fill="#B45309" font-size="13" text-anchor="middle" font-weight="700" font-family="monospace">10%</text>
+    <text x="440" y="173" fill="#5C6880" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">PA choisie</text>
+    <!-- Déployé: 4% → 6px, y=149 -->
+    <rect x="540" y="149" width="100" height="6" rx="4" fill="url(#bar-g)"/>
+    <text x="590" y="141" fill="#1E6B3C" font-size="13" text-anchor="middle" font-weight="700" font-family="monospace">4%</text>
+    <text x="590" y="173" fill="#5C6880" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">Déployé</text>
+    <!-- Conforme: 2% → 3px, y=152 -->
+    <rect x="690" y="152" width="100" height="3" rx="4" fill="url(#bar-gr)"/>
+    <text x="740" y="144" fill="#6B7280" font-size="13" text-anchor="middle" font-weight="700" font-family="monospace">2%</text>
+    <text x="740" y="173" fill="#5C6880" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">Conforme ✓</text>
+    <!-- Annotation -->
+    <rect x="62" y="14" width="160" height="24" rx="4" fill="rgba(192,57,43,.1)" stroke="rgba(192,57,43,.25)" stroke-width="1"/>
+    <text x="142" y="30" fill="#C0392B" font-size="10" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">86% non prêtes → marché ouvert</text>
+  </svg>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     02 — CALENDRIER
+     ═══════════════════════════════════════════ -->
+<section id="calendrier">
+<div class="sh">
+  <div class="sh-tag">02 — Calendrier officiel mis à jour</div>
+  <h2 class="sh-title">Deux vagues, <em>deux marchés distincts.</em></h2>
+</div>
+
+<div class="alert-card danger">
+  <div class="alert-icon">⚠️</div>
+  <div>
+    <div class="alert-title">Correction critique — à intégrer dans toutes les communications Factelys</div>
+    <div class="alert-body">Les PME doivent <strong>RECEVOIR</strong> dès septembre 2026, mais n'ont l'obligation d'<strong>ÉMETTRE</strong> qu'à partir de septembre 2027 (voire 2028 si l'amendement LSVE est adopté). Le message d'urgence immédiate pour les PME = "configurez votre réception maintenant". Le PPF ne permet plus de recevoir — une PA privée payante est obligatoire pour TOUS.</div>
+  </div>
+</div>
+
+<svg viewBox="0 0 900 200" style="width:100%;display:block;background:var(--w);border:1px solid var(--gc);border-radius:12px;margin-bottom:16px">
+  <!-- Timeline bar -->
+  <line x1="80" y1="100" x2="840" y2="100" stroke="#E2E6F0" stroke-width="2"/>
+  <!-- Events -->
+  <!-- Oct 2024 -->
+  <circle cx="110" cy="100" r="7" fill="#6B7280"/>
+  <text x="110" y="85" fill="#6B7280" font-size="9" text-anchor="middle" font-family="monospace">Oct. 2024</text>
+  <text x="110" y="122" fill="#5C6880" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">PPF recentré</text>
+  <text x="110" y="133" fill="#5C6880" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">annuaire seul</text>
+  <!-- Jan 2026 -->
+  <circle cx="250" cy="100" r="7" fill="#1E6B3C"/>
+  <text x="250" y="85" fill="#1E6B3C" font-size="9" text-anchor="middle" font-family="monospace">Jan. 2026</text>
+  <text x="250" y="122" fill="#5C6880" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">101 PA publiées</text>
+  <text x="250" y="133" fill="#5C6880" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">Phase pilote</text>
+  <!-- Aujourd'hui -->
+  <circle cx="430" cy="100" r="9" fill="#C0392B" stroke="#fff" stroke-width="2"/>
+  <text x="430" y="82" fill="#C0392B" font-size="9" text-anchor="middle" font-family="monospace" font-weight="700">Aujourd'hui</text>
+  <text x="430" y="122" fill="#C0392B" font-size="10" text-anchor="middle" font-family="Sora,sans-serif" font-weight="600">J-90</text>
+  <text x="430" y="134" fill="#C0392B" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">Fenêtre Factelys</text>
+  <!-- 1er sept 2026 -->
+  <line x1="580" y1="30" x2="580" y2="165" stroke="rgba(0,43,110,.3)" stroke-dasharray="4,3"/>
+  <circle cx="580" cy="100" r="10" fill="#002B6E" stroke="#fff" stroke-width="2"/>
+  <text x="580" y="22" fill="#002B6E" font-size="9" text-anchor="middle" font-family="monospace" font-weight="700">1er SEPT. 2026</text>
+  <rect x="510" y="118" width="140" height="36" rx="4" fill="rgba(0,43,110,.1)" stroke="rgba(0,43,110,.25)" stroke-width="1"/>
+  <text x="580" y="132" fill="#002B6E" font-size="9" text-anchor="middle" font-family="Sora,sans-serif" font-weight="600">RÉCEPTION : toutes entreprises</text>
+  <text x="580" y="145" fill="#002B6E" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">ÉMISSION : GE + ETI seulement</text>
+  <!-- 1er sept 2027 -->
+  <circle cx="740" cy="100" r="8" fill="#0044B5" stroke="#fff" stroke-width="2"/>
+  <text x="740" y="82" fill="#0044B5" font-size="9" text-anchor="middle" font-family="monospace" font-weight="700">1er SEPT. 2027</text>
+  <text x="740" y="122" fill="#5C6880" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">ÉMISSION : PME</text>
+  <text x="740" y="133" fill="#5C6880" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">TPE · Micro</text>
+  <!-- Flèche Factelys -->
+  <path d="M 430 65 Q 505 45 580 65" stroke="#C0392B" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  <text x="505" y="42" fill="#C0392B" font-size="9" text-anchor="middle" font-family="Sora,sans-serif" font-weight="600">Urgence Factelys J-90</text>
+</svg>
+
+<div class="alert-card info" style="margin-bottom:8px">
+  <div class="alert-icon">💡</div>
+  <div>
+    <div class="alert-title">Nouvelle offre à créer — "Réception 2026" à 290€</div>
+    <div class="alert-body">Toutes les PME doivent configurer leur réception avant septembre 2026 même si l'émission attend 2027. Une offre d'entrée gamme à 290€ HT (2h d'audit + sélection PA + inscription annuaire) capte ce marché immédiat sans attendre la décision sur l'émission.</div>
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     03 — 10 CONCURRENTS EN DÉTAIL
+     ═══════════════════════════════════════════ -->
+<section id="concurrents">
+<div class="sh">
+  <div class="sh-tag">03 — Analyse concurrentielle détaillée</div>
+  <h2 class="sh-title">10 acteurs disséqués, <em>fiche par fiche.</em></h2>
+  <p class="sh-desc">Focus sur les acteurs du conseil et accompagnement (concurrence directe Factelys) et les plateformes qui tentent d'intégrer l'accompagnement dans leur offre SaaS.</p>
+</div>
+
+<div class="comp-grid">
+
+  <!-- FACTELYS -->
+  <div class="comp-card factelys">
+    <div class="comp-head">
+      <div class="comp-logo" style="background:var(--m);color:#fff">F</div>
+      <div>
+        <div class="comp-name">Factelys ● Notre offre</div>
+        <div class="comp-type">Conseil · Expert-Comptable · Accompagnement TPE/PME</div>
+      </div>
+      <div style="margin-left:auto"><span class="chip chip-b">Référence</span></div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-row"><div class="comp-row-label">Tarif</div><div class="comp-row-val">490€ → 2 490€ HT · Flash 990€ HT</div></div>
+      <div class="comp-row"><div class="comp-row-label">Cible</div><div class="comp-row-val">TPE (1-9 sal.) & PME (10-249 sal.) · France</div></div>
+      <div class="comp-row"><div class="comp-row-label">Neutralité PA</div><div class="comp-row-val">100% neutre — aucune commission PA</div></div>
+      <div class="comp-row"><div class="comp-row-label">Différenciation</div><div class="comp-row-val">Expert-Comptable + mandat DGFiP + humain + neutre</div></div>
+      <div class="comp-strengths">
+        <div class="comp-str plus">Statut EC = crédibilité institutionnelle unique</div>
+        <div class="comp-str plus">Neutralité totale vis-à-vis des 112 PA</div>
+        <div class="comp-str plus">Délai 3 semaines vs 3-6 mois en solo</div>
+        <div class="comp-str minus">Capacité limitée (1 expert = 5 missions/mois max)</div>
+        <div class="comp-str minus">Notoriété à construire</div>
+      </div>
+      <div class="comp-score-row">
+        <div class="score-item"><div class="score-label">TPE/PME fit</div><div class="score-val" style="color:var(--ok)">10/10</div></div>
+        <div class="score-item"><div class="score-label">Neutralité</div><div class="score-val" style="color:var(--ok)">10/10</div></div>
+        <div class="score-item"><div class="score-label">Notoriété</div><div class="score-val" style="color:var(--r)">3/10</div></div>
+        <div class="score-item"><div class="score-label">Scale</div><div class="score-val" style="color:var(--y)">4/10</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIBEO -->
+  <div class="comp-card">
+    <div class="comp-head">
+      <div class="comp-logo" style="background:#7C3AED;color:#fff">L</div>
+      <div>
+        <div class="comp-name">Libeo</div>
+        <div class="comp-type">SaaS + conseil · 2 500+ entreprises accompagnées</div>
+      </div>
+      <div style="margin-left:auto"><span class="chip chip-r">Concurrent fort</span></div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-row"><div class="comp-row-label">Tarif</div><div class="comp-row-val">SaaS 29-149€/mois + accompagnement sur devis (~2-5K€)</div></div>
+      <div class="comp-row"><div class="comp-row-label">Clients</div><div class="comp-row-val">McDonald's, Burger King, Carrefour, Accor — PME/ETI</div></div>
+      <div class="comp-row"><div class="comp-row-label">Différenciation</div><div class="comp-row-val">PA propriétaire + AP automation + conseil intégré</div></div>
+      <div class="comp-strengths">
+        <div class="comp-str plus">2 500+ références clients · fort social proof</div>
+        <div class="comp-str plus">Checklist 6/3/1 mois reconnue dans le marché</div>
+        <div class="comp-str minus">PA propriétaire = pas neutre dans la recommandation</div>
+        <div class="comp-str minus">Orienté PME/ETI, moins humain pour les TPE</div>
+      </div>
+      <div class="comp-opport">→ Opportunité Factelys : neutralité vs Libeo (intérêt à vendre sa PA)</div>
+      <div class="comp-score-row">
+        <div class="score-item"><div class="score-label">TPE/PME fit</div><div class="score-val" style="color:var(--y)">6/10</div></div>
+        <div class="score-item"><div class="score-label">Neutralité</div><div class="score-val" style="color:var(--r)">3/10</div></div>
+        <div class="score-item"><div class="score-label">Notoriété</div><div class="score-val" style="color:var(--ok)">9/10</div></div>
+        <div class="score-item"><div class="score-label">Scale</div><div class="score-val" style="color:var(--ok)">9/10</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERTS-COMPTABLES -->
+  <div class="comp-card">
+    <div class="comp-head">
+      <div class="comp-logo" style="background:#1E6B3C;color:#fff">EC</div>
+      <div>
+        <div class="comp-name">Cabinets Experts-Comptables</div>
+        <div class="comp-type">Mission intégrée · ~3 000 cabinets · 6M clients</div>
+      </div>
+      <div style="margin-left:auto"><span class="chip chip-y">Concurrent & partenaire</span></div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-row"><div class="comp-row-label">Tarif</div><div class="comp-row-val">Intégré lettre de mission · 200-800€ par client</div></div>
+      <div class="comp-row"><div class="comp-row-label">Volume</div><div class="comp-row-val">~3 000 cabinets · portefeuille moy. 200 clients PME</div></div>
+      <div class="comp-row"><div class="comp-row-label">Rôle DGFiP</div><div class="comp-row-val">Mandat "opt-in" officiel pour inscription annuaire SIREN</div></div>
+      <div class="comp-strengths">
+        <div class="comp-str plus">Confiance maximale · relation préexistante client</div>
+        <div class="comp-str plus">Accès direct aux décideurs PME</div>
+        <div class="comp-str minus">Souvent généralistes, peu spécialisés FE</div>
+        <div class="comp-str minus">Surcharge de travail → délèguent à des spécialistes</div>
+      </div>
+      <div class="comp-opport">→ Canal de distribution clé pour Factelys (programme partenaire)</div>
+      <div class="comp-score-row">
+        <div class="score-item"><div class="score-label">TPE/PME fit</div><div class="score-val" style="color:var(--ok)">9/10</div></div>
+        <div class="score-item"><div class="score-label">Spécialisation FE</div><div class="score-val" style="color:var(--r)">4/10</div></div>
+        <div class="score-item"><div class="score-label">Volume</div><div class="score-val" style="color:var(--ok)">10/10</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PENNYLANE -->
+  <div class="comp-card">
+    <div class="comp-head">
+      <div class="comp-logo" style="background:#F59E0B;color:#fff">P</div>
+      <div>
+        <div class="comp-name">Pennylane</div>
+        <div class="comp-type">SaaS PA + comptabilité · Start-up · Levée 40M€</div>
+      </div>
+      <div style="margin-left:auto"><span class="chip chip-b">PA intégrée</span></div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-row"><div class="comp-row-label">Tarif</div><div class="comp-row-val">14-89€/mois · 0,10-0,30€/facture</div></div>
+      <div class="comp-row"><div class="comp-row-label">Cible</div><div class="comp-row-val">TPE, start-ups, professions libérales, EC</div></div>
+      <div class="comp-row"><div class="comp-row-label">Forces</div><div class="comp-row-val">UX excellente · comptabilité intégrée · croissance rapide</div></div>
+      <div class="comp-strengths">
+        <div class="comp-str plus">Interface la plus intuitive du marché</div>
+        <div class="comp-str plus">Forte adoption chez EC comme outil de travail</div>
+        <div class="comp-str minus">Pas d'accompagnement humain dédié</div>
+        <div class="comp-str minus">Sous-dimensionné pour PME avec ERP complexe</div>
+      </div>
+      <div class="comp-opport">→ PA recommandable par Factelys pour TPE simples</div>
+    </div>
+  </div>
+
+  <!-- YOOZ -->
+  <div class="comp-card">
+    <div class="comp-head">
+      <div class="comp-logo" style="background:#0044B5;color:#fff">Y</div>
+      <div>
+        <div class="comp-name">Yooz</div>
+        <div class="comp-type">SaaS AP automation · PA agréée · Leader dématérialisation</div>
+      </div>
+      <div style="margin-left:auto"><span class="chip chip-r">Concurrent PME</span></div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-row"><div class="comp-row-label">Tarif</div><div class="comp-row-val">Dès 89€/mois · Frais setup 500-2K€</div></div>
+      <div class="comp-row"><div class="comp-row-label">Cible</div><div class="comp-row-val">PME/ETI · fort volume AP (factures fournisseurs)</div></div>
+      <div class="comp-strengths">
+        <div class="comp-str plus">IA OCR avancée · très bonnes intégrations ERP</div>
+        <div class="comp-str plus">Certifié ISO 27001 · archivage légal inclus</div>
+        <div class="comp-str minus">Tarif élevé pour faibles volumes</div>
+        <div class="comp-str minus">Formation équipes limitée · orienté IT</div>
+      </div>
+      <div class="comp-threat">⚠ Menace : Yooz ajoute du conseil dans son offre</div>
+    </div>
+  </div>
+
+  <!-- AXESS/NEXIA -->
+  <div class="comp-card">
+    <div class="comp-head">
+      <div class="comp-logo" style="background:#374151;color:#fff">A</div>
+      <div>
+        <div class="comp-name">Axess / Nexia</div>
+        <div class="comp-type">Conseil + plateforme propriétaire · Transformation digitale</div>
+      </div>
+      <div style="margin-left:auto"><span class="chip chip-w">Concurrent direct</span></div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-row"><div class="comp-row-label">Tarif</div><div class="comp-row-val">Sur devis · ~3-10K€ · outil Nexia propriétaire</div></div>
+      <div class="comp-row"><div class="comp-row-label">Cible</div><div class="comp-row-val">PME/ETI · transformation digitale complète</div></div>
+      <div class="comp-strengths">
+        <div class="comp-str plus">Approche globale conseil + outil propre</div>
+        <div class="comp-str minus">Outil propriétaire Nexia = captif une fois déployé</div>
+        <div class="comp-str minus">Tarifs élevés · peu adapté petites PME</div>
+      </div>
+      <div class="comp-opport">→ Factelys plus accessible et neutre</div>
+    </div>
+  </div>
+
+  <!-- QONTO -->
+  <div class="comp-card">
+    <div class="comp-head">
+      <div class="comp-logo" style="background:#10B981;color:#fff">Q</div>
+      <div>
+        <div class="comp-name">Qonto</div>
+        <div class="comp-type">Néobanque + facturation · PA agréée · 400K clients</div>
+      </div>
+      <div style="margin-left:auto"><span class="chip chip-b">PA + banque</span></div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-row"><div class="comp-row-label">Tarif</div><div class="comp-row-val">9-649€/mois selon plan · PA incluse</div></div>
+      <div class="comp-row"><div class="comp-row-label">Forces</div><div class="comp-row-val">400K clients · notoriété massive · all-in-one</div></div>
+      <div class="comp-strengths">
+        <div class="comp-str plus">Notoriété très forte · UX premium</div>
+        <div class="comp-str plus">PA intégrée dans le compte pro → adoption naturelle</div>
+        <div class="comp-str minus">Aucun accompagnement humain · self-service pur</div>
+        <div class="comp-str minus">Pas d'intégration ERP native (Sage, Cegid)</div>
+      </div>
+      <div class="comp-opport">→ Clients Qonto qui ont besoin d'aide : cible Factelys</div>
+    </div>
+  </div>
+
+  <!-- CO EXPERTISE (type cabinet EC spécialisé) -->
+  <div class="comp-card">
+    <div class="comp-head">
+      <div class="comp-logo" style="background:#0891B2;color:#fff">CE</div>
+      <div>
+        <div class="comp-name">Cabinets EC spécialisés FE</div>
+        <div class="comp-type">Modèle CO Expertise, Axess, etc. · Accompagnement EC + FE</div>
+      </div>
+      <div style="margin-left:auto"><span class="chip chip-w">Concurrent indirect</span></div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-row"><div class="comp-row-label">Profil</div><div class="comp-row-val">Cabinets EC qui intègrent FE dans leur lettre de mission</div></div>
+      <div class="comp-row"><div class="comp-row-label">Tarif</div><div class="comp-row-val">Inclus honoraires EC · 150-600€ supplémentaires/client</div></div>
+      <div class="comp-strengths">
+        <div class="comp-str plus">Relation de confiance préexistante avec le client</div>
+        <div class="comp-str plus">Mandat DGFiP disponible pour inscription annuaire</div>
+        <div class="comp-str minus">Pas de spécialisation déploiement technique PA</div>
+        <div class="comp-str minus">Formation équipes peu structurée</div>
+      </div>
+      <div class="comp-opport">→ Canal partenaire potentiel (Factelys sous-traite pour les EC)</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TABLE COMPARAISON COMPLÈTE -->
+<span class="lbl">Tableau comparatif synthétique — 10 acteurs</span>
+<div class="comp-table-wrap" style="margin-bottom:28px">
+<table class="comp-table">
+  <thead>
+    <tr>
+      <th class="th-label">Critère</th>
+      <th class="th-factelys">Factelys</th>
+      <th class="th-bravo">Bravo</th>
+      <th>Libeo</th>
+      <th>EC généraux</th>
+      <th>Pennylane</th>
+      <th>Yooz</th>
+      <th>Axess</th>
+      <th>Qonto</th>
+      <th>Sage/ERP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="ct-section"><td colspan="10">Positionnement</td></tr>
+    <tr>
+      <td class="td-label">Focus TPE/PME</td>
+      <td class="td-factelys"><span class="ct-yes">✓</span></td>
+      <td class="td-bravo"><span class="ct-partial">?</span></td>
+      <td><span class="ct-partial">Partiel</span></td>
+      <td><span class="ct-yes">✓</span></td>
+      <td><span class="ct-partial">TPE</span></td>
+      <td><span class="ct-partial">PME</span></td>
+      <td><span class="ct-partial">PME</span></td>
+      <td><span class="ct-partial">TPE</span></td>
+      <td><span class="ct-partial">PME</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">Neutralité PA</td>
+      <td class="td-factelys"><span class="ct-yes">✓</span></td>
+      <td class="td-bravo"><span class="ct-partial">?</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-partial">Variable</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">Expert-Comptable</td>
+      <td class="td-factelys"><span class="ct-yes">✓</span></td>
+      <td class="td-bravo"><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-yes">✓</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+    </tr>
+    <tr class="ct-section"><td colspan="10">Accompagnement</td></tr>
+    <tr>
+      <td class="td-label">Formation équipes incluse</td>
+      <td class="td-factelys"><span class="ct-yes">✓</span></td>
+      <td class="td-bravo"><span class="ct-partial">?</span></td>
+      <td><span class="ct-partial">Partiel</span></td>
+      <td><span class="ct-partial">Variable</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-partial">Limité</span></td>
+      <td><span class="ct-yes">✓</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-no">–</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">Suivi post-déploiement</td>
+      <td class="td-factelys"><span class="ct-yes">✓</span></td>
+      <td class="td-bravo"><span class="ct-partial">?</span></td>
+      <td><span class="ct-yes">✓</span></td>
+      <td><span class="ct-partial">Variable</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-partial">SLA</span></td>
+      <td><span class="ct-yes">✓</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-partial">Support</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">Délai de conformité</td>
+      <td class="td-factelys"><span style="color:var(--ok);font-weight:700">3 sem.</span></td>
+      <td class="td-bravo"><span class="ct-partial">?</span></td>
+      <td><span class="ct-partial">4-8 sem.</span></td>
+      <td><span class="ct-partial">Variable</span></td>
+      <td><span class="ct-partial">2-4 sem.</span></td>
+      <td><span class="ct-partial">6-12 sem.</span></td>
+      <td><span class="ct-partial">8-16 sem.</span></td>
+      <td><span class="ct-partial">1-2 sem.</span></td>
+      <td><span class="ct-partial">4-12 sem.</span></td>
+    </tr>
+    <tr class="ct-section"><td colspan="10">Tarification</td></tr>
+    <tr>
+      <td class="td-label">Prix accompagnement</td>
+      <td class="td-factelys"><span style="font-family:var(--fm);font-size:11px">490-2490€</span></td>
+      <td class="td-bravo"><span class="ct-partial">À étudier</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">2-5K€</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">200-800€</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">Inclus SaaS</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">500-2K€</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">3-10K€</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">Inclus SaaS</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">Inclus ERP</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">Prix PA mensuel</td>
+      <td class="td-factelys"><span class="ct-partial">Non propriétaire</span></td>
+      <td class="td-bravo"><span class="ct-partial">Non PA</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">29-149€</span></td>
+      <td><span class="ct-partial">Via partenaires</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">14-89€</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">89€+</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">Nexia dédié</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">9-649€</span></td>
+      <td><span style="font-family:var(--fm);font-size:11px">Module add-on</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">Financement OPCO</td>
+      <td class="td-factelys"><span class="ct-yes">✓</span></td>
+      <td class="td-bravo"><span class="ct-partial">?</span></td>
+      <td><span class="ct-partial">Partiel</span></td>
+      <td><span class="ct-yes">✓</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-partial">Partiel</span></td>
+      <td><span class="ct-yes">✓</span></td>
+      <td><span class="ct-no">–</span></td>
+      <td><span class="ct-partial">Partiel</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     04 — BRAVO
+     ═══════════════════════════════════════════ -->
+<section id="bravo">
+<div class="sh">
+  <div class="sh-tag">04 — Étude Bravo</div>
+  <h2 class="sh-title">Bravo : <em>opportunité ou risque ?</em></h2>
+</div>
+
+<div class="alert-card warning" style="margin-bottom:20px">
+  <div class="alert-icon">🔎</div>
+  <div>
+    <div class="alert-title">Données à compléter — Recherche terrain nécessaire</div>
+    <div class="alert-body">Bravo n'apparaît pas dans les comparateurs officiels DGFiP comme PA immatriculée. Il s'agit vraisemblablement d'un outil d'accompagnement, de gestion de projet ou d'une solution SaaS positionnée sur la conformité. L'analyse ci-dessous est basée sur le profil hypothétique d'un tel acteur — à valider par une prise de contact directe (demo + grille tarifaire).</div>
+  </div>
+</div>
+
+<div class="bravo-card">
+  <div class="bravo-header">
+    <div class="bravo-icon">⚡</div>
+    <div>
+      <div class="bravo-name">Bravo</div>
+      <div class="bravo-sub">Solution à évaluer — Positionnement & tarifs à confirmer par demo</div>
+    </div>
+    <div style="margin-left:auto"><span class="chip chip-purple">À analyser</span></div>
+  </div>
+  <div class="bravo-grid">
+    <div class="bravo-block">
+      <div class="bravo-block-title">Questions à poser en demo</div>
+      <div class="bravo-item">Bravo est-il une PA immatriculée DGFiP ou un outil de conseil ?</div>
+      <div class="bravo-item">Quelle est la structure tarifaire (abonnement, mission, licence) ?</div>
+      <div class="bravo-item">Quelles intégrations ERP sont disponibles nativement ?</div>
+      <div class="bravo-item">Quel est le délai moyen de déploiement annoncé ?</div>
+      <div class="bravo-item">Programme partenaire cabinet EC disponible ?</div>
+      <div class="bravo-item">Qui sont les références clients PME en France ?</div>
+    </div>
+    <div class="bravo-block">
+      <div class="bravo-block-title">Scenarios d'usage pour Factelys</div>
+      <div class="bravo-item">Scénario A : Bravo comme outil de gestion de projet mission → utilisation interne pour piloter les accompagnements clients</div>
+      <div class="bravo-item">Scénario B : Bravo comme PA recommandée → intégrer dans notre panel de recommandations neutrales</div>
+      <div class="bravo-item">Scénario C : Bravo comme concurrent → surveiller, identifier la différenciation Factelys</div>
+      <div class="bravo-item">Scénario D : Programme partenaire → co-commercial avec commission</div>
+    </div>
+    <div class="bravo-block">
+      <div class="bravo-block-title">Grille d'évaluation post-demo</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#4C1D95;padding:5px 8px;background:rgba(255,255,255,.5);border-radius:5px">
+          <span>PA immatriculée DGFiP</span><span style="font-family:var(--fm);color:#7C3AED">□ Oui □ Non</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#4C1D95;padding:5px 8px;background:rgba(255,255,255,.5);border-radius:5px">
+          <span>Tarif mensuel PME</span><span style="font-family:var(--fm);color:#7C3AED">___€/mois</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#4C1D95;padding:5px 8px;background:rgba(255,255,255,.5);border-radius:5px">
+          <span>Connecteur Sage/Cegid</span><span style="font-family:var(--fm);color:#7C3AED">□ Oui □ Non</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#4C1D95;padding:5px 8px;background:rgba(255,255,255,.5);border-radius:5px">
+          <span>Programme partenaire EC</span><span style="font-family:var(--fm);color:#7C3AED">□ Oui □ Non</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#4C1D95;padding:5px 8px;background:rgba(255,255,255,.5);border-radius:5px">
+          <span>Commission recommandation</span><span style="font-family:var(--fm);color:#7C3AED">___%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     05 — STRUCTURE TARIFAIRE
+     ═══════════════════════════════════════════ -->
+<section id="prix">
+<div class="sh">
+  <div class="sh-tag">05 — Structure tarifaire du marché</div>
+  <h2 class="sh-title">Où se positionne Factelys <em>dans la gamme prix ?</em></h2>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+  <span class="lbl">Abonnement PA mensuel par segment — Fourchettes marché 2026</span>
+  <svg viewBox="0 0 900 180" style="width:100%;display:block;margin-top:8px">
+    <!-- Grid -->
+    <line x1="140" y1="10" x2="140" y2="150" stroke="#E2E6F0" stroke-width="1"/>
+    <line x1="140" y1="150" x2="870" y2="150" stroke="#E2E6F0" stroke-width="1.5"/>
+    <!-- Labels -->
+    <text x="10" y="48" fill="#111827" font-size="11" font-family="Sora,sans-serif" font-weight="600">Micro/Auto-E</text>
+    <text x="10" y="78" fill="#111827" font-size="11" font-family="Sora,sans-serif" font-weight="600">TPE (1-9 sal.)</text>
+    <text x="10" y="108" fill="#002B6E" font-size="11" font-family="Sora,sans-serif" font-weight="700">PME ← Factelys</text>
+    <text x="10" y="138" fill="#111827" font-size="11" font-family="Sora,sans-serif" font-weight="600">ETI / GE</text>
+    <!-- Scale -->
+    <text x="140" y="165" fill="#9CA3AF" font-size="9" font-family="monospace" text-anchor="middle">0€</text>
+    <text x="290" y="165" fill="#9CA3AF" font-size="9" font-family="monospace" text-anchor="middle">50€</text>
+    <text x="440" y="165" fill="#9CA3AF" font-size="9" font-family="monospace" text-anchor="middle">100€</text>
+    <text x="590" y="165" fill="#9CA3AF" font-size="9" font-family="monospace" text-anchor="middle">150€</text>
+    <text x="740" y="165" fill="#9CA3AF" font-size="9" font-family="monospace" text-anchor="middle">200€</text>
+    <text x="870" y="165" fill="#9CA3AF" font-size="9" font-family="monospace" text-anchor="middle">250€+</text>
+    <!-- Bars -->
+    <!-- Micro: 0-20€ -->
+    <rect x="140" y="32" width="60" height="22" rx="3" fill="#9CA3AF" opacity=".7"/>
+    <text x="215" y="47" fill="#5C6880" font-size="9" font-family="monospace">0 → 20€/mois · Tiime/Indy gratuit</text>
+    <!-- TPE: 15-60€ -->
+    <rect x="185" y="62" width="165" height="22" rx="3" fill="#1E6B3C" opacity=".7"/>
+    <text x="360" y="77" fill="#5C6880" font-size="9" font-family="monospace">15 → 60€/mois · Pennylane/Evoliz</text>
+    <!-- PME: 50-300€ — highlighted -->
+    <rect x="290" y="92" width="625" height="26" rx="3" fill="#002B6E"/>
+    <rect x="290" y="92" width="625" height="26" rx="3" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="109" fill="#fff" font-size="10" font-family="Sora,sans-serif" font-weight="600">50 → 300€/mois · Sage, Cegid, Yooz, Libeo</text>
+    <!-- ETI: 300-2000€ -->
+    <rect x="740" y="122" width="120" height="22" rx="3" fill="#C0392B" opacity=".6"/>
+    <text x="870" y="137" fill="#5C6880" font-size="9" font-family="monospace" text-anchor="end">300€+ → KE · Esker/Basware</text>
+  </svg>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px">
+  <div class="card">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:10px">Coût transition PME (DGFiP)</div>
+    <div style="font-family:var(--fd);font-size:28px;color:var(--m);font-style:italic;line-height:1;margin-bottom:6px">1 000–1 500€</div>
+    <div style="font-size:12px;color:var(--g);line-height:1.5">Coût officiel DGFiP pour mise en conformité PME : choix PA + adaptation logiciel + formation. <strong>Factelys se positionne dans cette fourchette.</strong></div>
+  </div>
+  <div class="card">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:10px">Coût par facture (PA)</div>
+    <div style="font-family:var(--fd);font-size:28px;color:var(--r);font-style:italic;line-height:1;margin-bottom:6px">0,30–1,50€</div>
+    <div style="font-size:12px;color:var(--g);line-height:1.5">Tarif à la facture selon volume et PA. PME 200 factures/mois = 60-300€/mois en frais variables. Frais d'intégration ERP : 200-2 000€ supplémentaires.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:10px">ROI Factelys vs solo</div>
+    <div style="font-family:var(--fd);font-size:28px;color:var(--ok);font-style:italic;line-height:1;margin-bottom:6px">-70% de temps</div>
+    <div style="font-size:12px;color:var(--g);line-height:1.5">PME solo = 3-6 mois · risque d'erreurs = amendes. Factelys = 3 semaines garanties. Valeur temps + risque évité largement supérieure au coût d'accompagnement.</div>
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     06 — 5 FORCES DE PORTER
+     ═══════════════════════════════════════════ -->
+<section id="porter">
+<div class="sh">
+  <div class="sh-tag">06 — Analyse des 5 forces de Porter</div>
+  <h2 class="sh-title">L'attractivité du marché <em>conseil FE.</em></h2>
+  <p class="sh-desc">Les 5 forces de Porter appliquées au segment "accompagnement / conseil mise en conformité facturation électronique TPE-PME France". Score 1 (favorable) à 5 (défavorable) pour Factelys.</p>
+</div>
+
+<!-- PORTER CENTRAL SVG -->
+<div class="card" style="padding:24px;margin-bottom:20px">
+  <svg viewBox="0 0 860 280" style="width:100%;display:block">
+    <!-- Background circles -->
+    <circle cx="430" cy="140" r="70" fill="rgba(0,43,110,.06)" stroke="var(--bc)" stroke-width="1.5"/>
+    <circle cx="430" cy="140" r="48" fill="rgba(0,43,110,.1)" stroke="var(--m)" stroke-width="1"/>
+    <!-- Center -->
+    <text x="430" y="132" fill="#002B6E" font-size="11" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">FACTELYS</text>
+    <text x="430" y="147" fill="#002B6E" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">Conseil FE</text>
+    <text x="430" y="162" fill="#C0392B" font-size="11" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">TPE/PME</text>
+    <!-- Arrows from center to forces -->
+    <line x1="430" y1="92" x2="430" y2="30" stroke="#E2E6F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="430" y1="188" x2="430" y2="260" stroke="#E2E6F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="360" y1="120" x2="180" y2="60" stroke="#E2E6F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="360" y1="160" x2="180" y2="220" stroke="#E2E6F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="500" y1="130" x2="680" y2="90" stroke="#E2E6F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+    <!-- Force 1: Entrants (top) -->
+    <rect x="310" y="8" width="240" height="52" rx="6" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1.5"/>
+    <text x="430" y="26" fill="#5B21B6" font-size="10" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">① NOUVEAUX ENTRANTS</text>
+    <text x="430" y="40" fill="#5B21B6" font-size="9.5" text-anchor="middle" font-family="Sora,sans-serif">Menace : MODÉRÉE · Score 3/5</text>
+    <text x="430" y="53" fill="#7C3AED" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">EC spécialisés · SSII · Consultants freelance</text>
+
+    <!-- Force 2: Substituts (bottom) -->
+    <rect x="310" y="222" width="240" height="52" rx="6" fill="rgba(180,83,9,.08)" stroke="rgba(180,83,9,.3)" stroke-width="1.5"/>
+    <text x="430" y="240" fill="#92400E" font-size="10" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">② SUBSTITUTS</text>
+    <text x="430" y="254" fill="#92400E" font-size="9.5" text-anchor="middle" font-family="Sora,sans-serif">Menace : FAIBLE · Score 2/5</text>
+    <text x="430" y="267" fill="#B45309" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">Self-service PA · ERP natif · Gestion interne</text>
+
+    <!-- Force 3: Fournisseurs (left-top) -->
+    <rect x="10" y="30" width="200" height="60" rx="6" fill="rgba(30,107,60,.07)" stroke="rgba(30,107,60,.25)" stroke-width="1.5"/>
+    <text x="110" y="50" fill="#1E6B3C" font-size="10" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">③ POUVOIR FOURNISSEURS</text>
+    <text x="110" y="64" fill="#1E6B3C" font-size="9.5" text-anchor="middle" font-family="Sora,sans-serif">Faible · Score 2/5</text>
+    <text x="110" y="78" fill="#2E7D32" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">112 PA disponibles · pas de dépendance</text>
+
+    <!-- Force 4: Acheteurs (left-bottom) -->
+    <rect x="10" y="190" width="200" height="60" rx="6" fill="rgba(0,68,181,.07)" stroke="rgba(0,68,181,.25)" stroke-width="1.5"/>
+    <text x="110" y="210" fill="#0044B5" font-size="10" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">④ POUVOIR ACHETEURS</text>
+    <text x="110" y="224" fill="#0044B5" font-size="9.5" text-anchor="middle" font-family="Sora,sans-serif">Faible · Score 1/5</text>
+    <text x="110" y="238" fill="#003A96" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">PME captives · urgence légale · peu de choix</text>
+
+    <!-- Force 5: Rivalité (right) -->
+    <rect x="650" y="60" width="200" height="60" rx="6" fill="rgba(192,57,43,.08)" stroke="rgba(192,57,43,.25)" stroke-width="1.5"/>
+    <text x="750" y="80" fill="#C0392B" font-size="10" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">⑤ RIVALITÉ SECTORIELLE</text>
+    <text x="750" y="94" fill="#C0392B" font-size="9.5" text-anchor="middle" font-family="Sora,sans-serif">Modérée · Score 3/5</text>
+    <text x="750" y="108" fill="#A93224" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">Libeo, EC, Axess · marché en croissance</text>
+
+    <!-- Score total -->
+    <rect x="650" y="200" width="200" height="50" rx="6" fill="#002B6E"/>
+    <text x="750" y="219" fill="#fff" font-size="10" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">Score moyen Porter</text>
+    <text x="750" y="238" fill="#F5A89A" font-size="16" text-anchor="middle" font-weight="700" font-family="DM Serif Display,serif" font-style="italic">2.2 / 5</text>
+    <text x="750" y="243" fill="rgba(255,255,255,.5)" font-size="8.5" text-anchor="middle" font-family="Sora,sans-serif">→ Secteur très attractif pour Factelys</text>
+  </svg>
+</div>
+
+<div class="porter-grid">
+  <div class="porter-card" style="background:rgba(124,58,237,.05);border-color:rgba(124,58,237,.2)">
+    <div class="porter-score-label" style="color:#7C3AED">① MENACE NOUVEAUX ENTRANTS</div>
+    <div class="porter-title">Score : 3/5 — Modérée</div>
+    <div class="porter-score-bar"><div class="porter-score-fill" style="width:60%;background:#7C3AED"></div></div>
+    <div class="porter-items">
+      <div class="porter-item">Les EC généralistes peuvent facilement se spécialiser FE</div>
+      <div class="porter-item">Les PA elles-mêmes tentent d'intégrer l'accompagnement</div>
+      <div class="porter-item">Coût d'entrée faible : pas de capital lourd nécessaire</div>
+      <div class="porter-item pos">Barrière : expertise réglementaire + statut EC prend du temps</div>
+      <div class="porter-item pos">Barrière : réputation et références prennent du temps à construire</div>
+    </div>
+    <div class="porter-conclusion" style="background:rgba(124,58,237,.08);color:#5B21B6">Agir vite pour installer Factelys comme référence avant que le marché se structure davantage.</div>
+  </div>
+  <div class="porter-card" style="background:rgba(180,83,9,.05);border-color:rgba(180,83,9,.2)">
+    <div class="porter-score-label" style="color:var(--y)">② MENACE PRODUITS SUBSTITUTS</div>
+    <div class="porter-title">Score : 2/5 — Faible</div>
+    <div class="porter-score-bar"><div class="porter-score-fill" style="width:40%;background:var(--y)"></div></div>
+    <div class="porter-items">
+      <div class="porter-item">Self-service possible pour TPE simples (Pennylane, Indy)</div>
+      <div class="porter-item">ERP intégrant PA native (Sage, Cegid) = substitut partiel</div>
+      <div class="porter-item pos">PME avec ERP complexe : substitut insuffisant → besoin d'aide</div>
+      <div class="porter-item pos">Risque légal (15€/facture) pousse à l'accompagnement</div>
+      <div class="porter-item pos">86% non prêtes malgré les outils self-service disponibles</div>
+    </div>
+    <div class="porter-conclusion" style="background:rgba(180,83,9,.08);color:#92400E">Le self-service ne remplace pas l'accompagnement humain pour les PME avec ERP. Force majeure.</div>
+  </div>
+  <div class="porter-card" style="background:rgba(30,107,60,.05);border-color:rgba(30,107,60,.2)">
+    <div class="porter-score-label" style="color:var(--ok)">③ POUVOIR DES FOURNISSEURS</div>
+    <div class="porter-title">Score : 2/5 — Faible ✓</div>
+    <div class="porter-score-bar"><div class="porter-score-fill" style="width:40%;background:var(--ok)"></div></div>
+    <div class="porter-items">
+      <div class="porter-item pos">112 PA disponibles → multi-sourcing total, aucune dépendance</div>
+      <div class="porter-item pos">Neutralité affichée = liberté totale de recommandation</div>
+      <div class="porter-item pos">Partenariats PA possibles avec commissions entrantes</div>
+      <div class="porter-item">Risque : certaines PA imposent des frais partenaires</div>
+      <div class="porter-item">Risque : PA peut changer ses CGV après déploiement client</div>
+    </div>
+    <div class="porter-conclusion" style="background:rgba(30,107,60,.08);color:var(--ok)">Position de force : Factelys n'est pas lié à un fournisseur. Levier de différenciation majeur.</div>
+  </div>
+  <div class="porter-card" style="background:rgba(0,68,181,.05);border-color:var(--bc)">
+    <div class="porter-score-label" style="color:var(--b)">④ POUVOIR DES ACHETEURS</div>
+    <div class="porter-title">Score : 1/5 — Très faible ✓✓</div>
+    <div class="porter-score-bar"><div class="porter-score-fill" style="width:20%;background:var(--b)"></div></div>
+    <div class="porter-items">
+      <div class="porter-item pos">Obligation légale = pas de choix de ne pas acheter</div>
+      <div class="porter-item pos">Amende 15€/facture = pression externe qui force l'achat</div>
+      <div class="porter-item pos">PME peu informées, peu capables de négocier sur la technique</div>
+      <div class="porter-item pos">Urgence = faible sensibilité au prix (494€ vs 7 500€ d'amende/mois)</div>
+      <div class="porter-item">Risque : bouche-à-oreille négatif si mauvaise expérience</div>
+    </div>
+    <div class="porter-conclusion" style="background:rgba(0,68,181,.08);color:var(--m)">La contrainte légale crée une demande captive. Meilleur scénario possible pour un prestataire de services.</div>
+  </div>
+  <div class="porter-card" style="background:var(--rc);border-color:rgba(192,57,43,.2);grid-column:1/-1">
+    <div class="porter-score-label" style="color:var(--r)">⑤ INTENSITÉ DE LA RIVALITÉ CONCURRENTIELLE</div>
+    <div class="porter-title">Score : 3/5 — Modérée (mais marché en croissance = moins de pression)</div>
+    <div class="porter-score-bar"><div class="porter-score-fill" style="width:60%;background:var(--r)"></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="porter-items">
+        <div class="porter-item">Libeo accélère fort sur PME (2500+ clients, levées fonds)</div>
+        <div class="porter-item">EC généralistes absorbent la mission en lettre de mission</div>
+        <div class="porter-item">Les PA proposent de plus en plus d'accompagnement intégré</div>
+      </div>
+      <div class="porter-items">
+        <div class="porter-item pos">Marché en croissance explosive → tous les acteurs peuvent grandir</div>
+        <div class="porter-item pos">86% du marché non servi → pas besoin de voler des clients</div>
+        <div class="porter-item pos">Spécialisation EC + neutralité = segment propre à Factelys</div>
+      </div>
+    </div>
+    <div class="porter-conclusion" style="background:rgba(255,255,255,.4);color:var(--r);margin-top:10px">La rivalité est réelle mais le marché est tellement grand (10M d'entreprises) qu'il y a de la place pour plusieurs acteurs spécialisés pendant 24 mois minimum.</div>
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     07 — POSITIONNEMENT
+     ═══════════════════════════════════════════ -->
+<section id="positionnement">
+<div class="sh">
+  <div class="sh-tag">07 — Carte de positionnement</div>
+  <h2 class="sh-title">Le créneau <em>unique de Factelys.</em></h2>
+</div>
+
+<div class="card" style="padding:20px;margin-bottom:28px">
+  <svg viewBox="0 0 860 380" style="width:100%;display:block">
+    <!-- Quadrant fills -->
+    <rect x="60" y="10" width="390" height="180" rx="4" fill="rgba(30,107,60,.05)"/>
+    <rect x="450" y="10" width="400" height="180" rx="4" fill="rgba(192,57,43,.04)"/>
+    <rect x="60" y="190" width="390" height="180" rx="4" fill="rgba(0,68,181,.04)"/>
+    <rect x="450" y="190" width="400" height="180" rx="4" fill="rgba(180,83,9,.03)"/>
+    <!-- Axes -->
+    <line x1="60" y1="190" x2="850" y2="190" stroke="#E2E6F0" stroke-width="2"/>
+    <line x1="450" y1="10" x2="450" y2="375" stroke="#E2E6F0" stroke-width="2"/>
+    <!-- Axis labels -->
+    <text x="455" y="370" fill="#9CA3AF" font-size="10" font-family="Sora,sans-serif">Simple</text>
+    <text x="840" y="370" fill="#9CA3AF" font-size="10" font-family="Sora,sans-serif" text-anchor="end">Technique</text>
+    <text x="70" y="20" fill="#9CA3AF" font-size="10" font-family="Sora,sans-serif">Fort accompagnement ↑</text>
+    <text x="70" y="375" fill="#9CA3AF" font-size="10" font-family="Sora,sans-serif">Self-service ↓</text>
+    <!-- Quadrant labels -->
+    <text x="255" y="30" fill="rgba(30,107,60,.5)" font-size="10" text-anchor="middle" font-family="Sora,sans-serif" font-weight="600">Accompagnement fort · Simple → Zone Factelys ✓</text>
+    <text x="650" y="30" fill="rgba(192,57,43,.5)" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">Fort accompagnement · Technique → ETI (Libeo/Axess)</text>
+    <text x="255" y="375" fill="rgba(0,68,181,.5)" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">Self-service · Simple → Auto-E/TPE</text>
+    <text x="650" y="375" fill="rgba(180,83,9,.5)" font-size="10" text-anchor="middle" font-family="Sora,sans-serif">Self-service · Technique → ERP seul</text>
+
+    <!-- Players -->
+    <!-- Tiime/Indy/Abby -->
+    <circle cx="120" cy="330" r="18" fill="rgba(156,163,175,.2)" stroke="#9CA3AF" stroke-width="1.5"/>
+    <text x="120" y="334" fill="#6B7280" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Tiime/Indy</text>
+    <text x="120" y="354" fill="#9CA3AF" font-size="8" text-anchor="middle">0-20€/mois</text>
+    <!-- Pennylane -->
+    <circle cx="220" cy="290" r="22" fill="rgba(245,158,11,.15)" stroke="#D97706" stroke-width="1.5"/>
+    <text x="220" y="294" fill="#B45309" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Pennylane</text>
+    <text x="220" y="314" fill="#9CA3AF" font-size="8" text-anchor="middle">14-89€/mois</text>
+    <!-- Qonto -->
+    <circle cx="330" cy="300" r="20" fill="rgba(16,185,129,.15)" stroke="#059669" stroke-width="1.5"/>
+    <text x="330" y="304" fill="#065F46" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Qonto</text>
+    <text x="330" y="320" fill="#9CA3AF" font-size="8" text-anchor="middle">Banque+PA</text>
+    <!-- Sage/Cegid/EBP -->
+    <circle cx="570" cy="280" r="24" fill="rgba(180,83,9,.12)" stroke="#B45309" stroke-width="1.5"/>
+    <text x="570" y="281" fill="#92400E" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Sage/Cegid</text>
+    <text x="570" y="293" fill="#92400E" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">EBP</text>
+    <text x="570" y="308" fill="#9CA3AF" font-size="8" text-anchor="middle">ERP+module PA</text>
+    <!-- Yooz -->
+    <circle cx="670" cy="230" r="22" fill="rgba(0,68,181,.12)" stroke="var(--b)" stroke-width="1.5"/>
+    <text x="670" y="234" fill="var(--m)" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Yooz</text>
+    <text x="670" y="252" fill="#9CA3AF" font-size="8" text-anchor="middle">89€+/mois AP</text>
+    <!-- EC généraux -->
+    <circle cx="170" cy="130" r="28" fill="rgba(30,107,60,.1)" stroke="rgba(30,107,60,.3)" stroke-width="1.5"/>
+    <text x="170" y="128" fill="#1E6B3C" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Experts-</text>
+    <text x="170" y="140" fill="#1E6B3C" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Comptables</text>
+    <text x="170" y="160" fill="#9CA3AF" font-size="8" text-anchor="middle">Généralistes</text>
+    <!-- Libeo -->
+    <circle cx="680" cy="110" r="26" fill="rgba(124,58,237,.12)" stroke="#7C3AED" stroke-width="1.5"/>
+    <text x="680" y="114" fill="#5B21B6" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Libeo</text>
+    <text x="680" y="132" fill="#9CA3AF" font-size="8" text-anchor="middle">2500+ clients</text>
+    <!-- Axess -->
+    <circle cx="570" cy="130" r="20" fill="rgba(55,65,81,.1)" stroke="#374151" stroke-width="1.5"/>
+    <text x="570" y="134" fill="#1F2937" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Axess</text>
+    <text x="570" y="150" fill="#9CA3AF" font-size="8" text-anchor="middle">3-10K€</text>
+    <!-- Esker/Basware -->
+    <circle cx="780" cy="90" r="22" fill="rgba(192,57,43,.1)" stroke="rgba(192,57,43,.3)" stroke-width="1.5"/>
+    <text x="780" y="88" fill="#C0392B" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Esker</text>
+    <text x="780" y="100" fill="#C0392B" font-size="9" text-anchor="middle" font-weight="600" font-family="Sora,sans-serif">Basware</text>
+    <text x="780" y="115" fill="#9CA3AF" font-size="8" text-anchor="middle">ETI/GE</text>
+
+    <!-- FACTELYS — grand cercle avec zone -->
+    <circle cx="280" cy="90" r="50" fill="rgba(0,43,110,.06)" stroke="rgba(0,43,110,.15)" stroke-width="1" stroke-dasharray="5,3"/>
+    <circle cx="280" cy="90" r="32" fill="#002B6E" stroke="#C0392B" stroke-width="2.5"/>
+    <circle cx="261" cy="76" r="6" fill="#C0392B"/>
+    <text x="280" y="88" fill="#fff" font-size="11" text-anchor="middle" font-weight="700" font-family="Sora,sans-serif">Factelys</text>
+    <text x="280" y="102" fill="rgba(255,255,255,.7)" font-size="8.5" text-anchor="middle">Expert-EC · TPE/PME</text>
+    <!-- Label zone -->
+    <text x="280" y="148" fill="rgba(0,43,110,.8)" font-size="9.5" text-anchor="middle" font-family="Sora,sans-serif" font-weight="600">Zone de différenciation unique</text>
+    <text x="280" y="160" fill="rgba(0,43,110,.6)" font-size="9" text-anchor="middle" font-family="Sora,sans-serif">EC certifié + Neutre + Humain</text>
+  </svg>
+  <div style="font-size:11px;color:var(--g);text-align:center;padding-top:8px">Factelys occupe un quadrant quasi-unique : fort accompagnement humain + orienté PME simples + neutralité PA + statut EC. Aucun concurrent direct positionné de la même façon.</div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     08 — SWOT
+     ═══════════════════════════════════════════ -->
+<section id="swot">
+<div class="sh">
+  <div class="sh-tag">08 — Analyse SWOT Factelys</div>
+  <h2 class="sh-title">Forces, faiblesses, opportunités, <em>menaces.</em></h2>
+</div>
+
+<div class="swot-grid">
+  <div class="swot-card swot-s">
+    <div class="swot-label">Forces — Ce qu'on maîtrise</div>
+    <div class="swot-title">6 avantages structurels</div>
+    <div class="swot-item">Statut Expert-Comptable = crédibilité institutionnelle + mandat DGFiP officiel</div>
+    <div class="swot-item">Neutralité 100% PA — seul acteur sans conflit d'intérêt commercial</div>
+    <div class="swot-item">Approche humaine et pédagogique — 86% des PME perdues en font la demande</div>
+    <div class="swot-item">Délai 3 semaines garanti vs 3-6 mois en solo ou en mode self-service</div>
+    <div class="swot-item">Positionnement TPE/PME exclusif — pas de dispersion sur ETI/GE</div>
+    <div class="swot-item">Offre modulaire 490→2490€ — point d'entrée accessible, upsell naturel</div>
+  </div>
+  <div class="swot-card swot-w">
+    <div class="swot-label">Faiblesses — Ce qu'il faut traiter</div>
+    <div class="swot-title">5 points de fragilité</div>
+    <div class="swot-item">Notoriété quasi-nulle à J-90 de l'obligation légale</div>
+    <div class="swot-item">Capacité fortement limitée : 1 expert = 5 missions max/mois en solo</div>
+    <div class="swot-item">Absence d'outil propriétaire = dépendance aux PA recommandées</div>
+    <div class="swot-item">Données Bravo insuffisantes — offre à compléter (voir section 04)</div>
+    <div class="swot-item">Tarification peu connue des PME → nécessite éducation marché</div>
+  </div>
+  <div class="swot-card swot-o">
+    <div class="swot-label">Opportunités — Ce que le marché offre</div>
+    <div class="swot-title">6 leviers à saisir</div>
+    <div class="swot-item">86% des PME non prêtes → demande latente massive dès maintenant</div>
+    <div class="swot-item">PPF recentré = 100% des entreprises ont besoin d'une PA payante</div>
+    <div class="swot-item">Mandat DGFiP → partenariat avec les 3 000 cabinets EC = canal de distribution</div>
+    <div class="swot-item">Nouvelle offre "Réception 2026" à 290€ → point d'entrée marché immédiat</div>
+    <div class="swot-item">PME mécontentes des solutions self-service = cible de ré-accompagnement</div>
+    <div class="swot-item">Potentiel programme white-label pour cabinets EC (sous-traitance spécialisée)</div>
+  </div>
+  <div class="swot-card swot-t">
+    <div class="swot-label">Menaces — Ce qu'il faut surveiller</div>
+    <div class="swot-title">5 risques à mitiger</div>
+    <div class="swot-item">Report émission PME à 2028 → ralentissement du marché conseil émission</div>
+    <div class="swot-item">Libeo accélère massivement (2500+ clients, marketing agressif)</div>
+    <div class="swot-item">Les PA intègrent de plus en plus de l'accompagnement dans leur SaaS</div>
+    <div class="swot-item">EC généralistes renforcent leur expertise FE → moins de délégation</div>
+    <div class="swot-item">Commoditisation si la réforme devient perçue comme trop simple</div>
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     09 — PLAN 90 JOURS + KPIs
+     ═══════════════════════════════════════════ -->
+<section id="plan">
+<div class="sh">
+  <div class="sh-tag">09 — Plan d'action 90 jours + KPIs</div>
+  <h2 class="sh-title">De la stratégie à <em>l'exécution mesurée.</em></h2>
+  <p class="sh-desc">Chaque action est associée à un KPI de résultat, un KPI d'activité, et un horizon temporel. Pilotage hebdomadaire recommandé.</p>
+</div>
+
+<div class="kpi-plan">
+
+  <div class="kpi-action-card">
+    <div class="kac-horizon" style="color:var(--r)">🚨 J-0 → J-14 · IMMÉDIAT</div>
+    <div class="kac-title">Lancer l'offre "Réception 2026" à 290€ HT</div>
+    <div class="kac-kpis">
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Clients signés offre 290€</div>
+        <div class="kac-kpi-target" style="color:var(--r)">≥ 5 / mois</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Taux conversion diagnostic</div>
+        <div class="kac-kpi-target" style="color:var(--r)">≥ 30%</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Délai signature devis</div>
+        <div class="kac-kpi-target" style="color:var(--r)">&lt; 48h</div>
+      </div>
+    </div>
+    <div class="kac-action">Créer page devis dédiée · Post LinkedIn d'annonce · Email à base contacts · Lien Forms diagnostic gratuit</div>
+  </div>
+
+  <div class="kpi-action-card">
+    <div class="kac-horizon" style="color:var(--r)">🚨 J-0 → J-7 · IMMÉDIAT</div>
+    <div class="kac-title">Corriger le calendrier dans toutes les communications</div>
+    <div class="kac-kpis">
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Documents mis à jour</div>
+        <div class="kac-kpi-target" style="color:var(--r)">100%</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Posts LinkedIn corrigés</div>
+        <div class="kac-kpi-target" style="color:var(--r)">1 post correctif</div>
+      </div>
+    </div>
+    <div class="kac-action">Webinar slides · Offres commerciales · LinkedIn · Kit Forms · Transformer en opportunité : "Réception 2026 obligatoire = agir maintenant"</div>
+  </div>
+
+  <div class="kpi-action-card">
+    <div class="kac-horizon" style="color:var(--y)">📅 J-15 → J-30 · COURT TERME</div>
+    <div class="kac-title">Lancer le programme partenaire cabinets EC</div>
+    <div class="kac-kpis">
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Cabinets contactés</div>
+        <div class="kac-kpi-target" style="color:var(--y)">≥ 20</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Conventions signées</div>
+        <div class="kac-kpi-target" style="color:var(--y)">≥ 3</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Clients apportés / cab.</div>
+        <div class="kac-kpi-target" style="color:var(--y)">5-15/an</div>
+      </div>
+    </div>
+    <div class="kac-action">Créer kit partenaire EC (convention + supports brandés + grille commissions) · Cibler cabinets 50-300 clients PME · Commission 15%</div>
+  </div>
+
+  <div class="kpi-action-card">
+    <div class="kac-horizon" style="color:var(--y)">📅 J-15 → J-45 · COURT TERME</div>
+    <div class="kac-title">Étude Bravo complète + décision usage</div>
+    <div class="kac-kpis">
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Demo réalisée</div>
+        <div class="kac-kpi-target" style="color:var(--y)">Semaine 3</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Grille évaluation remplie</div>
+        <div class="kac-kpi-target" style="color:var(--y)">100%</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Décision finale</div>
+        <div class="kac-kpi-target" style="color:var(--y)">J+45 max</div>
+      </div>
+    </div>
+    <div class="kac-action">Compléter grille section 04 · Négocier conditions partenaire · Tester avec 1 client pilote · Valider ou rejeter selon score</div>
+  </div>
+
+  <div class="kpi-action-card">
+    <div class="kac-horizon" style="color:var(--m)">📆 J-30 → J-60 · MOYEN TERME</div>
+    <div class="kac-title">LinkedIn — 2 posts/semaine + webinar mensuel</div>
+    <div class="kac-kpis">
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Abonnés LinkedIn</div>
+        <div class="kac-kpi-target" style="color:var(--m)">+500/mois</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Engagement moyen / post</div>
+        <div class="kac-kpi-target" style="color:var(--m)">≥ 3%</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Inscrits webinar</div>
+        <div class="kac-kpi-target" style="color:var(--m)">≥ 80/session</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Leads webinar → devis</div>
+        <div class="kac-kpi-target" style="color:var(--m)">≥ 5%</div>
+      </div>
+    </div>
+    <div class="kac-action">Utiliser le kit 8 posts LinkedIn déjà créé · Créer 1 webinar/mois · Objectif : 4-5 clients par webinar · Planifier jusqu'en décembre 2026</div>
+  </div>
+
+  <div class="kpi-action-card">
+    <div class="kac-horizon" style="color:var(--ok)">📆 J-45 → J-90 · MOYEN TERME</div>
+    <div class="kac-title">Objectifs revenus et pipeline global</div>
+    <div class="kac-kpis">
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">CA mensuel cible</div>
+        <div class="kac-kpi-target" style="color:var(--ok)">≥ 15 000€ HT</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Missions actives/mois</div>
+        <div class="kac-kpi-target" style="color:var(--ok)">8-12</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">NPS clients</div>
+        <div class="kac-kpi-target" style="color:var(--ok)">≥ 70</div>
+      </div>
+      <div class="kac-kpi">
+        <div class="kac-kpi-label">Taux conformité post-mission</div>
+        <div class="kac-kpi-target" style="color:var(--ok)">≥ 98%</div>
+      </div>
+    </div>
+    <div class="kac-action">Mix offres : 2× Essentiel (980€) + 4× Complet (5 960€) + 2× Express (4 980€) + 4× Flash (3 960€) = ~15 880€/mois · Recruter 1 consultant associé si pipeline > 12 missions</div>
+  </div>
+
+</div>
+
+<!-- TABLEAU DE BORD MENSUEL -->
+<div class="card" style="margin-bottom:28px">
+  <span class="lbl">Tableau de bord mensuel recommandé — Suivi hebdomadaire</span>
+  <div style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px">
+    <thead>
+      <tr style="background:var(--cr)">
+        <th style="padding:9px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--g);border-bottom:1px solid var(--gc)">Indicateur</th>
+        <th style="padding:9px 12px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--g);border-bottom:1px solid var(--gc)">Cible mensuelle</th>
+        <th style="padding:9px 12px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--g);border-bottom:1px solid var(--gc)">Outil de mesure</th>
+        <th style="padding:9px 12px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--g);border-bottom:1px solid var(--gc)">Alerte si</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);color:var(--ch)">CA facturé HT</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;font-family:var(--fm);color:var(--ok);font-weight:700">≥ 15 000€</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--g)">Excel facturation</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--r);font-size:11px">&lt; 10 000€</td></tr>
+      <tr><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);color:var(--ch)">Diagnostics gratuits réalisés</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;font-family:var(--fm);color:var(--m);font-weight:700">≥ 20</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--g)">Forms + Calendly</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--r);font-size:11px">&lt; 12</td></tr>
+      <tr><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);color:var(--ch)">Taux conversion diagnostic → devis</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;font-family:var(--fm);color:var(--m);font-weight:700">≥ 30%</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--g)">CRM / Excel pipeline</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--r);font-size:11px">&lt; 20%</td></tr>
+      <tr><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);color:var(--ch)">Abonnés LinkedIn</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;font-family:var(--fm);color:var(--m);font-weight:700">+500/mois</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--g)">LinkedIn Analytics</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--r);font-size:11px">&lt; 200/mois</td></tr>
+      <tr><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);color:var(--ch)">Missions actives simultanées</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;font-family:var(--fm);color:var(--m);font-weight:700">5–12</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--g)">Tableau suivi Excel</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--r);font-size:11px">&gt; 12 → recruter</td></tr>
+      <tr><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);color:var(--ch)">NPS clients post-mission</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;font-family:var(--fm);color:var(--ok);font-weight:700">≥ 70</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--g)">Forms Satisfaction</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--r);font-size:11px">&lt; 50 → process à revoir</td></tr>
+      <tr><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);color:var(--ch)">Cabinets EC partenaires actifs</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;font-family:var(--fm);color:var(--y);font-weight:700">≥ 3 à J+30</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--g)">Conventions signées</td><td style="padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.04);text-align:center;color:var(--r);font-size:11px">0 à J+30 → accélérer</td></tr>
+      <tr><td style="padding:9px 12px;color:var(--ch)">Taux conformité clients déployés</td><td style="padding:9px 12px;text-align:center;font-family:var(--fm);color:var(--ok);font-weight:700">≥ 98%</td><td style="padding:9px 12px;text-align:center;color:var(--g)">Suivi post-mission J+30</td><td style="padding:9px 12px;text-align:center;color:var(--r);font-size:11px">&lt; 95% → audit qualité</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- FINAL SOURCES & NEXT STEPS -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px">
+  <div class="card" style="padding:16px 18px">
+    <span class="lbl" style="margin-bottom:8px">Sources & données</span>
+    <div style="font-size:11px;color:var(--g);line-height:1.75">
+      <strong style="color:var(--m)">DGFiP</strong> · Liste PA (112) · Mars 2026<br>
+      <strong style="color:var(--m)">economie.gouv.fr</strong> · Calendrier officiel 2026-2027<br>
+      <strong style="color:var(--m)">Libeo</strong> · Blog · Checklist 6/3/1 mois<br>
+      <strong style="color:var(--m)">Comparateur-efacturation.fr</strong> · Tarifs PA<br>
+      <strong style="color:var(--m)">tool-advisor.fr</strong> · Prix PA détaillés<br>
+      <strong style="color:var(--m)">Baromètre Factelys</strong> · n=1 200 · Juin 2026<br>
+      <strong style="color:var(--m)">INSEE</strong> · Démographie entreprises France 2025
+    </div>
+  </div>
+  <div class="card" style="padding:16px 18px">
+    <span class="lbl" style="margin-bottom:8px">Actions immédiates post-lecture</span>
+    <div style="font-size:11px;color:var(--g);line-height:1.8">
+      <span style="color:var(--r);font-weight:700">□</span> Créer l'offre "Réception 2026" à 290€ · Cette semaine<br>
+      <span style="color:var(--r);font-weight:700">□</span> Corriger calendrier webinar (émission PME = 2027) · J+3<br>
+      <span style="color:var(--r);font-weight:700">□</span> Prendre RDV démo Bravo · J+7<br>
+      <span style="color:var(--y);font-weight:700">□</span> Lancer campagne cabinets EC (kit partenaire) · J+15<br>
+      <span style="color:var(--y);font-weight:700">□</span> Publier 1er post LinkedIn "Réception 2026" · J+3<br>
+      <span style="color:var(--m);font-weight:700">□</span> Mettre en place tableau de bord KPIs · J+7<br>
+      <span style="color:var(--m);font-weight:700">□</span> Surveiller amendement LSVE (report 2028) · Hebdo
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="doc-footer">
+  <div class="df-logo"><div class="df-dot"></div><span class="df-name">Factelys</span></div>
+  <div style="font-size:12px;color:rgba(255,255,255,.45)">Analyse marché v2 · Document confidentiel · Non diffusable</div>
+  <div class="df-contact">Christophe Hubert · Expert-Comptable<br>c.hubert@factelys.fr · factelys.fr · Avril 2026</div>
+</div>
+
+</body>
+</html>

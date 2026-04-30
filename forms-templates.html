@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factelys — Kit 5 Templates Microsoft Forms</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --m:#002B6E;--b:#0044B5;--bc:#D6E4FF;--bp:#EEF4FF;
+  --r:#C0392B;--rc:#FDECEA;
+  --cr:#F4F6FC;--ch:#111827;--g:#5C6880;--gc:#E2E6F0;--w:#fff;
+  --fd:'DM Serif Display',Georgia,serif;
+  --fs:'Sora',system-ui,sans-serif;
+  --fm:'JetBrains Mono',monospace;
+}
+html{font-family:var(--fs);background:var(--cr);color:var(--ch);font-size:15px;line-height:1.6}
+body{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+
+/* ── PAGE HEADER ── */
+.page-header{background:var(--m);margin:0 -24px;padding:44px 64px 40px;position:relative;overflow:hidden;margin-bottom:48px}
+.ph-bg1{position:absolute;right:-80px;top:-80px;width:400px;height:400px;border-radius:50%;background:rgba(192,57,43,.09);pointer-events:none}
+.ph-bg2{position:absolute;right:200px;bottom:-100px;width:240px;height:240px;border-radius:50%;background:rgba(0,68,181,.14);pointer-events:none}
+.ph-bar{width:36px;height:4px;background:var(--r);border-radius:2px;margin-bottom:20px;position:relative;z-index:1}
+.ph-logo{display:flex;align-items:center;gap:7px;margin-bottom:12px;position:relative;z-index:1}
+.ph-dot{width:9px;height:9px;background:var(--r);border-radius:2px}
+.ph-name{font-weight:600;font-size:14px;color:#fff;letter-spacing:-.02em}
+.ph-title{font-family:var(--fd);font-size:42px;color:#fff;line-height:1.05;position:relative;z-index:1}
+.ph-title em{color:#F5A89A;font-style:italic}
+.ph-sub{font-size:13px;color:rgba(255,255,255,.42);letter-spacing:.06em;text-transform:uppercase;margin-top:10px;position:relative;z-index:1}
+.ph-meta{display:flex;gap:32px;margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);position:relative;z-index:1;flex-wrap:wrap}
+.pm-item{display:flex;flex-direction:column;gap:2px}
+.pm-label{font-size:9px;color:rgba(255,255,255,.28);letter-spacing:.1em;text-transform:uppercase;font-family:var(--fm)}
+.pm-val{font-size:13px;color:rgba(255,255,255,.7);font-weight:500}
+
+/* ── TEMPLATES INDEX ── */
+.index-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:48px}
+.index-card{border-radius:12px;padding:16px 14px;cursor:pointer;transition:all .15s;border:1.5px solid var(--gc);background:var(--w);text-align:center}
+.index-card:hover{border-color:var(--m);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,43,110,.08)}
+.index-card.active{border-color:var(--m);background:var(--bp)}
+.index-card-num{font-family:var(--fm);font-size:10px;color:var(--g);margin-bottom:8px}
+.index-card-icon{font-size:22px;margin-bottom:8px}
+.index-card-title{font-size:12px;font-weight:600;color:var(--m);line-height:1.3}
+.index-card-badge{display:inline-block;margin-top:6px;font-size:10px;padding:2px 8px;border-radius:99px;font-weight:600}
+
+/* ── FORM PREVIEW CONTAINER ── */
+.form-panel{display:none}
+.form-panel.active{display:block}
+
+/* ── MS FORMS CHROME ── */
+.forms-chrome{background:#f3f2f1;border-radius:12px;overflow:hidden;border:1px solid var(--gc);margin-bottom:32px}
+.forms-toolbar{background:#fff;border-bottom:1px solid var(--gc);padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.ft-left{display:flex;align-items:center;gap:12px}
+.ft-logo-wrap{display:flex;align-items:center;gap:6px}
+.ft-ms-icon{width:16px;height:16px;background:linear-gradient(135deg,#0078D4,#00BCF2);border-radius:3px}
+.ft-ms-text{font-size:13px;color:#323130;font-weight:500}
+.ft-filename{font-size:13px;color:#605E5C;border-bottom:1px dashed #C8C6C4;padding-bottom:1px;cursor:text}
+.ft-tabs{display:flex;gap:0}
+.ft-tab{padding:8px 14px;font-size:13px;color:#605E5C;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.ft-tab.active{color:var(--b);border-bottom-color:var(--b);font-weight:500}
+.ft-right{display:flex;align-items:center;gap:10px}
+.ft-btn{padding:6px 16px;border-radius:4px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid}
+.ft-btn-preview{background:transparent;color:#323130;border-color:#C8C6C4}
+.ft-btn-send{background:var(--b);color:#fff;border-color:var(--b)}
+
+/* ── FORM BODY ── */
+.form-body{padding:24px;background:#f3f2f1;min-height:600px;display:flex;gap:20px}
+.form-canvas{flex:1;display:flex;flex-direction:column;gap:12px;max-width:680px;margin:0 auto}
+
+/* ── FORM HEADER CARD ── */
+.form-header-card{border-radius:10px;overflow:hidden;box-shadow:0 1.6px 3.6px rgba(0,0,0,.13),0 .3px .9px rgba(0,0,0,.1)}
+.fhc-banner{height:10px}
+.fhc-body{background:#fff;padding:24px 28px}
+.fhc-title{font-family:var(--fd);font-size:24px;color:var(--m);margin-bottom:6px;line-height:1.2}
+.fhc-desc{font-size:13px;color:var(--g);line-height:1.65}
+.fhc-logo-row{display:flex;align-items:center;gap:6px;margin-top:14px;padding-top:12px;border-top:1px solid var(--gc)}
+.fhc-ldot{width:7px;height:7px;background:var(--r);border-radius:2px}
+.fhc-lname{font-weight:600;font-size:12px;color:var(--g)}
+.fhc-badge{margin-left:auto;font-size:11px;padding:2px 10px;border-radius:99px;font-weight:600}
+
+/* ── QUESTION CARDS ── */
+.q-card{background:#fff;border-radius:10px;padding:20px 24px;box-shadow:0 1.6px 3.6px rgba(0,0,0,.13),0 .3px .9px rgba(0,0,0,.1);position:relative}
+.q-card.required::after{content:'*';position:absolute;top:20px;right:20px;color:var(--r);font-size:14px;font-weight:700}
+.q-card-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
+.q-num{font-family:var(--fm);font-size:10px;color:var(--g);min-width:20px;padding-top:2px}
+.q-body{flex:1}
+.q-label{font-size:14px;font-weight:500;color:var(--ch);line-height:1.4;margin-bottom:4px}
+.q-sublabel{font-size:12px;color:var(--g);line-height:1.5;margin-bottom:12px}
+.q-type-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--g);margin-bottom:10px}
+
+/* Input simulations */
+.q-input{width:100%;padding:8px 12px;border:1px solid var(--gc);border-radius:4px;font-family:var(--fs);font-size:13px;color:var(--g);background:var(--cr);cursor:default}
+.q-input-multiline{width:100%;padding:8px 12px;border:1px solid var(--gc);border-radius:4px;font-family:var(--fs);font-size:13px;color:var(--g);background:var(--cr);height:80px;resize:none;cursor:default}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-option{display:flex;align-items:center;gap:10px;padding:9px 13px;border:1px solid var(--gc);border-radius:6px;font-size:13px;color:var(--ch);background:var(--w);cursor:pointer;transition:all .12s}
+.q-option:hover{border-color:var(--b);background:var(--bp)}
+.q-option-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--gc);flex-shrink:0}
+.q-option-check{width:16px;height:16px;border-radius:3px;border:2px solid var(--gc);flex-shrink:0}
+.q-options-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.q-rating{display:flex;gap:6px;flex-wrap:wrap}
+.q-star{width:32px;height:32px;border:1px solid var(--gc);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .12s}
+.q-star:hover{border-color:var(--b);background:var(--bp)}
+.q-scale{display:flex;gap:4px;align-items:flex-end}
+.q-scale-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.q-scale-num{font-size:11px;color:var(--g);font-family:var(--fm)}
+.q-scale-btn{width:36px;height:36px;border:1px solid var(--gc);border-radius:4px;font-size:13px;font-weight:500;color:var(--g);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .12s}
+.q-scale-btn:hover{border-color:var(--b);background:var(--bp);color:var(--m)}
+.q-scale-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--g);margin-top:4px}
+.q-dropdown-wrap{position:relative}
+.q-dropdown{width:100%;padding:8px 12px;border:1px solid var(--gc);border-radius:4px;font-family:var(--fs);font-size:13px;color:var(--g);background:var(--w);appearance:none;cursor:pointer}
+.q-dropdown-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--g);font-size:11px;pointer-events:none}
+.q-date{padding:8px 12px;border:1px solid var(--gc);border-radius:4px;font-family:var(--fm);font-size:13px;color:var(--g);width:180px;background:var(--cr)}
+.q-matrix{width:100%;border-collapse:collapse;font-size:12px}
+.q-matrix th{background:var(--cr);padding:8px 10px;font-weight:500;color:var(--g);border:1px solid var(--gc);text-align:center;font-size:11px}
+.q-matrix td{padding:8px 10px;border:1px solid var(--gc);text-align:center;vertical-align:middle}
+.q-matrix td.row-label{text-align:left;color:var(--ch);font-weight:400;font-size:12px}
+.q-matrix-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--gc);margin:0 auto;display:block}
+.q-logic-note{margin-top:10px;padding:8px 12px;background:#FFF8E1;border-left:3px solid #F9A825;border-radius:0 4px 4px 0;font-size:11px;color:#5D4037;line-height:1.5}
+.q-logic-note strong{color:#4E342E}
+.q-section-break{text-align:center;padding:8px 0}
+.q-section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);display:inline-flex;align-items:center;gap:8px}
+.q-section-label::before,.q-section-label::after{content:'';flex:1;height:1px;background:var(--gc);width:60px;display:inline-block}
+
+/* submit */
+.form-submit{text-align:center;padding:16px 0}
+.q-submit-btn{padding:11px 40px;background:var(--m);color:#fff;border:none;border-radius:6px;font-family:var(--fs);font-size:14px;font-weight:600;cursor:pointer;letter-spacing:-.01em}
+
+/* ── INSTRUCTIONS PANEL ── */
+.instructions{background:var(--w);border:1px solid var(--gc);border-radius:12px;padding:24px 28px;margin-bottom:32px}
+.instr-title{font-size:14px;font-weight:600;color:var(--m);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.instr-title::before{content:'📋';font-size:16px}
+.instr-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.instr-block{background:var(--cr);border-radius:8px;padding:14px 16px}
+.instr-block-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);margin-bottom:8px}
+.instr-step{display:flex;gap:10px;margin-bottom:6px;font-size:12px;color:var(--ch);line-height:1.5}
+.instr-step-num{width:18px;height:18px;min-width:18px;border-radius:50%;background:var(--m);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+.instr-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--ch);margin-bottom:5px;line-height:1.5}
+.instr-item::before{content:'→';color:var(--r);flex-shrink:0;margin-top:.1em;font-weight:700}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--gc);font-size:12px}
+.setting-row:last-child{border-bottom:none}
+.setting-key{color:var(--g)}
+.setting-val{color:var(--ch);font-weight:500}
+.setting-val.on{color:var(--ok,#1E6B3C);font-weight:600}
+.setting-val.off{color:var(--r)}
+
+/* ── CHIP TAGS ── */
+.chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600}
+.chip-b{background:var(--bc);color:var(--m)}
+.chip-r{background:var(--rc);color:var(--r)}
+.chip-g{background:#E6F4EA;color:#1E6B3C}
+.chip-y{background:#FFF8E1;color:#F57F17}
+.chip-w{background:var(--gc);color:var(--g)}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-bg1"></div><div class="ph-bg2"></div>
+  <div class="ph-bar"></div>
+  <div class="ph-logo"><div class="ph-dot"></div><span class="ph-name">Factelys</span></div>
+  <h1 class="ph-title">Kit Templates<br><em>Microsoft Forms.</em></h1>
+  <p class="ph-sub">5 formulaires prêts à déployer · DA Factelys · Marine & Rouge</p>
+  <div class="ph-meta">
+    <div class="pm-item"><span class="pm-label">Formulaires</span><span class="pm-val">5 templates</span></div>
+    <div class="pm-item"><span class="pm-label">Usages</span><span class="pm-val">Diagnostic · Webinar · Contact · Satisfaction · Audit</span></div>
+    <div class="pm-item"><span class="pm-label">Outil</span><span class="pm-val">Microsoft Forms (Office 365)</span></div>
+    <div class="pm-item"><span class="pm-label">Couleurs</span><span class="pm-val">#002B6E · #C0392B</span></div>
+  </div>
+</div>
+
+<!-- INDEX -->
+<div class="index-grid">
+  <div class="index-card active" onclick="showForm(0)">
+    <div class="index-card-num">01</div>
+    <div class="index-card-icon">🔍</div>
+    <div class="index-card-title">Diagnostic de conformité</div>
+    <span class="index-card-badge chip-r">Lead qualif.</span>
+  </div>
+  <div class="index-card" onclick="showForm(1)">
+    <div class="index-card-num">02</div>
+    <div class="index-card-icon">🎙️</div>
+    <div class="index-card-title">Inscription Webinar</div>
+    <span class="index-card-badge chip-b">Événement</span>
+  </div>
+  <div class="index-card" onclick="showForm(2)">
+    <div class="index-card-num">03</div>
+    <div class="index-card-icon">📬</div>
+    <div class="index-card-title">Demande de contact</div>
+    <span class="index-card-badge chip-g">Prise de RDV</span>
+  </div>
+  <div class="index-card" onclick="showForm(3)">
+    <div class="index-card-num">04</div>
+    <div class="index-card-icon">⭐</div>
+    <div class="index-card-title">Satisfaction client</div>
+    <span class="index-card-badge chip-y">Post-mission</span>
+  </div>
+  <div class="index-card" onclick="showForm(4)">
+    <div class="index-card-num">05</div>
+    <div class="index-card-icon">📋</div>
+    <div class="index-card-title">Audit initial complet</div>
+    <span class="index-card-badge chip-w">Onboarding</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FORM 01 — DIAGNOSTIC DE CONFORMITÉ
+     ══════════════════════════════════════════════════════════ -->
+<div class="form-panel active" id="form-0">
+
+  <div class="instructions">
+    <div class="instr-title">Instructions de déploiement — Formulaire 01</div>
+    <div class="instr-grid">
+      <div class="instr-block">
+        <div class="instr-block-title">Étapes de création dans Forms</div>
+        <div class="instr-step"><div class="instr-step-num">1</div>Aller sur forms.microsoft.com → Nouveau formulaire</div>
+        <div class="instr-step"><div class="instr-step-num">2</div>Titre : "Diagnostic de conformité — Facturation électronique"</div>
+        <div class="instr-step"><div class="instr-step-num">3</div>Thème : choisir "Personnaliser" → couleur #002B6E (marine)</div>
+        <div class="instr-step"><div class="instr-step-num">4</div>Ajouter logo Factelys en en-tête</div>
+        <div class="instr-step"><div class="instr-step-num">5</div>Copier chaque question dans l'ordre ci-dessous</div>
+        <div class="instr-step"><div class="instr-step-num">6</div>Activer la branche conditionnelle sur Q4 (voir note)</div>
+      </div>
+      <div class="instr-block">
+        <div class="instr-block-title">Paramètres Forms recommandés</div>
+        <div class="setting-row"><span class="setting-key">Accepter les réponses</span><span class="setting-val on">Activé</span></div>
+        <div class="setting-row"><span class="setting-key">Une réponse par personne</span><span class="setting-val on">Activé</span></div>
+        <div class="setting-row"><span class="setting-key">Afficher la barre de progression</span><span class="setting-val on">Activé</span></div>
+        <div class="setting-row"><span class="setting-key">Mélanger les questions</span><span class="setting-val off">Désactivé</span></div>
+        <div class="setting-row"><span class="setting-key">Notification email à chaque réponse</span><span class="setting-val on">Activé → c.hubert@factelys.fr</span></div>
+        <div class="setting-row"><span class="setting-key">Message de confirmation</span><span class="setting-val">Personnalisé (voir bas)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="forms-chrome">
+    <div class="forms-toolbar">
+      <div class="ft-left">
+        <div class="ft-logo-wrap"><div class="ft-ms-icon"></div><span class="ft-ms-text">Forms</span></div>
+        <span class="ft-filename">Diagnostic conformité — Factelys.xlsx</span>
+      </div>
+      <div class="ft-tabs">
+        <div class="ft-tab active">Questions</div>
+        <div class="ft-tab">Réponses</div>
+      </div>
+      <div class="ft-right">
+        <button class="ft-btn ft-btn-preview">Aperçu</button>
+        <button class="ft-btn ft-btn-send">Envoyer</button>
+      </div>
+    </div>
+    <div class="form-body">
+      <div class="form-canvas">
+
+        <!-- Header -->
+        <div class="form-header-card">
+          <div class="fhc-banner" style="background:linear-gradient(to right,#002B6E,#0044B5)"></div>
+          <div class="fhc-body">
+            <div class="fhc-title">Diagnostic de conformité<br>Facturation électronique 2026</div>
+            <div class="fhc-desc">Ce diagnostic gratuit de 3 minutes nous permet d'évaluer votre situation par rapport à l'obligation de facturation électronique (1er septembre 2026) et de vous proposer un plan d'action personnalisé. Toutes vos réponses sont confidentielles.</div>
+            <div class="fhc-logo-row">
+              <div class="fhc-ldot"></div>
+              <span class="fhc-lname">Factelys · Accompagnement facturation électronique</span>
+              <span class="fhc-badge chip-r">Gratuit · Sans engagement</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="q-card">
+          <div class="q-section-label">Votre entreprise</div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="q-card required">
+          <div class="q-card-top">
+            <span class="q-num">01</span>
+            <div class="q-body">
+              <div class="q-label">Quel est le nom de votre entreprise ?</div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" type="text" placeholder="Raison sociale de votre société..." readonly>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="q-card required">
+          <div class="q-card-top">
+            <span class="q-num">02</span>
+            <div class="q-body">
+              <div class="q-label">Votre secteur d'activité</div>
+              <div class="q-type-tag">📋 Liste déroulante</div>
+              <div class="q-dropdown-wrap">
+                <select class="q-dropdown">
+                  <option>Sélectionnez votre secteur...</option>
+                  <option>Commerce / Distribution</option>
+                  <option>Services aux entreprises (B2B)</option>
+                  <option>BTP / Artisanat</option>
+                  <option>Transport / Logistique</option>
+                  <option>Santé / Médical</option>
+                  <option>Industrie / Fabrication</option>
+                  <option>Immobilier</option>
+                  <option>Restauration / Hôtellerie</option>
+                  <option>Professions libérales</option>
+                  <option>Autre</option>
+                </select>
+                <span class="q-dropdown-arrow">▾</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="q-card required">
+          <div class="q-card-top">
+            <span class="q-num">03</span>
+            <div class="q-body">
+              <div class="q-label">Quelle est la taille de votre entreprise ?</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Micro-entreprise / Auto-entrepreneur</div>
+                <div class="q-option"><div class="q-option-radio"></div>TPE (1 à 9 salariés)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Petite entreprise (10 à 49 salariés)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Moyenne entreprise (50 à 249 salariés)</div>
+                <div class="q-option"><div class="q-option-radio"></div>ETI / Grande entreprise (250+)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="q-card required">
+          <div class="q-card-top">
+            <span class="q-num">04</span>
+            <div class="q-body">
+              <div class="q-label">Quel est votre volume mensuel de factures B2B émises ?</div>
+              <div class="q-sublabel">Factures envoyées à vos clients professionnels chaque mois (estimation)</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Moins de 10 factures / mois</div>
+                <div class="q-option"><div class="q-option-radio"></div>10 à 50 factures / mois</div>
+                <div class="q-option"><div class="q-option-radio"></div>50 à 200 factures / mois</div>
+                <div class="q-option"><div class="q-option-radio"></div>Plus de 200 factures / mois</div>
+              </div>
+              <div class="q-logic-note"><strong>💡 Logique conditionnelle :</strong> Si "Moins de 10 / mois" → afficher Q4b "Avez-vous aussi des ventes B2C ?" · Sinon → continuer Q5</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="q-card required">
+          <div class="q-card-top">
+            <span class="q-num">05</span>
+            <div class="q-body">
+              <div class="q-label">Quel logiciel utilisez-vous pour votre facturation ?</div>
+              <div class="q-type-tag">☑️ Choix multiples</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-check"></div>Sage (50, 100, 200…)</div>
+                <div class="q-option"><div class="q-option-check"></div>Cegid (Business, Quadra…)</div>
+                <div class="q-option"><div class="q-option-check"></div>EBP</div>
+                <div class="q-option"><div class="q-option-check"></div>Pennylane</div>
+                <div class="q-option"><div class="q-option-check"></div>Sellsy</div>
+                <div class="q-option"><div class="q-option-check"></div>Excel / Word (manuel)</div>
+                <div class="q-option"><div class="q-option-check"></div>Autre ERP (SAP, Oracle, Odoo…)</div>
+                <div class="q-option"><div class="q-option-check"></div>Je ne sais pas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="q-card"><div class="q-section-label">Votre niveau de préparation</div></div>
+
+        <!-- Q6 -->
+        <div class="q-card required">
+          <div class="q-card-top">
+            <span class="q-num">06</span>
+            <div class="q-body">
+              <div class="q-label">Où en êtes-vous dans votre préparation à la facturation électronique ?</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Je découvre le sujet aujourd'hui</div>
+                <div class="q-option"><div class="q-option-radio"></div>J'ai lu des informations mais pas encore commencé</div>
+                <div class="q-option"><div class="q-option-radio"></div>J'ai commencé à me renseigner sur les plateformes</div>
+                <div class="q-option"><div class="q-option-radio"></div>J'ai déjà choisi une plateforme (PDP / PPF)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Je suis en cours de déploiement</div>
+                <div class="q-option"><div class="q-option-radio"></div>Je suis déjà conforme ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="q-card">
+          <div class="q-card-top">
+            <span class="q-num">07</span>
+            <div class="q-body">
+              <div class="q-label">Quels sont vos principaux freins à la mise en conformité ? <span style="font-size:12px;color:var(--g)">(optionnel)</span></div>
+              <div class="q-type-tag">☑️ Choix multiples</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-check"></div>Manque de temps pour s'en occuper</div>
+                <div class="q-option"><div class="q-option-check"></div>Je ne comprends pas les exigences techniques</div>
+                <div class="q-option"><div class="q-option-check"></div>Coût des plateformes</div>
+                <div class="q-option"><div class="q-option-check"></div>Peur de perturber mes processus actuels</div>
+                <div class="q-option"><div class="q-option-check"></div>Mon équipe informatique n'est pas disponible</div>
+                <div class="q-option"><div class="q-option-check"></div>Je ne sais pas par où commencer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="q-card"><div class="q-section-label">Vos coordonnées</div></div>
+
+        <!-- Q8 -->
+        <div class="q-card required">
+          <div class="q-card-top">
+            <span class="q-num">08</span>
+            <div class="q-body">
+              <div class="q-label">Votre prénom et nom</div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" type="text" placeholder="Prénom NOM..." readonly>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="q-card required">
+          <div class="q-card-top">
+            <span class="q-num">09</span>
+            <div class="q-body">
+              <div class="q-label">Votre email professionnel</div>
+              <div class="q-type-tag">📧 Email</div>
+              <input class="q-input" type="email" placeholder="prenom.nom@societe.fr" readonly>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="q-card">
+          <div class="q-card-top">
+            <span class="q-num">10</span>
+            <div class="q-body">
+              <div class="q-label">Votre numéro de téléphone <span style="font-size:12px;color:var(--g)">(optionnel)</span></div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" type="text" placeholder="+33 6 00 00 00 00" readonly>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="q-card">
+          <div class="q-card-top">
+            <span class="q-num">11</span>
+            <div class="q-body">
+              <div class="q-label">Souhaitez-vous être recontacté par Factelys pour un diagnostic approfondi gratuit (30 min) ?</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Oui, je suis intéressé(e)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Oui, mais pas avant dans 1 mois</div>
+                <div class="q-option"><div class="q-option-radio"></div>Non merci, juste les informations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-submit">
+          <button class="q-submit-btn">Envoyer mon diagnostic →</button>
+          <div style="font-size:11px;color:var(--g);margin-top:8px">Vos données sont confidentielles · Réponse sous 24h ouvrées</div>
+        </div>
+
+        <div style="padding:14px 16px;background:#E8F5E9;border-radius:8px;border-left:3px solid #4CAF50;font-size:12px;color:#2E7D32;line-height:1.6">
+          <strong>Message de confirmation à configurer dans Forms :</strong><br>
+          "Merci ! Nous avons bien reçu votre diagnostic. Christophe Hubert vous contactera sous 24h ouvrées pour vous présenter un plan d'action personnalisé. D'ici là, téléchargez notre checklist gratuite : factelys.fr/checklist"
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FORM 02 — INSCRIPTION WEBINAR
+     ══════════════════════════════════════════════════════════ -->
+<div class="form-panel" id="form-1">
+
+  <div class="instructions">
+    <div class="instr-title">Instructions de déploiement — Formulaire 02</div>
+    <div class="instr-grid">
+      <div class="instr-block">
+        <div class="instr-block-title">Points clés de configuration</div>
+        <div class="instr-item">Thème Forms : rouge #C0392B pour ce formulaire (thème événement)</div>
+        <div class="instr-item">Limiter les réponses à 100 maximum (Paramètres → Date de fin / limite)</div>
+        <div class="instr-item">Activer la notification automatique à chaque inscription</div>
+        <div class="instr-item">Connecter à Power Automate pour envoyer le lien Zoom automatiquement</div>
+        <div class="instr-item">Exporter les réponses vers Excel la veille du webinar pour la liste de présence</div>
+      </div>
+      <div class="instr-block">
+        <div class="instr-block-title">Paramètres Forms</div>
+        <div class="setting-row"><span class="setting-key">Limite de réponses</span><span class="setting-val on">100 participants</span></div>
+        <div class="setting-row"><span class="setting-key">Date de clôture</span><span class="setting-val">29 juin 2026 23:59</span></div>
+        <div class="setting-row"><span class="setting-key">Notification à chaque réponse</span><span class="setting-val on">Activé</span></div>
+        <div class="setting-row"><span class="setting-key">Résumé des réponses visible</span><span class="setting-val off">Désactivé</span></div>
+        <div class="setting-row"><span class="setting-key">Power Automate → email confirmation</span><span class="setting-val on">À configurer</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="forms-chrome">
+    <div class="forms-toolbar">
+      <div class="ft-left">
+        <div class="ft-logo-wrap"><div class="ft-ms-icon"></div><span class="ft-ms-text">Forms</span></div>
+        <span class="ft-filename">Inscription Webinar 30 juin — Factelys.xlsx</span>
+      </div>
+      <div class="ft-tabs"><div class="ft-tab active">Questions</div><div class="ft-tab">Réponses</div></div>
+      <div class="ft-right"><button class="ft-btn ft-btn-preview">Aperçu</button><button class="ft-btn ft-btn-send">Envoyer</button></div>
+    </div>
+    <div class="form-body">
+      <div class="form-canvas">
+
+        <div class="form-header-card">
+          <div class="fhc-banner" style="background:linear-gradient(to right,#C0392B,#E74C3C)"></div>
+          <div class="fhc-body">
+            <div class="fhc-title">Inscription au Webinar<br>Facturation électronique 2026</div>
+            <div class="fhc-desc">📅 <strong>Mardi 30 juin 2026</strong> · 12h30 – 13h30 · En ligne (lien envoyé par email)<br><br>Comprenez la réforme en 1h chrono : obligations légales, choix de plateforme, étapes de mise en conformité. 🎁 Checklist 15 points offerte à tous les participants.</div>
+            <div class="fhc-logo-row">
+              <div class="fhc-ldot"></div>
+              <span class="fhc-lname">Factelys · Webinar gratuit</span>
+              <span class="fhc-badge chip-r">⚠️ Places limitées à 100</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">01</span>
+            <div class="q-body">
+              <div class="q-label">Votre prénom et nom</div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" type="text" placeholder="Prénom NOM..." readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">02</span>
+            <div class="q-body">
+              <div class="q-label">Votre email (lien de connexion envoyé à cette adresse)</div>
+              <div class="q-type-tag">📧 Email</div>
+              <input class="q-input" type="email" placeholder="prenom.nom@societe.fr" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">03</span>
+            <div class="q-body">
+              <div class="q-label">Nom de votre entreprise</div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" type="text" placeholder="Raison sociale..." readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">04</span>
+            <div class="q-body">
+              <div class="q-label">Votre fonction dans l'entreprise</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Dirigeant / PDG / Gérant</div>
+                <div class="q-option"><div class="q-option-radio"></div>Directeur Administratif et Financier (DAF)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Responsable comptable / Comptable</div>
+                <div class="q-option"><div class="q-option-radio"></div>Expert-Comptable</div>
+                <div class="q-option"><div class="q-option-radio"></div>Responsable IT / DSI</div>
+                <div class="q-option"><div class="q-option-radio"></div>Autre</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-card-top"><span class="q-num">05</span>
+            <div class="q-body">
+              <div class="q-label">Avez-vous une question spécifique à poser lors du webinar ? <span style="font-size:12px;color:var(--g)">(optionnel)</span></div>
+              <div class="q-sublabel">Nous ferons notre maximum pour y répondre en direct.</div>
+              <div class="q-type-tag">📝 Texte long</div>
+              <textarea class="q-input-multiline" placeholder="Votre question..." readonly></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">06</span>
+            <div class="q-body">
+              <div class="q-label">Comment avez-vous entendu parler de ce webinar ?</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>LinkedIn (post ou publicité)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Email reçu de Factelys</div>
+                <div class="q-option"><div class="q-option-radio"></div>Recommandation d'un collègue</div>
+                <div class="q-option"><div class="q-option-radio"></div>Recherche Google</div>
+                <div class="q-option"><div class="q-option-radio"></div>Mon expert-comptable</div>
+                <div class="q-option"><div class="q-option-radio"></div>Autre</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-card-top"><span class="q-num">07</span>
+            <div class="q-body">
+              <div class="q-label">J'accepte de recevoir les communications de Factelys</div>
+              <div class="q-sublabel">Newsletter, ressources, invitations webinar (désabonnement à tout moment)</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Oui, j'accepte</div>
+                <div class="q-option"><div class="q-option-radio"></div>Non merci</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-submit">
+          <button class="q-submit-btn" style="background:var(--r)">M'inscrire au webinar →</button>
+          <div style="font-size:11px;color:var(--g);margin-top:8px">Lien de connexion envoyé par email · 100 places max</div>
+        </div>
+
+        <div style="padding:14px 16px;background:#E8F5E9;border-radius:8px;border-left:3px solid #4CAF50;font-size:12px;color:#2E7D32;line-height:1.6">
+          <strong>Confirmation automatique à paramétrer :</strong><br>
+          "Votre inscription est confirmée ! 🎉 Vous recevrez le lien Zoom 24h avant le webinar. En attendant : factelys.fr/ressources pour accéder à nos guides gratuits."
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FORM 03 — DEMANDE DE CONTACT / DIAGNOSTIC GRATUIT
+     ══════════════════════════════════════════════════════════ -->
+<div class="form-panel" id="form-2">
+
+  <div class="instructions">
+    <div class="instr-title">Instructions de déploiement — Formulaire 03</div>
+    <div class="instr-grid">
+      <div class="instr-block">
+        <div class="instr-block-title">Usage & intégration</div>
+        <div class="instr-item">Intégrer ce formulaire en iFrame sur factelys.fr/diagnostic</div>
+        <div class="instr-item">Connecter à Outlook via Power Automate → créer une tâche Teams à chaque soumission</div>
+        <div class="instr-item">Répondre sous 4h ouvrées (créer un rappel automatique dans Teams)</div>
+        <div class="instr-item">Relier à Microsoft Bookings pour proposer directement un créneau calendrier</div>
+      </div>
+      <div class="instr-block">
+        <div class="instr-block-title">Paramètres</div>
+        <div class="setting-row"><span class="setting-key">Réponses illimitées</span><span class="setting-val on">Activé</span></div>
+        <div class="setting-row"><span class="setting-key">Email de notification</span><span class="setting-val on">c.hubert@factelys.fr</span></div>
+        <div class="setting-row"><span class="setting-key">Afficher résumé après soumission</span><span class="setting-val off">Non</span></div>
+        <div class="setting-row"><span class="setting-key">Thème couleur</span><span class="setting-val">#002B6E Marine</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="forms-chrome">
+    <div class="forms-toolbar">
+      <div class="ft-left">
+        <div class="ft-logo-wrap"><div class="ft-ms-icon"></div><span class="ft-ms-text">Forms</span></div>
+        <span class="ft-filename">Demande diagnostic gratuit — Factelys.xlsx</span>
+      </div>
+      <div class="ft-tabs"><div class="ft-tab active">Questions</div><div class="ft-tab">Réponses</div></div>
+      <div class="ft-right"><button class="ft-btn ft-btn-preview">Aperçu</button><button class="ft-btn ft-btn-send">Envoyer</button></div>
+    </div>
+    <div class="form-body">
+      <div class="form-canvas">
+
+        <div class="form-header-card">
+          <div class="fhc-banner" style="background:linear-gradient(to right,#002B6E,#003A96)"></div>
+          <div class="fhc-body">
+            <div class="fhc-title">Réservez votre diagnostic<br>gratuit — 30 minutes</div>
+            <div class="fhc-desc">Christophe Hubert analyse votre situation et vous propose un plan d'action personnalisé. Gratuit, sans engagement, en visio ou par téléphone. Réponse sous 4h ouvrées.</div>
+            <div class="fhc-logo-row">
+              <div class="fhc-ldot"></div>
+              <span class="fhc-lname">Factelys · Expert-Comptable · Facturation électronique</span>
+              <span class="fhc-badge chip-g">Gratuit · 30 min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">01</span>
+            <div class="q-body"><div class="q-label">Prénom et nom</div><div class="q-type-tag">📝 Texte court</div><input class="q-input" placeholder="Prénom NOM..." readonly></div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">02</span>
+            <div class="q-body"><div class="q-label">Email professionnel</div><div class="q-type-tag">📧 Email</div><input class="q-input" placeholder="prenom@societe.fr" readonly></div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">03</span>
+            <div class="q-body"><div class="q-label">Téléphone</div><div class="q-type-tag">📝 Texte court</div><input class="q-input" placeholder="+33 6 00 00 00 00" readonly></div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">04</span>
+            <div class="q-body"><div class="q-label">Nom de votre entreprise et SIRET</div><div class="q-type-tag">📝 Texte court</div><input class="q-input" placeholder="Société — 123 456 789 00012" readonly></div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">05</span>
+            <div class="q-body">
+              <div class="q-label">Quel est votre principal besoin ?</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Comprendre ce que la réforme implique pour moi</div>
+                <div class="q-option"><div class="q-option-radio"></div>Choisir la bonne plateforme (PDP / PPF)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Être accompagné de A à Z dans la mise en conformité</div>
+                <div class="q-option"><div class="q-option-radio"></div>Former mon équipe à la facturation électronique</div>
+                <div class="q-option"><div class="q-option-radio"></div>Audit de conformité de mon dispositif actuel</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-card-top"><span class="q-num">06</span>
+            <div class="q-body">
+              <div class="q-label">Vos disponibilités pour le diagnostic <span style="font-size:12px;color:var(--g)">(optionnel)</span></div>
+              <div class="q-type-tag">☑️ Choix multiples</div>
+              <div class="q-options-grid">
+                <div class="q-option"><div class="q-option-check"></div>Lundi matin</div>
+                <div class="q-option"><div class="q-option-check"></div>Lundi après-midi</div>
+                <div class="q-option"><div class="q-option-check"></div>Mardi matin</div>
+                <div class="q-option"><div class="q-option-check"></div>Mardi après-midi</div>
+                <div class="q-option"><div class="q-option-check"></div>Mercredi matin</div>
+                <div class="q-option"><div class="q-option-check"></div>Mercredi après-midi</div>
+                <div class="q-option"><div class="q-option-check"></div>Jeudi matin</div>
+                <div class="q-option"><div class="q-option-check"></div>Jeudi après-midi</div>
+                <div class="q-option"><div class="q-option-check"></div>Vendredi matin</div>
+                <div class="q-option"><div class="q-option-check"></div>Vendredi après-midi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-card-top"><span class="q-num">07</span>
+            <div class="q-body">
+              <div class="q-label">Informations complémentaires <span style="font-size:12px;color:var(--g)">(optionnel)</span></div>
+              <div class="q-sublabel">ERP utilisé, nombre de factures/mois, situation spécifique…</div>
+              <div class="q-type-tag">📝 Texte long</div>
+              <textarea class="q-input-multiline" placeholder="Décrivez votre situation..." readonly></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-submit">
+          <button class="q-submit-btn">Réserver mon diagnostic gratuit →</button>
+          <div style="font-size:11px;color:var(--g);margin-top:8px">Réponse sous 4h ouvrées · Sans engagement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FORM 04 — SATISFACTION CLIENT
+     ══════════════════════════════════════════════════════════ -->
+<div class="form-panel" id="form-3">
+
+  <div class="instructions">
+    <div class="instr-title">Instructions de déploiement — Formulaire 04</div>
+    <div class="instr-grid">
+      <div class="instr-block">
+        <div class="instr-block-title">Quand envoyer ce formulaire</div>
+        <div class="instr-item">Envoyer 7 jours après la fin de la mission d'accompagnement</div>
+        <div class="instr-item">Relancer une fois à J+14 si pas de réponse</div>
+        <div class="instr-item">Exporter mensuel vers Excel pour suivi NPS</div>
+        <div class="instr-item">Si note ≤ 3 sur Q1 → déclencher alerte Teams immédiate</div>
+      </div>
+      <div class="instr-block">
+        <div class="instr-block-title">Paramètres</div>
+        <div class="setting-row"><span class="setting-key">Anonymat possible</span><span class="setting-val on">Non obligatoire (confidentiel)</span></div>
+        <div class="setting-row"><span class="setting-key">Résumé des réponses</span><span class="setting-val off">Non visible par répondant</span></div>
+        <div class="setting-row"><span class="setting-key">Export Power BI</span><span class="setting-val on">À configurer pour dashboard</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="forms-chrome">
+    <div class="forms-toolbar">
+      <div class="ft-left">
+        <div class="ft-logo-wrap"><div class="ft-ms-icon"></div><span class="ft-ms-text">Forms</span></div>
+        <span class="ft-filename">Satisfaction client post-mission — Factelys.xlsx</span>
+      </div>
+      <div class="ft-tabs"><div class="ft-tab active">Questions</div><div class="ft-tab">Réponses</div></div>
+      <div class="ft-right"><button class="ft-btn ft-btn-preview">Aperçu</button><button class="ft-btn ft-btn-send">Envoyer</button></div>
+    </div>
+    <div class="form-body">
+      <div class="form-canvas">
+
+        <div class="form-header-card">
+          <div class="fhc-banner" style="background:linear-gradient(to right,#1E6B3C,#2E7D32)"></div>
+          <div class="fhc-body">
+            <div class="fhc-title">Votre avis compte.<br>Aidez-nous à nous améliorer.</div>
+            <div class="fhc-desc">Votre mission de mise en conformité est terminée — merci de nous avoir fait confiance. Ce questionnaire de satisfaction prend moins de 3 minutes et nous aide à améliorer notre accompagnement pour tous nos clients.</div>
+            <div class="fhc-logo-row">
+              <div class="fhc-ldot"></div>
+              <span class="fhc-lname">Factelys · Enquête satisfaction post-mission</span>
+              <span class="fhc-badge" style="background:#E8F5E9;color:#1E6B3C;font-size:11px;padding:2px 10px;border-radius:99px;font-weight:600">3 minutes · Confidentiel</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NPS -->
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">01</span>
+            <div class="q-body">
+              <div class="q-label">Sur une échelle de 0 à 10, recommanderiez-vous Factelys à un confrère ou partenaire ?</div>
+              <div class="q-sublabel">0 = Pas du tout · 10 = Absolument</div>
+              <div class="q-type-tag">📊 Évaluation NPS</div>
+              <div class="q-scale">
+                <div class="q-scale-item"><div class="q-scale-num">0</div><div class="q-scale-btn">0</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">1</div><div class="q-scale-btn">1</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">2</div><div class="q-scale-btn">2</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">3</div><div class="q-scale-btn">3</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">4</div><div class="q-scale-btn">4</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">5</div><div class="q-scale-btn">5</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">6</div><div class="q-scale-btn">6</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">7</div><div class="q-scale-btn">7</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">8</div><div class="q-scale-btn">8</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">9</div><div class="q-scale-btn">9</div></div>
+                <div class="q-scale-item"><div class="q-scale-num">10</div><div class="q-scale-btn">10</div></div>
+              </div>
+              <div class="q-scale-labels"><span>Pas du tout</span><span>Absolument</span></div>
+              <div class="q-logic-note"><strong>⚡ Alerte automatique :</strong> Si note ≤ 6 → notification immédiate Teams à Christophe Hubert pour prise de contact dans les 24h</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matrice satisfaction -->
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">02</span>
+            <div class="q-body">
+              <div class="q-label">Évaluez chaque aspect de notre accompagnement</div>
+              <div class="q-type-tag">📊 Grille d'évaluation</div>
+              <table class="q-matrix">
+                <thead>
+                  <tr>
+                    <th style="text-align:left;width:40%">Critère</th>
+                    <th>Très insatisfait</th>
+                    <th>Insatisfait</th>
+                    <th>Neutre</th>
+                    <th>Satisfait</th>
+                    <th>Très satisfait</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="row-label">Clarté des explications</td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td></tr>
+                  <tr><td class="row-label">Réactivité & disponibilité</td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td></tr>
+                  <tr><td class="row-label">Qualité du plan d'action</td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td></tr>
+                  <tr><td class="row-label">Rapport qualité / prix</td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td></tr>
+                  <tr><td class="row-label">Formation des équipes</td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td></tr>
+                  <tr><td class="row-label">Résultat final (conformité)</td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td><td><div class="q-matrix-radio"></div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-card-top"><span class="q-num">03</span>
+            <div class="q-body">
+              <div class="q-label">Qu'est-ce que vous avez le plus apprécié dans notre accompagnement ?</div>
+              <div class="q-type-tag">📝 Texte long</div>
+              <textarea class="q-input-multiline" placeholder="Ce qui vous a le plus aidé..." readonly></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-card-top"><span class="q-num">04</span>
+            <div class="q-body">
+              <div class="q-label">Qu'aurions-nous pu faire mieux ? <span style="font-size:12px;color:var(--g)">(optionnel)</span></div>
+              <div class="q-type-tag">📝 Texte long</div>
+              <textarea class="q-input-multiline" placeholder="Vos suggestions d'amélioration..." readonly></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-card-top"><span class="q-num">05</span>
+            <div class="q-body">
+              <div class="q-label">Autorisez-vous Factelys à utiliser votre témoignage (anonymisé ou non) ? <span style="font-size:12px;color:var(--g)">(optionnel)</span></div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Oui, avec mon nom et ma société</div>
+                <div class="q-option"><div class="q-option-radio"></div>Oui, mais anonymisé (secteur + taille uniquement)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Non</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-submit">
+          <button class="q-submit-btn" style="background:#1E6B3C">Envoyer mon avis →</button>
+          <div style="font-size:11px;color:var(--g);margin-top:8px">Merci pour votre confiance · Réponses confidentielles</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FORM 05 — AUDIT INITIAL COMPLET
+     ══════════════════════════════════════════════════════════ -->
+<div class="form-panel" id="form-4">
+
+  <div class="instructions">
+    <div class="instr-title">Instructions de déploiement — Formulaire 05</div>
+    <div class="instr-grid">
+      <div class="instr-block">
+        <div class="instr-block-title">Usage</div>
+        <div class="instr-item">Envoyé uniquement après signature du devis (client confirmé)</div>
+        <div class="instr-item">Remplir avec le client lors de la réunion de lancement (kick-off)</div>
+        <div class="instr-item">Exporter les réponses vers le dossier client SharePoint automatiquement via Power Automate</div>
+        <div class="instr-item">Ce formulaire génère le plan d'action personnalisé</div>
+      </div>
+      <div class="instr-block">
+        <div class="instr-block-title">Paramètres</div>
+        <div class="setting-row"><span class="setting-key">Accès</span><span class="setting-val">Lien privé · Non indexé</span></div>
+        <div class="setting-row"><span class="setting-key">Durée estimée</span><span class="setting-val">15–20 minutes</span></div>
+        <div class="setting-row"><span class="setting-key">Sauvegarde auto réponses</span><span class="setting-val on">Activé</span></div>
+        <div class="setting-row"><span class="setting-key">Export SharePoint</span><span class="setting-val on">Via Power Automate</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="forms-chrome">
+    <div class="forms-toolbar">
+      <div class="ft-left">
+        <div class="ft-logo-wrap"><div class="ft-ms-icon"></div><span class="ft-ms-text">Forms</span></div>
+        <span class="ft-filename">Audit initial onboarding — Factelys.xlsx</span>
+      </div>
+      <div class="ft-tabs"><div class="ft-tab active">Questions</div><div class="ft-tab">Réponses</div></div>
+      <div class="ft-right"><button class="ft-btn ft-btn-preview">Aperçu</button><button class="ft-btn ft-btn-send">Envoyer</button></div>
+    </div>
+    <div class="form-body">
+      <div class="form-canvas">
+
+        <div class="form-header-card">
+          <div class="fhc-banner" style="background:linear-gradient(135deg,#002B6E 0%,#C0392B 100%)"></div>
+          <div class="fhc-body">
+            <div class="fhc-title">Audit initial — Dossier client<br>Mise en conformité 2026</div>
+            <div class="fhc-desc">Ce formulaire nous permet de préparer votre plan d'action personnalisé. Merci de remplir chaque section avec précision — toutes les informations sont confidentielles et utilisées uniquement dans le cadre de votre mission Factelys. Durée estimée : 15 minutes.</div>
+            <div class="fhc-logo-row">
+              <div class="fhc-ldot"></div>
+              <span class="fhc-lname">Factelys · Document confidentiel · Usage interne</span>
+              <span class="fhc-badge chip-b">Dossier client</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card"><div class="q-section-label">Partie 1 — Identification</div></div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">01</span>
+            <div class="q-body">
+              <div class="q-label">Raison sociale & forme juridique</div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" placeholder="Dubois Logistique SAS" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">02</span>
+            <div class="q-body">
+              <div class="q-label">SIRET / SIREN</div>
+              <div class="q-type-tag">📝 Texte court · Format : 14 chiffres</div>
+              <input class="q-input" placeholder="123 456 789 00012" readonly style="font-family:var(--fm)">
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">03</span>
+            <div class="q-body">
+              <div class="q-label">Code NAF / APE</div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" placeholder="4941A — Transport routier de fret" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">04</span>
+            <div class="q-body">
+              <div class="q-label">Régime TVA</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Régime réel normal (déclaration mensuelle)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Régime réel simplifié (déclaration trimestrielle)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Franchise en base de TVA (non assujetti)</div>
+                <div class="q-option"><div class="q-option-radio"></div>Autre régime</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card"><div class="q-section-label">Partie 2 — Flux de facturation</div></div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">05</span>
+            <div class="q-body">
+              <div class="q-label">Volume de factures B2B émises / mois (estimation)</div>
+              <div class="q-type-tag">📝 Texte court · Nombre</div>
+              <input class="q-input" placeholder="ex: 180" readonly style="font-family:var(--fm)">
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">06</span>
+            <div class="q-body">
+              <div class="q-label">Volume de factures B2B reçues / mois (fournisseurs)</div>
+              <div class="q-type-tag">📝 Texte court · Nombre</div>
+              <input class="q-input" placeholder="ex: 60" readonly style="font-family:var(--fm)">
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">07</span>
+            <div class="q-body">
+              <div class="q-label">Avez-vous des transactions B2C (ventes à des particuliers) ?</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Non — 100% B2B</div>
+                <div class="q-option"><div class="q-option-radio"></div>Oui, moins de 20% de mon CA</div>
+                <div class="q-option"><div class="q-option-radio"></div>Oui, entre 20% et 50% de mon CA</div>
+                <div class="q-option"><div class="q-option-radio"></div>Oui, plus de 50% de mon CA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">08</span>
+            <div class="q-body">
+              <div class="q-label">Avez-vous des transactions internationales ?</div>
+              <div class="q-type-tag">☑️ Choix multiples</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-check"></div>Exportations vers l'UE (intra-communautaire)</div>
+                <div class="q-option"><div class="q-option-check"></div>Exportations hors UE</div>
+                <div class="q-option"><div class="q-option-check"></div>Importations</div>
+                <div class="q-option"><div class="q-option-check"></div>Non, activité 100% France</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card"><div class="q-section-label">Partie 3 — Système d'information</div></div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">09</span>
+            <div class="q-body">
+              <div class="q-label">Logiciel de facturation / ERP utilisé</div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" placeholder="ex: Sage 100 version 8.02" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">10</span>
+            <div class="q-body">
+              <div class="q-label">Logiciel comptable (si différent du logiciel de facturation)</div>
+              <div class="q-type-tag">📝 Texte court</div>
+              <input class="q-input" placeholder="ex: Cegid Expert · Non applicable" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">11</span>
+            <div class="q-body">
+              <div class="q-label">Comment envoyez-vous vos factures actuellement ?</div>
+              <div class="q-type-tag">☑️ Choix multiples</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-check"></div>Email avec PDF en pièce jointe</div>
+                <div class="q-option"><div class="q-option-check"></div>Courrier postal</div>
+                <div class="q-option"><div class="q-option-check"></div>Portail client en ligne (ex: Chorus Pro)</div>
+                <div class="q-option"><div class="q-option-check"></div>EDI (échange de données informatisé)</div>
+                <div class="q-option"><div class="q-option-check"></div>Plateforme de dématérialisation existante</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card"><div class="q-section-label">Partie 4 — Ressources & contraintes</div></div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">12</span>
+            <div class="q-body">
+              <div class="q-label">Avez-vous une ressource informatique interne ?</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Oui — service IT interne</div>
+                <div class="q-option"><div class="q-option-radio"></div>Oui — prestataire informatique externe</div>
+                <div class="q-option"><div class="q-option-radio"></div>Non — gestion en interne par les équipes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">13</span>
+            <div class="q-body">
+              <div class="q-label">Budget mensuel envisagé pour la plateforme (PDP)</div>
+              <div class="q-type-tag">⭕ Choix unique</div>
+              <div class="q-options">
+                <div class="q-option"><div class="q-option-radio"></div>Moins de 50€ / mois HT</div>
+                <div class="q-option"><div class="q-option-radio"></div>50 à 100€ / mois HT</div>
+                <div class="q-option"><div class="q-option-radio"></div>100 à 200€ / mois HT</div>
+                <div class="q-option"><div class="q-option-radio"></div>Plus de 200€ / mois HT</div>
+                <div class="q-option"><div class="q-option-radio"></div>Préférence pour le PPF (gratuit)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card required">
+          <div class="q-card-top"><span class="q-num">14</span>
+            <div class="q-body">
+              <div class="q-label">Date souhaitée de mise en production</div>
+              <div class="q-type-tag">📅 Date</div>
+              <input class="q-date" type="date" value="2026-08-01" readonly>
+              <div class="q-logic-note"><strong>Note :</strong> Si date saisie après le 15 août 2026 → afficher alerte "Délai critique — déploiement prioritaire nécessaire"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card">
+          <div class="q-card-top"><span class="q-num">15</span>
+            <div class="q-body">
+              <div class="q-label">Informations complémentaires / points d'attention particuliers</div>
+              <div class="q-type-tag">📝 Texte long</div>
+              <textarea class="q-input-multiline" style="height:100px" placeholder="Contraintes spécifiques, clients grands comptes exigeants, accord-cadre particulier, multi-établissements..." readonly></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-submit">
+          <button class="q-submit-btn" style="background:linear-gradient(135deg,#002B6E,#0044B5)">Valider l'audit initial →</button>
+          <div style="font-size:11px;color:var(--g);margin-top:8px">Document confidentiel · Dossier client Factelys</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function showForm(n) {
+  document.querySelectorAll('.form-panel').forEach((p,i) => {
+    p.classList.toggle('active', i===n);
+  });
+  document.querySelectorAll('.index-card').forEach((c,i) => {
+    c.classList.toggle('active', i===n);
+  });
+  window.scrollTo({top:120,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
